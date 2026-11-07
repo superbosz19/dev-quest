@@ -305,6 +305,14 @@
   .term-input{flex:1; min-width:0; background:transparent; border:0; outline:0; color:#fff; font:inherit; caret-color:var(--c)}
   .term-goal{margin-top:12px; padding:10px 12px; border-radius:8px; background:color-mix(in srgb,var(--c) 12%,var(--bg2)); border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
   .term-pre{background:#0a0c1c; border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:10px 0 0; font-size:13px; overflow-x:auto; white-space:pre}
+  .twin-b{margin:0 0 12px; padding:10px 12px; border-radius:10px; border:1px dashed #c084fc; background:rgba(192,132,252,.08); font-size:14.5px; line-height:1.6}
+  .twin-b.dim{border-color:var(--line); background:transparent; color:var(--muted)}
+  .linkbtn{background:none; border:0; padding:0; color:#c084fc; text-decoration:underline; font:inherit; cursor:pointer}
+  .twin-next{margin-top:10px; padding:10px 12px; border-radius:10px; background:rgba(192,132,252,.1); border:1px solid #c084fc; font-size:14.5px; line-height:1.6}
+  .twin-next .btn{margin-left:6px}
+  .twin-next.ok{border-color:var(--good); background:rgba(74,222,128,.08)}
+  .pcard.twin{border-style:dashed; margin-left:14px}
+  .vz-g.land{background:#14532d}
   .lab-link:hover{background:color-mix(in srgb,var(--c) 30%,var(--bg2))}
   @media (max-width:640px){
     .card{padding:20px 18px}
@@ -4360,16 +4368,16 @@ const SQL_TABLE_INFO = [
 const SQL_DATA = {
  A:{
   customers:[[1,"Ann","Bangkok","ann@mail.com"],[2,"Bo","Chiang Mai",null],[3,"Cy","Bangkok","cy@mail.com"],[4,"Dee","Phuket","dee@mail.com"],[5,"Eve",null,"eve@mail.com"],[6,"Fon","Bangkok",null]],
-  products:[[1,"Laptop","Electronics",25000],[2,"Mouse","Electronics",450],[3,"Desk","Furniture",3500],[4,"Chair","Furniture",1200],[5,"Pen","Stationery",15],[6,"Notebook","Stationery",60]],
-  orders:[[1,1,"PAID","2026-01-03",25450],[2,1,"PAID","2026-01-05",60],[3,2,"CANCEL","2026-01-05",1200],[4,3,"PAID","2026-01-06",3500],[5,3,"PENDING","2026-01-08",450],[6,4,"PAID","2026-01-08",1215],[7,2,"PAID","2026-01-09",30],[8,1,"PENDING","2026-01-10",15]],
-  order_items:[[1,1,1,25000],[1,2,1,450],[2,6,1,60],[3,4,1,1200],[4,3,1,3500],[5,2,1,450],[6,4,1,1200],[6,5,1,15],[7,5,2,15],[8,5,1,15]],
-  employees:[[1,"Nok","Eng",90000,null],[2,"Pim","Eng",70000,1],[3,"Tao","Eng",70000,1],[4,"Mek","Eng",50000,2],[5,"Jan","Sales",60000,null],[6,"Kai","Sales",45000,5],[7,"Lin","HR",40000,null]]
+  products:[[1,"Laptop","Electronics",25000],[2,"Mouse","Electronics",450],[3,"Desk","Furniture",3500],[4,"Chair","Furniture",1200],[5,"Pen","Stationery",15],[6,"Notebook","Stationery",60],[7,"Stapler","Stationery",60],[8,"Cable","Electronics",100]],
+  orders:[[1,1,"PAID","2026-01-03",25450],[2,1,"PAID","2026-01-05",60],[3,2,"CANCEL","2026-01-05",1200],[4,3,"PAID","2026-01-06",3500],[5,3,"PENDING","2026-01-08",450],[6,4,"PAID","2026-01-08",1215],[7,2,"PAID","2026-01-09",30],[8,1,"PENDING","2026-01-10",15],[9,4,"PAID","2026-02-02",100]],
+  order_items:[[1,1,1,25000],[1,2,1,450],[2,6,1,60],[3,4,1,1200],[4,3,1,3500],[5,2,1,450],[6,4,1,1200],[6,5,1,15],[7,5,2,15],[8,5,1,15],[9,8,1,100]],
+  employees:[[1,"Nok","Eng",90000,null],[2,"Pim","Eng",70000,1],[3,"Tao","Eng",70000,1],[4,"Mek","Eng",50000,2],[5,"Jan","Sales",60000,null],[6,"Kai","Sales",45000,5],[7,"Lin","HR",40000,null],[8,"Ton","Sales",60000,5]]
  },
  B:{
   customers:[[1,"Zed","Bangkok",null],[2,"Yui","Bangkok","yui@mail.com"],[3,"Xan",null,null],[4,"Wan","Khon Kaen","wan@mail.com"],[5,"Vee","Phuket","vee@mail.com"]],
-  products:[[1,"Phone","Electronics",18000],[2,"Case","Electronics",300],[3,"Lamp","Furniture",800],[4,"Sofa","Furniture",15000],[5,"Ink","Stationery",120]],
-  orders:[[1,2,"PAID","2026-02-01",18300],[2,2,"CANCEL","2026-02-01",800],[3,4,"PAID","2026-02-02",15000],[4,4,"PAID","2026-02-02",120],[5,5,"PENDING","2026-02-03",300],[6,2,"PAID","2026-02-04",800],[7,4,"PAID","2026-02-04",240]],
-  order_items:[[1,1,1,18000],[1,2,1,300],[2,3,1,800],[3,4,1,15000],[4,5,1,120],[5,2,1,300],[6,3,1,800],[7,5,2,120]],
+  products:[[1,"Phone","Electronics",18000],[2,"Case","Electronics",300],[3,"Lamp","Furniture",800],[4,"Sofa","Furniture",15000],[5,"Ink","Stationery",120],[6,"Mat","Furniture",500],[7,"Clip","Stationery",120],[8,"Rug","Decor",900]],
+  orders:[[1,2,"PAID","2026-02-01",18300],[2,2,"CANCEL","2026-02-01",800],[3,4,"PAID","2026-02-02",15000],[4,4,"PAID","2026-02-02",120],[5,5,"PENDING","2026-02-03",300],[6,2,"PAID","2026-02-04",800],[7,4,"PAID","2026-02-04",240],[8,1,"PAID","2026-03-01",500]],
+  order_items:[[1,1,1,18000],[1,2,1,300],[2,3,1,800],[3,4,1,15000],[4,5,1,120],[5,2,1,300],[6,3,1,800],[7,5,2,120],[8,6,1,500]],
   employees:[[1,"Ann","Eng",80000,null],[2,"Bee","Eng",80000,1],[3,"Cat","Eng",60000,1],[4,"Dan","Eng",55000,3],[5,"Eli","Ops",50000,null],[6,"Fai","Ops",50000,5],[7,"Gus","Ops",42000,5]]
  }
 };
@@ -4679,6 +4687,303 @@ s_top2:{story:"หาพนักงานเงินเดือนสูง�
 s_second:{story:"หาเงินเดือนที่สูงเป็นอันดับ 2 ของบริษัท", tables:["employees"], warn:["LIMIT 1 OFFSET 1 จะผิดถ้าอันดับ 1 มีหลายคน","ถ้าไม่มีอันดับ 2 ต้องได้ NULL"]},
 s_running:{story:"กราฟยอดขายสะสมตั้งแต่วันแรกของเดือน", tables:["orders"], join:"orders (PAID) ── รวมรายวัน ──▶ SUM(daily) OVER (ORDER BY day) = ยอดสะสม", warn:["กรองเฉพาะ status = 'PAID'","รวมเป็นรายวันก่อน แล้วค่อยทำยอดสะสม"]}
 };
+/* ============ 🧬 โจทย์แฝด: pattern เดียวกับข้อเดิม แต่เรื่องต่างกัน ใช้ตรวจว่า “เข้าใจ” ไม่ใช่ “จำ” ============ */
+const mkOrders = (n, seed) => { const r=rng(seed), st=["PAID","PENDING","CANCEL"]; return Array.from({length:n},(_,i)=>({id:i+1, status:st[Math.floor(r()*3)], amount:1+Math.floor(r()*1000)})); };
+const shuffleSeed = (a, seed) => { const r=rng(seed); for(let i=a.length-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const ORD5 = [{id:1,status:"PAID",amount:500},{id:2,status:"PENDING",amount:120},{id:3,status:"PAID",amount:80},{id:4,status:"CANCEL",amount:300},{id:5,status:"PAID",amount:20}];
+
+const JS_TWINS = [
+/* ----- Level 1 ----- */
+{id:"pingPong", twin:"fizzBuzz", lvl:1, title:"🧬 Ping Pong", fn:"pingPong",
+ desc:`<p>คืน array ของข้อความตั้งแต่ 1 ถึง n ถ้าหาร 4 <b>และ</b> 6 ลงตัวให้เป็น <code>"PingPong"</code> ถ้าหาร 4 ลงตัวเป็น <code>"Ping"</code> ถ้าหาร 6 ลงตัวเป็น <code>"Pong"</code> นอกนั้นเป็นตัวเลขในรูปข้อความ</p>`,
+ stub:`function pingPong(n) {\n  \n}`,
+ tests:[[13],[0]], hidden:[[24],[1],{label:"n = 100,000", gen:()=>[100000]}],
+ hint:"pattern เดียวกับ FizzBuzz: เช็กกรณีที่หารได้ทั้งคู่ก่อน · 12 หาร 4 และ 6 ลงตัว (ไม่ต้องรอถึง 24)",
+ sol:`function pingPong(n) {\n  const out = [];\n  for (let i = 1; i <= n; i++) {\n    if (i % 4 === 0 && i % 6 === 0) out.push("PingPong");\n    else if (i % 4 === 0) out.push("Ping");\n    else if (i % 6 === 0) out.push("Pong");\n    else out.push(String(i));\n  }\n  return out;\n}`},
+
+{id:"countInRange", twin:"countPositive", lvl:1, title:"🧬 นับค่าที่อยู่ในช่วง", fn:"countInRange",
+ desc:`<p>คืนจำนวนตัวใน <code>arr</code> ที่ <code>lo ≤ x ≤ hi</code> (รวมค่าบนขอบ)</p>`,
+ stub:`function countInRange(arr, lo, hi) {\n  \n}`,
+ tests:[[[1,5,10,15],5,10],[[],0,1]], hidden:[[[-3,-2,-1],-2,-1],[[7,7,7],7,7],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[randInts(100000,-500,500,31),-100,100]}],
+ hint:"เหมือนนับจำนวนบวก แค่เปลี่ยนเงื่อนไขเป็น x >= lo && x <= hi",
+ sol:`function countInRange(arr, lo, hi) {\n  let c = 0;\n  for (const x of arr) if (x >= lo && x <= hi) c++;\n  return c;\n}`},
+
+{id:"shippingFee", twin:"grade", lvl:1, title:"🧬 ค่าส่งตามน้ำหนัก", fn:"shippingFee",
+ desc:`<p>คิดค่าส่งจากน้ำหนัก <code>w</code> (กิโลกรัม มากกว่า 0)</p><ul><li>ไม่เกิน 1 กก. → 30</li><li>ไม่เกิน 5 กก. → 50</li><li>ไม่เกิน 10 กก. → 80</li><li>เกิน 10 กก. → 80 บวกอีก 10 บาท ต่อทุก 1 กก. ที่เกิน (เศษปัดขึ้น)</li></ul>`,
+ stub:`function shippingFee(w) {\n  \n}`,
+ tests:[[0.5],[5],[12]], hidden:[[1],[1.01],[10],[10.5],[30]],
+ hint:"เหมือนตัดเกรด: เช็กช่วงทีละขั้น ระวังค่าบนขอบ (1, 5, 10) · ส่วนที่เกินใช้ Math.ceil(w - 10)",
+ sol:`function shippingFee(w) {\n  if (w <= 1) return 30;\n  if (w <= 5) return 50;\n  if (w <= 10) return 80;\n  return 80 + Math.ceil(w - 10) * 10;\n}`},
+
+{id:"reverseWords", twin:"reverseString", lvl:1, title:"🧬 กลับลำดับคำ", fn:"reverseWords",
+ desc:`<p>รับประโยคที่คำคั่นด้วยเว้นวรรค 1 ช่อง คืนประโยคที่<b>ลำดับคำกลับกัน</b> (ตัวอักษรในแต่ละคำไม่กลับ)</p><p>เช่น <code>"JS is fun"</code> → <code>"fun is JS"</code></p>`,
+ stub:`function reverseWords(s) {\n  \n}`,
+ tests:[["hello world"],["one"]], hidden:[[""],["a b c d"],["JS is fun"]],
+ hint:"แยกเป็น array ของคำด้วย split(\" \") แล้ว reverse() แล้ว join(\" \")",
+ sol:`function reverseWords(s) {\n  return s.split(" ").reverse().join(" ");\n}`},
+
+/* ----- Level 2 ----- */
+{id:"countByStatus", twin:"groupByCity", lvl:2, title:"🧬 นับคำสั่งซื้อตามสถานะ", fn:"countByStatus",
+ desc:`<p>รับ <code>orders</code> (array ของ <code>{ id, status, amount }</code>) คืน object ที่บอกว่าแต่ละ status มีกี่รายการ</p><p>เช่น <code>{ PAID: 3, PENDING: 1, CANCEL: 1 }</code> (status ที่ไม่มีเลยไม่ต้องใส่)</p>`,
+ stub:`function countByStatus(orders) {\n  const count = {};\n  \n  return count;\n}`,
+ tests:[[ORD5],[[]]], hidden:[[[{id:1,status:"PAID",amount:1}]],{label:"100,000 รายการ", gen:()=>[mkOrders(100000,32)]}],
+ hint:"เหมือนจัดกลุ่มตามเมือง แต่แทนที่จะ push ชื่อ ให้นับ: count[s] = (count[s] || 0) + 1",
+ sol:`function countByStatus(orders) {\n  const count = {};\n  for (const o of orders) count[o.status] = (count[o.status] || 0) + 1;\n  return count;\n}`},
+
+{id:"totalPaid", twin:"totalPrice", lvl:2, title:"🧬 ยอดเงินที่ชำระแล้ว", fn:"totalPaid",
+ desc:`<p>รับ <code>orders</code> (array ของ <code>{ id, status, amount }</code>) คืนผลรวม <code>amount</code> เฉพาะรายการที่ <code>status === "PAID"</code> (ไม่มี → 0)</p>`,
+ stub:`function totalPaid(orders) {\n  \n}`,
+ tests:[[ORD5],[[]]], hidden:[[[{id:1,status:"CANCEL",amount:99}]],{label:"100,000 รายการ", gen:()=>[mkOrders(100000,33)]}],
+ hint:"filter เฉพาะ PAID แล้ว reduce รวม amount โดยมีค่าเริ่มต้น 0",
+ sol:`function totalPaid(orders) {\n  return orders.filter(o => o.status === "PAID").reduce((s, o) => s + o.amount, 0);\n}`},
+
+{id:"getConfigValue", twin:"parseJSONSafe", lvl:2, title:"🧬 อ่านค่าตั้งค่าจาก JSON", fn:"getConfigValue",
+ desc:`<p>รับ <code>text</code> (ข้อความ JSON ของ object), <code>key</code> และ <code>fallback</code></p><p>คืนค่าของ <code>key</code> ใน object นั้น แต่ถ้า JSON ผิดรูปแบบ หรือไม่ใช่ object หรือไม่มี key นั้น ให้คืน <code>fallback</code></p>`,
+ stub:`function getConfigValue(text, key, fallback) {\n  \n}`,
+ tests:[['{"theme":"dark"}',"theme","light"],['{bad json',"theme","light"]], hidden:[['{"size":0}',"size",14],['{"a":1}',"b",null],['null',"a","x"],['{"on":false}',"on",true]],
+ hint:"ครอบ JSON.parse ด้วย try/catch · เช็กว่าผลไม่ใช่ null และเป็น object · ใช้ key in obj (ค่า 0 กับ false ต้องคืนค่าจริง ไม่ใช่ fallback)",
+ sol:`function getConfigValue(text, key, fallback) {\n  try {\n    const obj = JSON.parse(text);\n    if (obj !== null && typeof obj === "object" && key in obj) return obj[key];\n  } catch (e) {}\n  return fallback;\n}`},
+
+{id:"getUserNames", twin:"getTotalAge", lvl:2, title:"🧬 ⏳ async: ดึงชื่อหลายคนพร้อมกัน", fn:"getUserNames", prelude:FAKE_API,
+ desc:`<p>ใช้ <code>fetchUser(id)</code> (แต่ละครั้งใช้เวลาประมาณ 0.1 วินาที) รับ <code>ids</code> แล้วคืน array ของ <b>ชื่อ</b> ตามลำดับเดียวกับ ids</p><p>⚠️ hidden test มี 40 คน และจำกัดเวลา 3 วินาที</p>`,
+ stub:`async function getUserNames(ids) {\n  \n}`,
+ tests:[[[3,1,2]],[[]]], hidden:[[[7]],{label:"40 คน (ต้องเสร็จใน 3 วินาที)", gen:()=>[Array.from({length:40},(_,i)=>1000-i*7)]}],
+ hint:"Promise.all คืนผลตามลำดับของ array ที่ส่งเข้าไปเสมอ แม้งานจะเสร็จไม่พร้อมกัน แล้ว map เอาแต่ name",
+ sol:`async function getUserNames(ids) {\n  const users = await Promise.all(ids.map(id => fetchUser(id)));\n  return users.map(u => u.name);\n}`},
+
+/* ----- Level 3 ----- */
+{id:"findMinIndex", twin:"findMax", lvl:3, title:"🧬 ตำแหน่งของค่าน้อยที่สุด", fn:"findMinIndex",
+ desc:`<p>คืน <b>index</b> ของค่าที่น้อยที่สุดใน <code>arr</code> ถ้ามีหลายตัวเท่ากันให้คืน index แรก ถ้า array ว่างคืน <code>-1</code></p>`,
+ stub:`function findMinIndex(arr) {\n  \n}`,
+ tests:[[[4,2,8,2]],[[]]], hidden:[[[5]],[[3,-1,-1]],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[randInts(100000,-1e9,1e9,34)]}],
+ hint:"เหมือนหาค่ามากสุด แต่จำ “ตำแหน่ง” แทนค่า เริ่มจาก best = 0 · ใช้ < (ไม่ใช่ <=) เพื่อให้ได้ index แรก",
+ sol:`function findMinIndex(arr) {\n  if (arr.length === 0) return -1;\n  let best = 0;\n  for (let i = 1; i < arr.length; i++) if (arr[i] < arr[best]) best = i;\n  return best;\n}`},
+
+{id:"isMirrorArray", twin:"isPalindrome", lvl:3, title:"🧬 Array กระจก", fn:"isMirrorArray",
+ desc:`<p>คืน <code>true</code> ถ้า array อ่านจากซ้ายไปขวาและขวาไปซ้ายได้เหมือนกัน เช่น <code>[1,2,3,2,1]</code></p>`,
+ stub:`function isMirrorArray(arr) {\n  \n}`,
+ tests:[[[1,2,3,2,1]],[[1,2]]], hidden:[[[]],[[7]],[[1,2,2,1]],{label:"ข้อมูลใหญ่ 200,000 ตัว", gen:()=>{ const h=randInts(100000,0,9,35); return [h.concat(h.slice().reverse())]; }}],
+ hint:"Two pointers: i จากซ้าย j จากขวา เทียบ arr[i] กับ arr[j] แล้วเลื่อนเข้าหากัน",
+ sol:`function isMirrorArray(arr) {\n  let i = 0, j = arr.length - 1;\n  while (i < j) {\n    if (arr[i] !== arr[j]) return false;\n    i++; j--;\n  }\n  return true;\n}`},
+
+{id:"firstDuplicate", twin:"removeDuplicates", lvl:3, title:"🧬 ค่าแรกที่ซ้ำ", fn:"firstDuplicate",
+ desc:`<p>อ่าน <code>arr</code> จากซ้ายไปขวา คืน<b>ค่าแรกที่เจอซ้ำ</b> (ค่าที่เคยเจอมาก่อนแล้ว) ถ้าไม่มีค่าซ้ำเลยคืน <code>null</code></p><p>เช่น <code>[2,1,3,1,2]</code> → <code>1</code> (เพราะเจอ 1 ซ้ำที่ตำแหน่ง 3 ก่อนจะเจอ 2 ซ้ำที่ตำแหน่ง 4)</p>`,
+ stub:`function firstDuplicate(arr) {\n  \n}`,
+ tests:[[[2,1,3,1,2]],[[1,2,3]]], hidden:[[[]],[[5,5]],{label:"100,000 ตัว ไม่ซ้ำเลย", gen:()=>[shuffleSeed(Array.from({length:100000},(_,i)=>i),36)]}],
+ hint:"ใช้ Set เก็บค่าที่เคยเห็น: ถ้า seen.has(x) คืน x ทันที · ถ้าใช้ includes กับ array จะช้าเกิน",
+ sol:`function firstDuplicate(arr) {\n  const seen = new Set();\n  for (const x of arr) {\n    if (seen.has(x)) return x;\n    seen.add(x);\n  }\n  return null;\n}`},
+
+{id:"secondSmallest", twin:"secondLargest", lvl:3, title:"🧬 ค่าน้อยเป็นอันดับสอง", fn:"secondSmallest",
+ desc:`<p>คืนค่าที่น้อยเป็น<b>อันดับสอง</b>แบบไม่นับค่าซ้ำ เช่น <code>[3,1,1,2]</code> → <code>2</code> ถ้าไม่มี (มีค่าต่างกันน้อยกว่า 2 ค่า) คืน <code>null</code></p>`,
+ stub:`function secondSmallest(arr) {\n  \n}`,
+ tests:[[[3,1,1,2]],[[4,4]]], hidden:[[[]],[[-5,10]],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[randInts(100000,-1e6,1e6,37)]}],
+ hint:"เก็บตัวแปร 2 ตัว (น้อยสุด, รองลงมา) วนรอบเดียว และข้ามค่าที่เท่ากับค่าน้อยสุด · เริ่มด้วย Infinity",
+ sol:`function secondSmallest(arr) {\n  let a = Infinity, b = Infinity;\n  for (const x of arr) {\n    if (x < a) { b = a; a = x; }\n    else if (x > a && x < b) b = x;\n  }\n  return b === Infinity ? null : b;\n}`},
+
+{id:"mostFrequentChar", twin:"charFrequency", lvl:3, title:"🧬 ตัวอักษรที่พบบ่อยที่สุด", fn:"mostFrequentChar",
+ desc:`<p>คืนตัวอักษรที่ปรากฏบ่อยที่สุดใน <code>s</code> (ไม่นับเว้นวรรค แยกตัวพิมพ์เล็กกับใหญ่) ถ้าเท่ากันให้คืนตัวที่<b>ปรากฏครั้งแรกก่อน</b> ข้อความว่างหรือมีแต่เว้นวรรคคืน <code>null</code></p>`,
+ stub:`function mostFrequentChar(s) {\n  \n}`,
+ tests:[["hello"],["abab"]], hidden:[[""],["   "],["aA a"],{label:"ข้อความยาว 100,000 ตัว", gen:()=>[randStr(100000,"abcde xyz",38)]}],
+ hint:"นับความถี่ด้วย object หรือ Map ก่อน (เหมือนข้อเดิม) แล้ววน s อีกรอบตามลำดับเดิมเพื่อหาตัวที่นับได้มากที่สุดตัวแรก",
+ sol:`function mostFrequentChar(s) {\n  const cnt = {};\n  for (const ch of s) if (ch !== " ") cnt[ch] = (cnt[ch] || 0) + 1;\n  let best = null;\n  for (const ch of s) if (ch !== " " && (best === null || cnt[ch] > cnt[best])) best = ch;\n  return best;\n}`},
+
+/* ----- Level 4 ----- */
+{id:"hasPairWithDiff", twin:"twoSum", lvl:4, title:"🧬 มีคู่ที่ต่างกันเท่ากับ k ไหม", fn:"hasPairWithDiff",
+ desc:`<p>คืน <code>true</code> ถ้ามีตัวเลข 2 ตัว (คนละตำแหน่ง) ใน <code>nums</code> ที่ลบกันได้ <code>k</code> พอดี (<code>k ≥ 0</code>)</p><p>⏱️ hidden test มี 100,000 ตัว</p>`,
+ stub:`function hasPairWithDiff(nums, k) {\n  \n}`,
+ tests:[[[1,5,3,9],4],[[1,2,3],5]], hidden:[[[4,4],0],[[4],0],[[10,-2,7],12],{label:"100,000 ตัว ไม่มีคู่", gen:()=>[shuffleSeed(Array.from({length:100000},(_,i)=>i*3),39),1]}],
+ hint:"เหมือน twoSum: เก็บค่าทั้งหมดใน Set แล้วถามว่า set.has(x + k) · ระวัง k = 0 ต้องมีค่าซ้ำจริง ๆ (ตัวเดียวกันจับคู่กับตัวเองไม่ได้)",
+ sol:`function hasPairWithDiff(nums, k) {\n  const set = new Set(nums);\n  if (k === 0) return set.size < nums.length;\n  for (const x of set) if (set.has(x + k)) return true;\n  return false;\n}`},
+
+{id:"maxVowelsWindow", twin:"maxSumK", lvl:4, title:"🧬 สระมากที่สุดในช่วงยาว k", fn:"maxVowelsWindow",
+ desc:`<p>คืนจำนวนสระ (a, e, i, o, u ตัวพิมพ์เล็ก) ที่มากที่สุดใน substring ที่ยาว <code>k</code> ตัวพอดี (รับประกัน 1 ≤ k ≤ s.length)</p><p>⏱️ hidden test: ยาว 100,000 และ k = 50,000</p>`,
+ stub:`function maxVowelsWindow(s, k) {\n  \n}`,
+ tests:[["abciiidef",3],["leetcode",3]], hidden:[["xyz",2],["aeiou",5],{label:"ยาว 100,000 · k = 50,000", gen:()=>[randStr(100000,"abcdeiouxyz",40),50000]}],
+ hint:"Sliding window ขนาดคงที่ เหมือนผลรวมช่วงยาว k: นับ k ตัวแรก แล้วเลื่อนทีละช่อง (+ ตัวที่เข้า, − ตัวที่ออก)",
+ sol:`function maxVowelsWindow(s, k) {\n  const v = c => "aeiou".includes(c) ? 1 : 0;\n  let cur = 0;\n  for (let i = 0; i < k; i++) cur += v(s[i]);\n  let best = cur;\n  for (let i = k; i < s.length; i++) {\n    cur += v(s[i]) - v(s[i - k]);\n    if (cur > best) best = cur;\n  }\n  return best;\n}`},
+
+{id:"countLessThan", twin:"binarySearch", lvl:4, title:"🧬 นับจำนวนที่น้อยกว่า (หลายคำถาม)", fn:"countLessThan",
+ desc:`<p>รับ <code>sorted</code> (เรียงจากน้อยไปมากแล้ว อาจมีค่าซ้ำ) และ <code>queries</code> คืน array ที่ตำแหน่ง i คือ<b>จำนวนตัวใน sorted ที่น้อยกว่า queries[i]</b></p><p>⏱️ hidden test: sorted 100,000 ตัว และ 100,000 คำถาม ถ้านับทีละตัวทุกคำถามจะช้าเกิน</p>`,
+ stub:`function countLessThan(sorted, queries) {\n  \n}`,
+ tests:[[[1,3,3,7],[0,3,4,10]],[[],[5]]], hidden:[[[2,2,2],[2,3]],{label:"100,000 × 100,000", gen:()=>[randInts(100000,0,1e6,41).sort((a,b)=>a-b), randInts(100000,-10,1e6+10,42)]}],
+ hint:"ใช้ binary search หา “ตำแหน่งแรกที่ค่า ≥ q” ตำแหน่งนั้นคือจำนวนตัวที่น้อยกว่า q พอดี · O(log n) ต่อคำถาม",
+ sol:`function countLessThan(sorted, queries) {\n  return queries.map(q => {\n    let lo = 0, hi = sorted.length;\n    while (lo < hi) {\n      const mid = (lo + hi) >> 1;\n      if (sorted[mid] < q) lo = mid + 1; else hi = mid;\n    }\n    return lo;\n  });\n}`},
+
+{id:"maxDepth", twin:"isValid", lvl:4, title:"🧬 ความลึกของวงเล็บ", fn:"maxDepth",
+ desc:`<p>ข้อความมีวงเล็บ <code>(</code> <code>)</code> ปนกับตัวอักษรอื่น (ไม่สนตัวอื่น) คืน<b>ความลึกมากที่สุด</b>ของวงเล็บ เช่น <code>"(a(b)(c(d)))"</code> → 3</p><p>ถ้าวงเล็บไม่สมดุล (ปิดก่อนเปิด หรือเปิดค้าง) คืน <code>-1</code></p>`,
+ stub:`function maxDepth(s) {\n  \n}`,
+ tests:[["(a(b)(c(d)))"],["()()"],[")("]], hidden:[[""],["((("],["a(b)c"],{label:"ยาว 200,000 ตัว", gen:()=>["(".repeat(100000)+")".repeat(100000)]}],
+ hint:"pattern เดียวกับตรวจวงเล็บด้วย stack แต่มีวงเล็บชนิดเดียว จึงใช้ตัวนับแทน stack ได้: ( → +1, ) → −1 · ติดลบเมื่อไรคืน -1 · จบแล้วต้องเป็น 0",
+ sol:`function maxDepth(s) {\n  let d = 0, best = 0;\n  for (const ch of s) {\n    if (ch === "(") { d++; if (d > best) best = d; }\n    else if (ch === ")") { d--; if (d < 0) return -1; }\n  }\n  return d === 0 ? best : -1;\n}`},
+
+{id:"firstUniqueNumber", twin:"firstUniqChar", lvl:4, title:"🧬 ตัวเลขแรกที่ไม่ซ้ำ", fn:"firstUniqueNumber",
+ desc:`<p>คืน<b>ค่า</b>ของตัวเลขตัวแรก (จากซ้าย) ที่ปรากฏเพียงครั้งเดียวใน <code>arr</code> ถ้าไม่มีคืน <code>null</code></p>`,
+ stub:`function firstUniqueNumber(arr) {\n  \n}`,
+ tests:[[[4,5,4,6,5]],[[1,1]]], hidden:[[[]],[[9]],{label:"100,000 ตัว ตัวที่ไม่ซ้ำอยู่ท้ายสุด", gen:()=>{ const a=[]; for(let i=0;i<50000;i++) a.push(i); for(let i=49999;i>=0;i--) a.push(i); a.push(-7); return [a]; }}],
+ hint:"สองรอบเหมือนข้อเดิม: รอบแรกนับด้วย Map รอบสองหาตัวแรกที่นับได้ 1 · ห้ามใช้ indexOf/lastIndexOf ในลูป (O(n²))",
+ sol:`function firstUniqueNumber(arr) {\n  const cnt = new Map();\n  for (const x of arr) cnt.set(x, (cnt.get(x) || 0) + 1);\n  for (const x of arr) if (cnt.get(x) === 1) return x;\n  return null;\n}`},
+
+{id:"totalCovered", twin:"mergeIntervals", lvl:4, title:"🧬 ความยาวรวมที่ถูกจอง", fn:"totalCovered",
+ desc:`<p>รับ array ของช่วงเวลาจองห้อง <code>[start, end]</code> (ยังไม่เรียง) คืน<b>ความยาวรวมของเวลาที่มีคนจอง</b> โดยช่วงที่ซ้อนกันนับครั้งเดียว</p><p>เช่น <code>[[1,3],[2,6],[8,10]]</code> → (6−1) + (10−8) = 7</p>`,
+ stub:`function totalCovered(intervals) {\n  \n}`,
+ tests:[[[[1,3],[2,6],[8,10]]],[[]]], hidden:[[[[1,4],[4,5]]],[[[5,6],[1,10]]],{label:"50,000 ช่วง", gen:()=>{ const r=rng(43); return [Array.from({length:50000},()=>{ const s=Math.floor(r()*1e6); return [s, s+1+Math.floor(r()*30)]; })]; }}],
+ hint:"เหมือนรวมช่วง: เรียงตาม start ก่อน แล้วรวมช่วงที่ซ้อนกัน จากนั้นบวกความยาว (end − start) ของแต่ละช่วงที่รวมแล้ว",
+ sol:`function totalCovered(intervals) {\n  const a = intervals.map(x => x.slice()).sort((p, q) => p[0] - q[0]);\n  let total = 0, cs = null, ce = null;\n  for (const [s, e] of a) {\n    if (cs === null) { cs = s; ce = e; }\n    else if (s <= ce) { if (e > ce) ce = e; }\n    else { total += ce - cs; cs = s; ce = e; }\n  }\n  if (cs !== null) total += ce - cs;\n  return total;\n}`},
+
+{id:"rankProducts", twin:"sortUsers", lvl:4, title:"🧬 เรียงสินค้าราคาถูกก่อน", fn:"rankProducts",
+ desc:`<p>รับ array ของ <code>{ name, price }</code> คืน array ของชื่อ เรียงตาม <b>price น้อยไปมาก</b> ถ้าราคาเท่ากันเรียง <b>name จาก A ไป Z</b> (ห้ามแก้ array เดิม)</p>`,
+ stub:`function rankProducts(products) {\n  \n}`,
+ tests:[[[{name:"Pen",price:20},{name:"Bag",price:450},{name:"Cap",price:20}]],[[]]], hidden:[[[{name:"b",price:1},{name:"a",price:1}]],{label:"50,000 รายการ", gen:()=>{ const r=rng(44); return [Array.from({length:50000},(_,i)=>({name:"P"+(i*7919%50000), price:Math.floor(r()*100)}))]; }}],
+ hint:"เหมือนเรียงผู้ใช้ แต่ทิศกลับ: (a, b) => a.price - b.price || (a.name < b.name ? -1 : a.name > b.name ? 1 : 0) · ใช้ [...products] ก่อน sort",
+ sol:`function rankProducts(products) {\n  return [...products]\n    .sort((a, b) => a.price - b.price || (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))\n    .map(p => p.name);\n}`},
+
+/* ----- Level 5 ----- */
+{id:"longestSumAtMost", twin:"lengthOfLongest", lvl:5, title:"🧬 ช่วงยาวสุดที่ผลรวมไม่เกิน limit", fn:"longestSumAtMost",
+ desc:`<p><code>nums</code> เป็นจำนวนเต็ม<b>ไม่ติดลบ</b> คืนความยาวของช่วงที่ติดกันที่ยาวที่สุด ซึ่งผลรวม <code>≤ limit</code> (ไม่มีเลยคืน 0)</p><p>⏱️ hidden test มี 100,000 ตัว</p>`,
+ stub:`function longestSumAtMost(nums, limit) {\n  \n}`,
+ tests:[[[2,1,5,1,1,1],4],[[9,9],3]], hidden:[[[],5],[[0,0,0],0],{label:"100,000 ตัว", gen:()=>[randInts(100000,0,100,45),250000]}],
+ hint:"Sliding window ขนาดยืดหด เหมือน substring ไม่ซ้ำ: ขยายขวาทีละตัว ถ้าผลรวมเกิน limit ให้หดซ้ายจนไม่เกิน แล้วจดความยาวสูงสุด",
+ sol:`function longestSumAtMost(nums, limit) {\n  let left = 0, sum = 0, best = 0;\n  for (let right = 0; right < nums.length; right++) {\n    sum += nums[right];\n    while (sum > limit) sum -= nums[left++];\n    best = Math.max(best, right - left + 1);\n  }\n  return best;\n}`},
+
+{id:"countBalanced01", twin:"subarraySum", lvl:5, title:"🧬 นับช่วงที่มี 0 กับ 1 เท่ากัน", fn:"countBalanced01",
+ desc:`<p><code>arr</code> มีแต่ 0 กับ 1 นับจำนวน subarray ที่ติดกันซึ่งมีจำนวน 0 เท่ากับจำนวน 1</p><p>เช่น <code>[0,1,0]</code> → 2 (คือ [0,1] และ [1,0])</p><p>⏱️ hidden test มี 100,000 ตัว</p>`,
+ stub:`function countBalanced01(arr) {\n  \n}`,
+ tests:[[[0,1,0]],[[1,1]]], hidden:[[[]],[[0,1,0,1]],{label:"100,000 ตัว", gen:()=>[randInts(100000,0,1,46)]}],
+ hint:"แปลง 0 เป็น −1 แล้วโจทย์จะกลายเป็น “นับ subarray ที่ผลรวม = 0” ใช้ prefix sum + Map แบบข้อเดิมได้เลย",
+ sol:`function countBalanced01(arr) {\n  const seen = new Map([[0, 1]]);\n  let sum = 0, count = 0;\n  for (const x of arr) {\n    sum += x === 1 ? 1 : -1;\n    count += seen.get(sum) || 0;\n    seen.set(sum, (seen.get(sum) || 0) + 1);\n  }\n  return count;\n}`},
+
+{id:"topKWords", twin:"topKFrequent", lvl:5, title:"🧬 k คำที่พบบ่อยที่สุด", fn:"topKWords",
+ desc:`<p>รับ <code>words</code> (array ของคำ) และ <code>k</code> คืน k คำที่พบบ่อยที่สุด เรียงตามความถี่มากไปน้อย ถ้าเท่ากันเรียงตามตัวอักษร A–Z (รับประกันว่า k ไม่เกินจำนวนคำที่ไม่ซ้ำ)</p>`,
+ stub:`function topKWords(words, k) {\n  \n}`,
+ tests:[[["js","sql","js","git","sql","js"],2],[["b","a"],2]], hidden:[[["x"],1],{label:"100,000 คำ", gen:()=>{ const r=rng(47); return [Array.from({length:100000},()=>"w"+Math.floor(Math.pow(r(),3)*2000)),10]; }}],
+ hint:"นับด้วย Map แล้วเรียง entries ด้วย (a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1) แล้วตัด k ตัวแรก",
+ sol:`function topKWords(words, k) {\n  const cnt = new Map();\n  for (const w of words) cnt.set(w, (cnt.get(w) || 0) + 1);\n  return [...cnt.entries()]\n    .sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0))\n    .slice(0, k)\n    .map(e => e[0]);\n}`},
+
+{id:"countAnagramGroups", twin:"groupAnagrams", lvl:5, title:"🧬 นับกลุ่ม Anagram", fn:"countAnagramGroups",
+ desc:`<p>คืน<b>จำนวนกลุ่ม</b>ของคำที่เป็น anagram กัน (คำที่ใช้ตัวอักษรชุดเดียวกัน) เช่น <code>["eat","tea","tan","ate","nat","bat"]</code> → 3</p><p>⏱️ hidden test มี 100,000 คำ</p>`,
+ stub:`function countAnagramGroups(words) {\n  \n}`,
+ tests:[[["eat","tea","tan","ate","nat","bat"]],[[]]], hidden:[[["a","a"]],[["ab","ba","abc"]],{label:"100,000 คำ", gen:()=>[Array.from({length:100000},(_,i)=>randStr(6,"abcdef",1000+i%5000))]}],
+ hint:"ใช้ key เดียวกับข้อเดิม (เรียงตัวอักษรของคำ) ใส่ลงใน Set แล้วคืน set.size",
+ sol:`function countAnagramGroups(words) {\n  const keys = new Set();\n  for (const w of words) keys.add([...w].sort().join(""));\n  return keys.size;\n}`},
+
+{id:"countIslands", twin:"shortestPath", lvl:5, title:"🧬 นับจำนวนเกาะ", fn:"countIslands",
+ desc:`<p>grid มี <b>1 = แผ่นดิน</b> และ <b>0 = น้ำ</b> (⚠️ กลับกับข้อทางสั้นที่สุด) แผ่นดินที่ติดกันขึ้น ลง ซ้าย ขวา (ไม่นับแนวทแยง) นับเป็นเกาะเดียวกัน คืนจำนวนเกาะ</p><p>⏱️ hidden test เป็น grid 300 × 300</p>`,
+ stub:`function countIslands(grid) {\n  \n}`,
+ tests:[[[[1,1,0,0],[0,1,0,1],[1,0,0,1]]],[[]]], hidden:[[[[0]]],[[[1,0,1],[0,1,0],[1,0,1]]],{label:"grid 300 × 300", gen:()=>{ const r=rng(48); return [Array.from({length:300},()=>Array.from({length:300},()=>r()<0.45?1:0))]; }}],
+ hint:"วนทุกช่อง เจอ 1 ที่ยังไม่เคยไป → นับ +1 แล้วใช้ BFS (queue เหมือนข้อเดิม) หรือ DFS ด้วย stack ระบายทั้งเกาะให้เป็น “ไปแล้ว”",
+ sol:`function countIslands(grid) {\n  const R = grid.length, C = R ? grid[0].length : 0;\n  const seen = grid.map(row => row.map(() => false));\n  let count = 0;\n  for (let r = 0; r < R; r++) for (let c = 0; c < C; c++) {\n    if (grid[r][c] !== 1 || seen[r][c]) continue;\n    count++;\n    const stack = [[r, c]]; seen[r][c] = true;\n    while (stack.length) {\n      const [y, x] = stack.pop();\n      for (const [dy, dx] of [[1,0],[-1,0],[0,1],[0,-1]]) {\n        const ny = y + dy, nx = x + dx;\n        if (ny >= 0 && ny < R && nx >= 0 && nx < C && grid[ny][nx] === 1 && !seen[ny][nx]) {\n          seen[ny][nx] = true; stack.push([ny, nx]);\n        }\n      }\n    }\n  }\n  return count;\n}`}
+];
+
+const JS_TWIN_VIZ = {
+pingPong:{story:"เกมนับเลขของค่ายเด็ก ปรบมือเมื่อเจอเลขพิเศษ", inp:"n — จำนวนเต็ม ≥ 0", out:"array ของข้อความ 1 ถึง n",
+ steps:[{t:"calc", lines:["4  → \"Ping\"","6  → \"Pong\"","12 → \"PingPong\"  ← หาร 4 และ 6 ลงตัว","24 → \"PingPong\""], cap:"เช็กกรณีหารได้ทั้งคู่ก่อน"}], warn:["12 ต้องเป็น PingPong (ไม่ใช่รอถึง 24)","n = 0 → []"]},
+countInRange:{story:"นับจำนวนนักเรียนที่ได้คะแนนในช่วงเกรด B", inp:"arr — ตัวเลข · lo, hi — ขอบล่าง/บน", out:"จำนวนตัวที่อยู่ในช่วง (รวมขอบ)",
+ steps:[{t:"arr", v:[1,5,10,15], hi:[1,2], dim:[0,3], cap:"lo = 5, hi = 10 → นับ 5 และ 10 ได้ 2 (ค่าบนขอบนับด้วย)"}], warn:["ค่าบนขอบต้องนับ","ติดลบก็ได้"]},
+shippingFee:{story:"ระบบคิดค่าส่งพัสดุ", inp:"w — น้ำหนัก (กก.) มากกว่า 0", out:"ค่าส่ง (บาท)",
+ steps:[{t:"flow", v:["≤ 1 → 30","≤ 5 → 50","≤ 10 → 80","> 10 → 80 + ⌈w − 10⌉ × 10"]},{t:"calc", lines:["shippingFee(1)    → 30   ← ขอบ","shippingFee(1.01) → 50","shippingFee(10.5) → 80 + ⌈0.5⌉ × 10 = 90"]}], warn:["ค่าบนขอบ 1, 5, 10","เศษปัดขึ้น"]},
+reverseWords:{story:"ทำเอฟเฟกต์ประโยคย้อนหลังในเกมทายคำ", inp:"s — ประโยค คำคั่นด้วยเว้นวรรค 1 ช่อง", out:"ประโยคที่ลำดับคำกลับกัน",
+ steps:[{t:"arr", v:["JS","is","fun"], cap:"split(\" \")"},{t:"arr", v:["fun","is","JS"], hi:[0,1,2], cap:"reverse() แล้ว join(\" \") → \"fun is JS\""}], warn:["ตัวอักษรในคำไม่กลับ","ข้อความว่าง → \"\""]},
+countByStatus:{story:"แดชบอร์ดสรุปจำนวนคำสั่งซื้อแต่ละสถานะ", inp:"orders — array ของ { id, status, amount }", out:"object { status: จำนวน }",
+ steps:[{t:"arr", v:["PAID","PENDING","PAID","CANCEL","PAID"], cap:"วนทีละรายการ"},{t:"map", m:[["PAID","3"],["PENDING","1"],["CANCEL","1"]], cap:"count[s] = (count[s] || 0) + 1"}], warn:["array ว่าง → {}"]},
+totalPaid:{story:"ฝ่ายบัญชีอยากรู้ยอดที่เก็บเงินได้จริง", inp:"orders — array ของ { id, status, amount }", out:"ผลรวม amount ของ PAID",
+ steps:[{t:"arr", v:["PAID 500","PENDING 120","PAID 80","CANCEL 300","PAID 20"], hi:[0,2,4], dim:[1,3], cap:"filter → reduce: 500 + 80 + 20 = 600"}], warn:["ไม่มี PAID → 0"]},
+getConfigValue:{story:"แอปอ่านไฟล์ตั้งค่าที่ผู้ใช้อาจแก้จนพัง", inp:"text — JSON · key — ชื่อค่า · fallback — ค่าสำรอง", out:"ค่าของ key หรือ fallback",
+ steps:[{t:"flow", v:["JSON.parse","พัง → fallback","ไม่ใช่ object → fallback","ไม่มี key → fallback","มี key → คืนค่า"]},{t:"calc", lines:["('{\"size\":0}', \"size\", 14) → 0   ← ไม่ใช่ 14!","('{bad json', \"theme\", \"light\") → \"light\""]}], warn:["ค่า 0 และ false ต้องคืนค่าจริง","\"null\" เป็น JSON ที่ถูก แต่ไม่ใช่ object"]},
+getUserNames:{story:"หน้ารายชื่อทีมที่ต้องดึงข้อมูลสมาชิกจาก server", inp:"ids — array ของ id", out:"Promise ของ array ชื่อ (ลำดับเดียวกับ ids)",
+ steps:[{t:"calc", lines:["ids = [3, 1, 2]","Promise.all → [User3, User1, User2]  ← ลำดับตาม ids เสมอ","map(u => u.name)"]}], warn:["await ทีละคนจะเกินเวลา","ลำดับต้องตรงกับ ids"]},
+findMinIndex:{story:"หาวันที่ราคาหุ้นต่ำที่สุดของเดือน", inp:"arr — ตัวเลข (อาจว่าง)", out:"index ของค่าน้อยสุดตัวแรก (ว่าง → -1)",
+ steps:[{t:"arr", v:[4,2,8,2], ptr:{1:"best"}, hi:[1], cap:"2 ที่ index 1 มาก่อน 2 ที่ index 3 → คืน 1"}], warn:["ค่าเท่ากันให้ index แรก","คืนตำแหน่ง ไม่ใช่ค่า"]},
+isMirrorArray:{story:"ตรวจลายผ้าทอว่าซ้ายขวาสมมาตรไหม", inp:"arr — array", out:"true / false",
+ steps:[{t:"arr", v:[1,2,3,2,1], ptr:{0:"i",4:"j"}, hi:[0,4], cap:"เทียบหัวกับท้าย แล้วเลื่อนเข้าหากัน"}], warn:["array ว่างหรือมีตัวเดียว → true"]},
+firstDuplicate:{story:"ระบบตรวจบัตรคิวที่ถูกใช้ซ้ำเป็นใบแรก", inp:"arr — array", out:"ค่าแรกที่เจอซ้ำ หรือ null",
+ steps:[{t:"arr", v:[2,1,3,1,2], ptr:{3:"i"}, hi:[1,3], cap:"ที่ i = 3 เจอ 1 ซึ่งอยู่ใน Set แล้ว → คืน 1"},{t:"map", m:[["Set","{2, 1, 3}"]], cap:"ค่าที่เคยเห็นก่อนถึง i = 3"}], warn:["ไม่มีซ้ำ → null","ข้อมูลใหญ่ต้องใช้ Set"]},
+secondSmallest:{story:"หาราคาถูกเป็นอันดับสองเพื่อแนะนำตัวเลือกสำรอง", inp:"arr — ตัวเลข", out:"ค่าน้อยอันดับสอง (ไม่นับซ้ำ) หรือ null",
+ steps:[{t:"arr", v:[3,1,1,2], hi:[1,3], cap:"ค่าต่างกันคือ 1, 2, 3 → อันดับสองคือ 2"}], warn:["[4, 4] → null","ค่าซ้ำไม่นับเป็นอันดับใหม่"]},
+mostFrequentChar:{story:"หาตัวอักษรที่ใช้บ่อยที่สุดในรหัสลับ", inp:"s — ข้อความ", out:"ตัวอักษร หรือ null",
+ steps:[{t:"map", m:[["a","2"],["b","2"]], cap:"\"abab\": a กับ b เท่ากัน → คืน a เพราะเจอก่อน"}], warn:["ไม่นับเว้นวรรค","a กับ A คนละตัว"]},
+hasPairWithDiff:{story:"หาคู่สินค้าที่ราคาต่างกันพอดี k บาท สำหรับโปรแลกเปลี่ยน", inp:"nums — ตัวเลข · k — ผลต่าง (≥ 0)", out:"true / false",
+ steps:[{t:"arr", v:[1,5,3,9], hi:[0,1], cap:"k = 4: 1 + 4 = 5 มีใน Set → true"},{t:"calc", lines:["k = 0 กับ [4]    → false (ตัวเดียวจับคู่ตัวเองไม่ได้)","k = 0 กับ [4, 4] → true"]}], warn:["k = 0 ต้องมีค่าซ้ำจริง","O(n²) จะช้าเกิน"]},
+maxVowelsWindow:{story:"หาท่อนเนื้อเพลงยาว k ตัวที่ร้องสระยาวได้มากที่สุด", inp:"s — ข้อความ · k — ความยาวช่วง", out:"จำนวนสระสูงสุด",
+ steps:[{t:"arr", v:["a","b","c","i","i","i","d","e","f"], hi:[3,4,5], cap:"k = 3: ช่วง \"iii\" มีสระ 3 ตัว"}], warn:["ต้องยาว k ตัวพอดี","นับใหม่ทุกช่วงจะช้าเกิน"]},
+countLessThan:{story:"ระบบตอบว่ามีสินค้ากี่ชิ้นที่ราคาถูกกว่างบที่ลูกค้าตั้งไว้", inp:"sorted — ตัวเลขเรียงแล้ว · queries — คำถาม", out:"array ของจำนวน",
+ steps:[{t:"arr", v:[1,3,3,7], ptr:{1:"ตำแหน่งแรกที่ ≥ 3"}, hi:[0], cap:"q = 3 → ตำแหน่งแรกที่ ≥ 3 คือ 1 → มี 1 ตัวที่น้อยกว่า"},{t:"calc", lines:["q = 0  → 0","q = 4  → 3","q = 10 → 4"]}], warn:["มีค่าซ้ำ","100,000 คำถาม ต้อง O(log n) ต่อคำถาม"]},
+maxDepth:{story:"ตรวจความซับซ้อนของสูตรคำนวณในสเปรดชีต", inp:"s — ข้อความที่มีวงเล็บ", out:"ความลึกสูงสุด หรือ -1",
+ steps:[{t:"calc", lines:["( a ( b ) ( c ( d ) ) )","1   2   1 2   3   2 1 0   ← ความลึกระหว่างทาง","สูงสุด = 3"]}], warn:[")( → -1 (ปิดก่อนเปิด)","((( → -1 (เปิดค้าง)"]},
+firstUniqueNumber:{story:"หาลูกค้าคนแรกที่มาซื้อเพียงครั้งเดียว", inp:"arr — ตัวเลข", out:"ค่าแรกที่ปรากฏครั้งเดียว หรือ null",
+ steps:[{t:"arr", v:[4,5,4,6,5], hi:[3], dim:[0,1,2,4], cap:"4 และ 5 ซ้ำ → 6 คือตัวแรกที่ไม่ซ้ำ"}], warn:["คืนค่า ไม่ใช่ index","indexOf ในลูปจะช้าเกิน"]},
+totalCovered:{story:"สรุปว่าห้องประชุมถูกใช้งานรวมกี่ชั่วโมง", inp:"intervals — array ของ [start, end] (ยังไม่เรียง)", out:"ความยาวรวม (ไม่นับซ้ำ)",
+ steps:[{t:"iv", v:[[1,3],[2,6],[8,10]], cap:"เดิม"},{t:"iv", v:[[1,6],[8,10]], ok:true, cap:"รวมแล้ว: 5 + 2 = 7"}], warn:["ต้องเรียง start ก่อน","[1,4] กับ [4,5] รวมเป็น 4"]},
+rankProducts:{story:"หน้าเว็บที่เรียงสินค้าจากราคาถูกไปแพง", inp:"products — array ของ { name, price }", out:"array ของชื่อที่เรียงแล้ว",
+ steps:[{t:"arr", v:["Pen 20","Bag 450","Cap 20"], cap:"เดิม"},{t:"arr", v:["Cap","Pen","Bag"], hi:[0,1,2], cap:"ราคา 20 เท่ากัน → Cap มาก่อน Pen"}], warn:["ราคาน้อยไปมาก (กลับกับข้อเดิม)","ห้ามแก้ array เดิม"]},
+longestSumAtMost:{story:"หาจำนวนวันติดต่อกันมากที่สุดที่ใช้งบรวมไม่เกินที่กำหนด", inp:"nums — ไม่ติดลบ · limit", out:"ความยาวสูงสุด",
+ steps:[{t:"arr", v:[2,1,5,1,1,1], hi:[3,4,5], cap:"limit = 4: ช่วง [1,1,1] ผลรวม 3 ยาว 3"}], warn:["ไม่มีช่วงไหนผ่าน → 0","O(n²) จะช้าเกิน"]},
+countBalanced01:{story:"นับช่วงเวลาที่จำนวนผู้ชนะและผู้แพ้เท่ากันพอดี", inp:"arr — มีแต่ 0 กับ 1", out:"จำนวน subarray ที่ 0 กับ 1 เท่ากัน",
+ steps:[{t:"calc", lines:["[0, 1, 0]  →  แปลง  [−1, 1, −1]","prefix: 0, −1, 0, −1","prefix ซ้ำกัน = ช่วงตรงกลางผลรวม 0","0 ซ้ำ 1 ครั้ง + (−1) ซ้ำ 1 ครั้ง = 2"]}], warn:["แปลง 0 → −1 ก่อน","ต้องเริ่ม Map ด้วย {0: 1}"]},
+topKWords:{story:"หาคำค้นยอดนิยมของเว็บ", inp:"words — array ของคำ · k", out:"k คำ เรียงความถี่แล้วตามตัวอักษร",
+ steps:[{t:"map", m:[["js","3"],["sql","2"],["git","1"]], cap:"k = 2 → [\"js\", \"sql\"]"}], warn:["ความถี่เท่ากันเรียง A–Z"]},
+countAnagramGroups:{story:"นับว่ามีชุดตัวอักษรต่างกันกี่แบบในเกมต่อคำ", inp:"words — array ของคำ", out:"จำนวนกลุ่ม",
+ steps:[{t:"map", m:[["aet","eat, tea, ate"],["ant","tan, nat"],["abt","bat"]], cap:"key = ตัวอักษรเรียงแล้ว → 3 กลุ่ม"}], warn:["array ว่าง → 0"]},
+countIslands:{story:"นับจำนวนเกาะจากภาพถ่ายดาวเทียม", inp:"grid — 1 = แผ่นดิน, 0 = น้ำ", out:"จำนวนเกาะ",
+ steps:[{t:"grid", land:true, g:[[1,1,0,0],[0,1,0,1],[1,0,0,1]], cap:"มี 3 เกาะ: (มุมซ้ายบน 3 ช่อง), (ขวา 2 ช่อง), (ล่างซ้าย 1 ช่อง)"}], warn:["แนวทแยงไม่นับว่าติดกัน","grid ใหญ่: DFS แบบ recursive อาจ stack overflow ใช้ stack/queue เอง"]}
+};
+
+const SQL_TWINS = [
+{id:"t_noemail", twin:"s_cities", lvl:1, title:"🧬 ลูกค้าที่ไม่มีอีเมล",
+ desc:`<p>แสดง <b>name</b> ของลูกค้าที่ <b>ไม่มี email</b> (เป็น NULL) เรียงตามชื่อ</p>`,
+ cols:"name", ordered:true, hint:"ตรวจ NULL ด้วย IS NULL (ห้ามใช้ = NULL)",
+ ref:`SELECT name FROM customers WHERE email IS NULL ORDER BY name;`},
+{id:"t_midprice", twin:"s_price", lvl:1, title:"🧬 สินค้าราคา 100 ถึง 500",
+ desc:`<p>แสดง <b>name, price</b> ของสินค้าที่ราคาตั้งแต่ 100 ถึง 500 (รวมขอบ) เรียงราคา<b>น้อยไปมาก</b> ถ้าเท่ากันเรียงชื่อ A–Z</p>`,
+ cols:"name, price", ordered:true, hint:"WHERE price BETWEEN 100 AND 500 (BETWEEN รวมขอบ) ORDER BY price, name",
+ ref:`SELECT name, price FROM products WHERE price BETWEEN 100 AND 500 ORDER BY price, name;`},
+{id:"t_catcount", twin:"s_having", lvl:2, title:"🧬 หมวดที่มีสินค้าตั้งแต่ 2 ชิ้น",
+ desc:`<p>แสดง <b>category</b> และ<b>จำนวนสินค้า</b> เฉพาะหมวดที่มีสินค้า<b>ตั้งแต่ 2 ชิ้นขึ้นไป</b> เรียงตาม category</p>`,
+ cols:"category, จำนวน", ordered:true, hint:"GROUP BY category แล้วกรองด้วย HAVING COUNT(*) >= 2",
+ ref:`SELECT category, COUNT(*) FROM products GROUP BY category HAVING COUNT(*) >= 2 ORDER BY category;`},
+{id:"t_lines", twin:"s_join", lvl:2, title:"🧬 รายการสินค้าในแต่ละ order",
+ desc:`<p>แสดง <b>order_id, ชื่อสินค้า, ยอดของบรรทัดนั้น</b> (<code>qty * unit_price</code>) ของทุกแถวใน order_items เรียงตาม order_id แล้วตามชื่อสินค้า</p>`,
+ cols:"order_id, product, line_total", ordered:true, hint:"JOIN order_items กับ products ด้วย product_id = products.id",
+ ref:`SELECT oi.order_id, p.name, oi.qty * oi.unit_price FROM order_items oi JOIN products p ON p.id = oi.product_id ORDER BY oi.order_id, p.name;`},
+{id:"t_unsold", twin:"s_anti", lvl:3, title:"🧬 สินค้าที่ไม่เคยขายได้",
+ desc:`<p>แสดง <b>name</b> ของสินค้าที่<b>ไม่เคยอยู่ใน order_items เลย</b> เรียงตามชื่อ</p>`,
+ cols:"name", ordered:true, hint:"Anti-join แบบเดิม: products LEFT JOIN order_items แล้วกรองแถวที่ฝั่งขวาเป็น NULL (หรือ NOT EXISTS)",
+ ref:`SELECT p.name FROM products p WHERE NOT EXISTS (SELECT 1 FROM order_items oi WHERE oi.product_id = p.id) ORDER BY p.name;`},
+{id:"t_qtypaid", twin:"s_trap", lvl:3, title:"🧬 จำนวนชิ้นที่ขายได้ (PAID) ของสินค้าทุกตัว",
+ desc:`<p>แสดง <b>name</b> ของสินค้า<b>ทุกตัว</b> และ<b>จำนวนชิ้นรวม (qty)</b> ที่อยู่ใน order ที่ <b>status = 'PAID'</b> สินค้าที่ไม่มีให้แสดง 0 เรียงตามชื่อ</p><p>⚠️ กับดักเดิม แต่มี 3 ตาราง</p>`,
+ cols:"name, qty_paid", ordered:true, hint:"products LEFT JOIN order_items LEFT JOIN orders โดยใส่ status = 'PAID' ใน ON · รวมด้วย SUM(CASE WHEN o.id IS NOT NULL THEN oi.qty END) แล้วครอบ COALESCE(..., 0)",
+ ref:`SELECT p.name, COALESCE(SUM(CASE WHEN o.id IS NOT NULL THEN oi.qty END), 0) FROM products p LEFT JOIN order_items oi ON oi.product_id = p.id LEFT JOIN orders o ON o.id = oi.order_id AND o.status = 'PAID' GROUP BY p.id, p.name ORDER BY p.name;`},
+{id:"t_richer", twin:"s_self", lvl:3, title:"🧬 พนักงานที่เงินเดือนเท่ากับหรือมากกว่าหัวหน้า",
+ desc:`<p>แสดง <b>ชื่อพนักงาน, เงินเดือน, ชื่อหัวหน้า, เงินเดือนหัวหน้า</b> เฉพาะคนที่เงินเดือน<b>มากกว่าหรือเท่ากับ</b>หัวหน้าของตัวเอง เรียงตามชื่อพนักงาน</p>`,
+ cols:"employee, salary, manager, manager_salary", ordered:true, hint:"Self join แบบเดิม แต่ใช้ JOIN ธรรมดา (คนไม่มีหัวหน้าไม่ต้องแสดง) แล้ว WHERE e.salary >= m.salary",
+ ref:`SELECT e.name, e.salary, m.name, m.salary FROM employees e JOIN employees m ON m.id = e.manager_id WHERE e.salary >= m.salary ORDER BY e.name;`},
+{id:"t_topprod", twin:"s_top2", lvl:4, title:"🧬 สินค้าแพงที่สุดของแต่ละหมวด",
+ desc:`<p>แสดง <b>category, name, price</b> ของสินค้าที่<b>แพงที่สุดในหมวด</b> ถ้าแพงสุดเท่ากันหลายชิ้นให้แสดงทุกชิ้น เรียงตาม category แล้วตาม name</p>`,
+ cols:"category, name, price", ordered:true, hint:"RANK() (หรือ DENSE_RANK) OVER (PARTITION BY category ORDER BY price DESC) แล้วกรอง = 1 · ROW_NUMBER จะตัดคนที่เสมอทิ้ง",
+ ref:`WITH r AS (SELECT category, name, price, RANK() OVER (PARTITION BY category ORDER BY price DESC) AS rk FROM products) SELECT category, name, price FROM r WHERE rk = 1 ORDER BY category, name;`},
+{id:"t_monthly", twin:"s_running", lvl:4, title:"🧬 ยอดขายสะสมรายเดือน",
+ desc:`<p>เฉพาะ order ที่ <b>status = 'PAID'</b> แสดง <b>เดือน (YYYY-MM), ยอดรวมของเดือนนั้น, ยอดสะสม</b> เรียงตามเดือน</p>`,
+ cols:"month, monthly, running_total", ordered:true, hint:"เดือน = substr(created_at, 1, 7) · รวมรายเดือนใน CTE ก่อน แล้วใช้ SUM(monthly) OVER (ORDER BY month)",
+ ref:`WITH m AS (SELECT substr(created_at, 1, 7) AS month, SUM(total) AS monthly FROM orders WHERE status = 'PAID' GROUP BY substr(created_at, 1, 7)) SELECT month, monthly, SUM(monthly) OVER (ORDER BY month) FROM m ORDER BY month;`}
+];
+const SQL_TWIN_VIZ = {
+t_noemail:{story:"ฝ่ายบริการลูกค้าต้องโทรขออีเมลจากลูกค้าที่ยังไม่ได้ให้ไว้", tables:["customers"], warn:["= NULL ไม่เคยเป็นจริง ต้องใช้ IS NULL"]},
+t_midprice:{story:"หน้า “สินค้าราคากลาง” สำหรับงบไม่เกิน 500", tables:["products"], warn:["BETWEEN รวมค่าบนขอบ","เรียงราคาน้อยไปมาก (กลับกับข้อเดิม)"]},
+t_catcount:{story:"หาหมวดที่มีสินค้าให้เลือกมากกว่าหนึ่งชิ้น", tables:["products"], join:"products ── GROUP BY category ──▶ COUNT(*) ──▶ HAVING ≥ 2", warn:["เงื่อนไขกับ COUNT ต้องอยู่ใน HAVING"]},
+t_lines:{story:"ทำใบเสร็จที่แสดงชื่อสินค้าแทนรหัส", tables:["order_items","products"], join:"order_items.product_id  ──จับคู่──▶  products.id", warn:["ยอดบรรทัด = qty * unit_price (ไม่ใช่ products.price)"]},
+t_unsold:{story:"หาสินค้าค้างสต็อกที่ยังขายไม่ได้เลยสักชิ้น", tables:["products","order_items"], join:"products  ──LEFT JOIN──▶  order_items   (ไม่มีคู่ → NULL)", warn:["ใช้ NOT IN กับคอลัมน์ที่อาจเป็น NULL ได้ผลผิด ใช้ NOT EXISTS ปลอดภัยกว่า"]},
+t_qtypaid:{story:"รายงานจำนวนชิ้นที่ขายได้จริงของสินค้าทุกตัว รวมตัวที่ขายไม่ได้", tables:["products","order_items","orders"], join:"products ──LEFT──▶ order_items ──LEFT (ON ... AND status = 'PAID')──▶ orders", warn:["ถ้าใส่ status ใน WHERE สินค้าที่เป็น 0 จะหาย","SUM ของไม่มีอะไรได้ NULL ต้อง COALESCE เป็น 0"]},
+t_richer:{story:"ฝ่ายบุคคลตรวจโครงสร้างเงินเดือนที่ผิดปกติ", tables:["employees"], join:"employees e.manager_id  ──จับคู่──▶  employees m.id   (ตารางเดียวกัน 2 บทบาท)", warn:["รวมกรณีเท่ากัน (>=)","คนไม่มีหัวหน้าไม่ต้องแสดง"]},
+t_topprod:{story:"ทำป้าย “สินค้าพรีเมียมของแต่ละหมวด”", tables:["products"], join:"products ── PARTITION BY category ORDER BY price DESC ──▶ อันดับ 1 ของแต่ละหมวด", warn:["แพงสุดเท่ากันต้องแสดงทุกชิ้น"]},
+t_monthly:{story:"กราฟยอดขายสะสมรายเดือนในรายงานผู้บริหาร", tables:["orders"], join:"orders (PAID) ── GROUP BY เดือน ──▶ SUM(monthly) OVER (ORDER BY month)", warn:["รวมรายเดือนก่อน แล้วค่อยสะสม","เฉพาะ PAID"]}
+};
+
+/* แทรกโจทย์แฝดต่อท้ายข้อเดิม */
+JS_TWINS.forEach(t => { const i = JS_PROBLEMS.findIndex(p => p.id === t.twin); JS_PROBLEMS.splice(i + 1, 0, t); });
+SQL_TWINS.forEach(t => { const i = SQL_PROBLEMS.findIndex(p => p.id === t.twin); SQL_PROBLEMS.splice(i + 1, 0, t); });
+Object.assign(JS_VIZ, JS_TWIN_VIZ); Object.assign(SQL_VIZ, SQL_TWIN_VIZ);
+const TWIN_OF = {}; [...JS_TWINS, ...SQL_TWINS].forEach(t => { TWIN_OF[t.twin] = t.id; });
+
+
 
 /* ---------- renderers ---------- */
 function vzCell(v){ return v===null||v===undefined ? "" : escHTML(v); }
@@ -4693,7 +4998,7 @@ function vzFrame(f){
   if(f.t==="grid"){
     const step={}; (f.path||[]).forEach(([r,c],k)=>step[r+","+c]=k);
     return `<div class="vz-grid" style="grid-template-columns:repeat(${f.g[0].length},34px)">${f.g.map((row,r)=>row.map((v,c)=>{ const k=step[r+","+c];
-      return `<div class="vz-g ${v===1?"wall":""} ${k!==undefined?"path":""}">${v===1?"🧱":k!==undefined?k:""}</div>`; }).join("")).join("")}</div>`;
+      return `<div class="vz-g ${v===1?(f.land?"land":"wall"):""} ${k!==undefined?"path":""}">${v===1?(f.land?"🌴":"🧱"):k!==undefined?k:""}</div>`; }).join("")).join("")}</div>`;
   }
   if(f.t==="stack") return `<div class="vz-stack"><span class="vz-lbl">ล่าง</span>${f.v.length?f.v.map((x,i)=>`<div class="vz-box ${i===f.v.length-1?"top":""}">${vzCell(x)}</div>`).join(""):`<div class="vz-empty">(ว่าง)</div>`}<span class="vz-lbl">บน ←</span></div>`;
   if(f.t==="map") return `<div class="vz-map">${f.m.map(([k,v])=>`<div class="vz-kv"><div class="k">${escHTML(k)}</div><div class="v">${escHTML(v)}</div></div>`).join("")}</div>`;
@@ -4815,7 +5120,7 @@ function renderLab(){
   top.appendChild(el("div","lv-title",`<div class="k">PRACTICE LAB</div><h2>⌨️ ห้องฝึกเขียนโค้ดจริง</h2>`)); root.appendChild(top);
 
   const intro=el("div","card"); intro.style.animation="none";
-  intro.innerHTML=`<div class="eyebrow">ทำไมต้องฝึกที่นี่</div><p class="lab-p">ข้อสอบ HackerRank ส่วน Coding และ SQL ต้อง<b>พิมพ์โค้ดเองให้ผ่าน hidden test</b> ห้องนี้จำลองแบบเดียวกัน: เขียนโค้ด → <b>▶ รันตัวอย่าง</b> ดูผล → <b>✅ ส่งคำตอบ</b> เพื่อตรวจกับ hidden test (รวมข้อมูลขนาดใหญ่ที่ต้องเร็วพอ) · ติดแล้วกด 💡 คำใบ้ได้ · ข้อที่ผ่านได้ +${LAB_XP} XP</p>
+  intro.innerHTML=`<div class="eyebrow">ทำไมต้องฝึกที่นี่</div><p class="lab-p">ข้อสอบ HackerRank ส่วน Coding และ SQL ต้อง<b>พิมพ์โค้ดเองให้ผ่าน hidden test</b> ห้องนี้จำลองแบบเดียวกัน: เขียนโค้ด → <b>▶ รันตัวอย่าง</b> ดูผล → <b>✅ ส่งคำตอบ</b> เพื่อตรวจกับ hidden test (รวมข้อมูลขนาดใหญ่ที่ต้องเร็วพอ) · ติดแล้วกด 💡 คำใบ้ได้ · ข้อที่ผ่านได้ +${LAB_XP} XP</p><p class="lab-p">🧬 <b>โจทย์แฝด</b> (กรอบเส้นประ) อยู่ต่อจากข้อเดิม ใช้ pattern เดียวกันแต่เรื่องต่างกัน ใช้เช็กว่า<b>เข้าใจจริง หรือแค่จำคำตอบ</b> ทำหลังผ่านข้อเดิม โดยไม่เปิดโค้ดข้อเดิมดู</p>
     <div class="lab-tabs"><button class="lab-tab ${LAB.tab==="js"?"on":""}" data-t="js">⌨️ JavaScript <b>${Object.keys(L.js).length}/${JS_PROBLEMS.length}</b></button><button class="lab-tab ${LAB.tab==="sql"?"on":""}" data-t="sql">🗃️ SQL <b>${Object.keys(L.sql).length}/${SQL_PROBLEMS.length}</b></button><button class="lab-tab ${LAB.tab==="term"?"on":""}" data-t="term">💻 Terminal <b>${Object.keys(L.term).length}/${TERM_MISSIONS.length}</b></button></div>`;
   intro.querySelectorAll(".lab-tab").forEach(b=>b.onclick=()=>{ LAB.tab=b.dataset.t; renderLab(); });
   root.appendChild(intro);
@@ -4835,7 +5140,7 @@ function renderLab(){
     const ps=labList().filter(p=>p.lvl===lv.n);
     sec.innerHTML=`<div class="eyebrow">LEVEL ${lv.n} · ${ps.filter(p=>solved[p.id]).length}/${ps.length}</div><h3>${lv.name}</h3><p class="lab-p muted">${lv.desc}</p>`;
     const grid=el("div","plist");
-    ps.forEach(p=>{ const b=el("button","pcard"+(solved[p.id]?" ok":""),`<span class="pst">${solved[p.id]?"✓":"○"}</span><span>${p.title}</span>`); b.onclick=()=>{ LAB.pid=p.id; renderLab(); window.scrollTo(0,0); }; grid.appendChild(b); });
+    ps.forEach(p=>{ const b=el("button","pcard"+(solved[p.id]?" ok":"")+(p.twin?" twin":""),`<span class="pst">${solved[p.id]?"✓":"○"}</span><span>${p.title}</span>`); b.onclick=()=>{ LAB.pid=p.id; renderLab(); window.scrollTo(0,0); }; grid.appendChild(b); });
     sec.appendChild(grid); root.appendChild(sec);
   });
 }
@@ -4851,7 +5156,7 @@ function renderProblem(root){
 
   const dc=el("div","card"); dc.style.animation="none";
   const vz = isJS ? JS_VIZ[p.id] : SQL_VIZ[p.id];
-  dc.innerHTML=`<div class="eyebrow">โจทย์</div>`+problemIntroHTML(vz,isJS)+`<div class="body">${p.desc}</div>`+
+  dc.innerHTML=`<div class="eyebrow">โจทย์</div>`+twinBanner(p,isJS)+problemIntroHTML(vz,isJS)+`<div class="body">${p.desc}</div>`+
     (isJS ? (vz&&vz.steps?`<div class="pi-sec"><div class="pi-k">🖼️ ดูเป็นภาพ ทีละขั้น</div>${vzSteps(vz.steps)}</div>`:"")+`<div class="ex"><div class="pi-k">✍️ ตัวอย่าง (input → output)</div><div id="ex-box" class="lab-note">กำลังเตรียมตัวอย่าง…</div></div>`
           : (vz&&vz.join?`<div class="pi-sec"><div class="pi-k">🔗 ความสัมพันธ์ที่ใช้</div><pre class="vz-calc">${escHTML(vz.join)}</pre></div>`:"")+
             `<div class="pi-sec"><div class="pi-k">📋 ตารางที่ใช้ (ข้อมูลตัวอย่าง)</div><div id="sql-tables" class="lab-note">กำลังโหลดตาราง…</div></div>`+
@@ -4947,7 +5252,7 @@ async function runJSProblem(p, code, submit, out){
   const total=vis.length+hs.length, got=(allVis?vis.length:r.out.filter((o,i)=>o.ok&&sameVal(o.v,expV[i])).length)+pass;
   const all = got===total;
   let head;
-  if(all){ const first=markSolved("js",p.id); head=`<div class="why g"><strong>🎉 ผ่านทุกเทสต์ (${got}/${total})${first?` · +${LAB_XP} XP`:""}</strong>ยอดเยี่ยม! ลองอ่านเฉลยเทียบดูว่ามีวิธีที่สั้นหรือเร็วกว่านี้ไหม แล้วไปข้อถัดไป</div>`; }
+  if(all){ const first=markSolved("js",p.id); head=`<div class="why g"><strong>🎉 ผ่านทุกเทสต์ (${got}/${total})${first?` · +${LAB_XP} XP`:""}</strong>ยอดเยี่ยม! ลองอ่านเฉลยเทียบดูว่ามีวิธีที่สั้นหรือเร็วกว่านี้ไหม แล้วไปข้อถัดไป</div>`+twinNext(p,"js"); }
   else head=`<div class="why r"><strong>ผ่าน ${got}/${total} เทสต์</strong>hidden test มักตรวจกรณีขอบ (ว่าง, ค่าเดียว, ติดลบ, ซ้ำ) และข้อมูลใหญ่ที่ต้องเร็วพอ ลองกด 💡 คำใบ้</div>`;
   out.innerHTML = head + html + `<table class="tbl res"><tbody>${rows}</tbody></table>`;
 }
@@ -4968,7 +5273,7 @@ async function runSQLProblem(p, q, submit, out){
   catch(e){ whyB="Error: "+(e.message||e); }
   const all = okA && okB;
   let head;
-  if(all){ const first=markSolved("sql",p.id); head=`<div class="why g"><strong>🎉 ผ่านทั้งข้อมูลตัวอย่างและข้อมูลชุดซ่อน${first?` · +${LAB_XP} XP`:""}</strong>query ของคุณถูกต้องโดยไม่ได้ “บังเอิญ” ตรงกับข้อมูลชุดเดียว</div>`; }
+  if(all){ const first=markSolved("sql",p.id); head=`<div class="why g"><strong>🎉 ผ่านทั้งข้อมูลตัวอย่างและข้อมูลชุดซ่อน${first?` · +${LAB_XP} XP`:""}</strong>query ของคุณถูกต้องโดยไม่ได้ “บังเอิญ” ตรงกับข้อมูลชุดเดียว</div>`+twinNext(p,"sql"); }
   else head=`<div class="why r"><strong>ผลการตรวจ</strong>ฐานข้อมูลตัวอย่าง: ${okA?"✅ ผ่าน":"❌ "+escHTML(why)}<br>ฐานข้อมูลชุดซ่อน (ข้อมูลต่างกัน มีค่าเท่ากัน / NULL / ลูกค้าที่ไม่มี order): ${okB?"✅ ผ่าน":"❌ "+escHTML(whyB)}<br><span class="muted">ถ้าผ่านแค่ชุดตัวอย่าง แปลว่า query อาจ hardcode ค่า หรือยังไม่รองรับกรณีพิเศษ</span></div>`;
   out.innerHTML = head + html + expD;
 }
@@ -5327,6 +5632,24 @@ function renderTermMission(root){
   setTimeout(()=>inp.focus(),0);
   term.onclick=()=>inp.focus();
 }
+
+
+/* ---------- 🧬 โจทย์แฝด ---------- */
+function twinBanner(p,isJS){
+  const list=isJS?JS_PROBLEMS:SQL_PROBLEMS, tab=isJS?"js":"sql";
+  if(p.twin){ const o=list.find(x=>x.id===p.twin);
+    return `<div class="twin-b">🧬 <b>โจทย์แฝด</b>ของข้อ <button class="linkbtn" data-twin="${o.id}" data-tab="${tab}">${escHTML(o.title)}</button> ใช้ pattern เดียวกันแต่เรื่องต่างกัน · <b>อย่าเปิดโค้ดข้อเดิมดู</b> ให้ถามตัวเองว่า “ข้อเดิมใช้หลักคิดอะไร” แล้วเขียนใหม่จากหน้าว่าง ถ้าทำได้แปลว่าเข้าใจจริง ไม่ได้จำ</div>`; }
+  const tid=TWIN_OF[p.id]; if(!tid) return "";
+  const t=list.find(x=>x.id===tid); const done=(labState()[tab]||{})[tid];
+  return `<div class="twin-b dim">🧬 ข้อนี้มีโจทย์แฝด: <button class="linkbtn" data-twin="${tid}" data-tab="${tab}">${escHTML(t.title.replace("🧬 ",""))}</button>${done?" ✓":""} — ทำข้อนี้ให้ผ่านก่อน แล้วไปลองแฝดเพื่อเช็กว่าเข้าใจจริง</div>`;
+}
+function twinNext(p,tab){
+  const tid=TWIN_OF[p.id];
+  if(tid) return `<div class="twin-next"><b>🧬 ขั้นต่อไป: ทดสอบความเข้าใจ</b> ลองโจทย์แฝดที่ใช้ pattern เดียวกันแต่เรื่องต่างกัน ถ้าผ่านได้โดยไม่ย้อนกลับมาดูโค้ดข้อนี้ แปลว่าเข้าใจจริง <button class="btn sm" data-twin="${tid}" data-tab="${tab}">ไปโจทย์แฝด →</button></div>`;
+  if(p.twin) return `<div class="twin-next ok"><b>🧬 ผ่านโจทย์แฝดแล้ว!</b> แปลว่าคุณเข้าใจ pattern ไม่ได้แค่จำคำตอบ</div>`;
+  return "";
+}
+document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest("[data-twin]"); if(!b) return; e.preventDefault(); openLab(b.dataset.tab,b.dataset.twin); window.scrollTo(0,0); });
 
 /* ---------------- KEYBOARD ---------------- */
 document.addEventListener("keydown",e=>{
