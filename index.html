@@ -293,6 +293,18 @@
   .schema-d{margin-top:10px} .schema-d summary{cursor:pointer; color:var(--c); font-size:14px}
   .tblname{margin:14px 0 2px; font-family:"JetBrains Mono"; font-size:13px; color:var(--c)}
   .lab-link{display:inline-block; margin-left:4px; background:color-mix(in srgb,var(--c) 18%,var(--bg2)); border:1px solid var(--c); color:var(--ink); border-radius:8px; padding:3px 10px; font-size:13px}
+  .term{background:#07091a; border:1px solid var(--line); border-radius:12px; margin:14px 0; overflow:hidden; font-family:"JetBrains Mono",monospace; font-size:13.5px; cursor:text}
+  .term-bar{display:flex; gap:6px; align-items:center; padding:8px 12px; background:#11142e; border-bottom:1px solid var(--line)}
+  .term-bar span{width:10px; height:10px; border-radius:50%; background:#fb7185} .term-bar span:nth-child(2){background:#fbbf24} .term-bar span:nth-child(3){background:#4ade80}
+  .term-bar em{font-style:normal; color:var(--muted); margin-left:8px; font-size:12px}
+  .term-out{padding:10px 14px; max-height:360px; min-height:120px; overflow-y:auto}
+  .term-line{white-space:pre-wrap; word-break:break-word; color:#cfd5ff; margin:2px 0}
+  .term-line.cmd{color:#fff; margin-top:8px} .term-line.dim{color:var(--dim)} .term-line.warn{color:#fbbf24} .term-line.ok-out{color:#86efac} .term-line.hint{color:var(--c)}
+  .term-in{display:flex; gap:8px; align-items:center; padding:8px 14px 12px; border-top:1px dashed var(--line)}
+  .term-ps{color:var(--c); white-space:nowrap}
+  .term-input{flex:1; min-width:0; background:transparent; border:0; outline:0; color:#fff; font:inherit; caret-color:var(--c)}
+  .term-goal{margin-top:12px; padding:10px 12px; border-radius:8px; background:color-mix(in srgb,var(--c) 12%,var(--bg2)); border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
+  .term-pre{background:#0a0c1c; border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:10px 0 0; font-size:13px; overflow-x:auto; white-space:pre}
   .lab-link:hover{background:color-mix(in srgb,var(--c) 30%,var(--bg2))}
   @media (max-width:640px){
     .card{padding:20px 18px}
@@ -354,10 +366,10 @@ const WORLDS = [
   {name:"หมู่บ้านเริ่มต้น", en:"Starter Village", color:"#fda4af", topics:[16], boss:"🐣", intro:true},
   {name:"ป่าอัลกอริทึม", en:"Algorithm Forest", color:"#5eead4", topics:[0], boss:"🐉", lab:"js"},
   {name:"หุบเขาข้อมูล", en:"Data Valley", color:"#a78bfa", topics:[1,2], boss:"🦑", lab:"sql"},
-  {name:"ปราสาทวัตถุและกาลเวลา", en:"OOP & Git Castle", color:"#f472b6", topics:[3,4], boss:"🧙"},
+  {name:"ปราสาทวัตถุและกาลเวลา", en:"OOP & Git Castle", color:"#f472b6", topics:[3,4], boss:"🧙", lab:"term"},
   {name:"นครสถาปัตยกรรม", en:"Architecture City", color:"#fbbf24", topics:[5,6,7], boss:"🤖"},
   {name:"ป้อมปราการคุณภาพ", en:"Quality Fortress", color:"#60a5fa", topics:[8,9,10], boss:"👾"},
-  {name:"ท่าเรือ DevOps", en:"DevOps Harbor", color:"#fb923c", topics:[11,12,13], boss:"🦈"},
+  {name:"ท่าเรือ DevOps", en:"DevOps Harbor", color:"#fb923c", topics:[11,12,13], boss:"🦈", lab:"term"},
   {name:"หอคอย AI", en:"AI Tower", color:"#a3e635", topics:[14,15], boss:"👁️"}
 ];
 
@@ -3483,6 +3495,158 @@ const BEGIN = {
  [["evaluation","การวัดคุณภาพด้วยชุดทดสอบ"],["guardrail","กฎและตัวกรองที่ตรวจ input/output"],["human-in-the-loop","ให้คนตรวจก่อนตัดสินใจขั้นสุดท้าย"],["drift","คุณภาพเปลี่ยนไปตามเวลา"],["PII","ข้อมูลที่ระบุตัวบุคคลได้"]]]
 };
 
+/* ============ JS พื้นฐาน 3–4: Object, Array Methods, Scope, JSON, Async ============ */
+const MORE_JS = [
+{t:0, pos:-0.6, name:"JS พื้นฐาน: Object และ Array Methods", icon:"🗂️",
+ lessons:[
+  {h:"Object: เก็บข้อมูลเป็นคู่ ชื่อ → ค่า", b:`<p><b>Object</b> ใช้เก็บข้อมูลหลายอย่างของสิ่งเดียวไว้ด้วยกัน โดยแต่ละค่ามีชื่อเรียก (key)</p><ul><li>อ่านค่า: <code>user.name</code> หรือ <code>user["name"]</code> (ใช้แบบหลังเมื่อ key อยู่ในตัวแปร)</li><li>แก้หรือเพิ่ม: <code>user.age = 21</code></li><li>อ่าน key ที่ไม่มี จะได้ <code>undefined</code> ไม่ใช่ error</li></ul>`, lang:"JavaScript",
+   code:`const user = { name: "Mali", age: 20, city: "Bangkok" };
+
+user.name;              // "Mali"
+user["city"];           // "Bangkok"
+const key = "age";
+user[key];              // 20  ← key อยู่ในตัวแปร ต้องใช้ [ ]
+user.email;             // undefined (ไม่มี key นี้)
+user.age = 21;          // แก้ค่า
+user.email = "m@x.com"; // เพิ่ม key ใหม่
+
+Object.keys(user);      // ["name", "age", "city", "email"]
+Object.entries(user);   // [["name","Mali"], ["age",21], ...]`},
+  {h:"Array ของ Object และ Destructuring / Spread", b:`<p>ข้อมูลจริง (เช่นที่ได้จาก API) มักเป็น <b>array ของ object</b></p><ul><li><b>Destructuring</b> ดึงค่าออกมาเป็นตัวแปรสั้น ๆ</li><li><b>Spread</b> (<code>...</code>) คัดลอกหรือรวม array และ object เป็นของใหม่ โดยไม่แก้ของเดิม</li></ul>`, lang:"JavaScript",
+   code:`const users = [
+  { name: "Ann", age: 30 },
+  { name: "Bo",  age: 17 }
+];
+users[1].name;                        // "Bo"
+
+const { name, age } = users[0];       // destructuring → name = "Ann", age = 30
+const [first, second] = [10, 20];     // first = 10, second = 20
+
+const copy = [...users];              // array ใหม่ (copy ชั้นนอก)
+const merged = { ...{ a: 1, b: 2 }, ...{ b: 9 } };   // { a: 1, b: 9 } ← ตัวหลังทับตัวหน้า`},
+  {h:"map, filter, reduce, find, some, every", b:`<p>Method เหล่านี้วนให้อัตโนมัติ และ<b>คืนค่าใหม่โดยไม่แก้ array เดิม</b></p><ul><li><code>map</code> แปลงทุกตัว ได้ array ความยาวเท่าเดิม</li><li><code>filter</code> คัดเฉพาะตัวที่ผ่านเงื่อนไข</li><li><code>reduce</code> รวมทุกตัวให้เหลือค่าเดียว</li><li><code>find</code> คืนตัวแรกที่ผ่าน (ไม่เจอ → undefined)</li><li><code>some</code> / <code>every</code> ตอบว่ามี<b>บางตัว</b> / <b>ทุกตัว</b>ผ่านไหม</li></ul>`, flow:["array เดิม","filter (คัด)","map (แปลง)","reduce (รวม)","ค่าเดียว"], lang:"JavaScript",
+   code:`const cart = [
+  { item: "Pen",  price: 15,  qty: 2 },
+  { item: "Book", price: 120, qty: 1 },
+  { item: "Bag",  price: 450, qty: 0 }
+];
+cart.map(c => c.item);                          // ["Pen", "Book", "Bag"]
+cart.filter(c => c.qty > 0);                    // Pen, Book
+cart.reduce((sum, c) => sum + c.price * c.qty, 0);   // 150
+cart.find(c => c.price > 100);                  // { item: "Book", ... }
+cart.some(c => c.qty === 0);                    // true
+cart.every(c => c.price > 10);                  // true`},
+  {h:"กับดักที่เจอบ่อย", b:`<ul><li><code>reduce</code> ที่ไม่ใส่ค่าเริ่มต้น จะ error กับ array ว่าง ให้ใส่ <code>, 0</code> เสมอ</li><li><code>map</code> ที่ลืม return (เมื่อใช้ <code>{ }</code>) จะได้ <code>undefined</code> ทุกตัว</li><li><code>sort</code>, <code>push</code>, <code>splice</code> <b>แก้ array เดิม</b> ส่วน <code>map</code>, <code>filter</code>, <code>slice</code> และ spread <b>สร้างใหม่</b></li><li>เทียบ object ด้วย <code>===</code> เป็นการเทียบว่าเป็น<b>ตัวเดียวกัน</b> ไม่ได้เทียบเนื้อหา</li></ul>`, lang:"JavaScript",
+   code:`[1, 2].map(x => { x * 2 });      // [undefined, undefined] ❌ ลืม return
+[1, 2].map(x => x * 2);          // [2, 4] ✅
+[].reduce((s, x) => s + x);      // ❌ TypeError
+[].reduce((s, x) => s + x, 0);   // 0 ✅
+({ a: 1 }) === ({ a: 1 });       // false (คนละตัวกัน)`}
+ ],
+ quiz:[
+  ["const user = { name: \"Mali\", age: 20 }; ข้อใดอ่านค่า name ได้ถูกต้อง?","",["user(name)","user.name","user->name","user[name] (ไม่มีเครื่องหมายคำพูด)"],1,"ใช้ user.name หรือ user[\"name\"] ส่วน user[name] จะไปอ่านตัวแปรชื่อ name แทน"],
+  ["อ่าน key ที่ไม่มีใน object เช่น user.email จะได้ค่าใด?","",["null","undefined","Error","\"\""],1,"JavaScript คืน undefined ไม่โยน error"],
+  ["const key = \"age\"; ต้องเขียนอย่างไรเพื่ออ่าน user.age?","",["user.key","user[key]","user.[key]","user(key)"],1,"user.key จะไปหา key ที่ชื่อว่า \"key\" ตรงตัว"],
+  ["Object.keys({ a: 1, b: 2 }) ได้ผลอะไร?","",["[1, 2]","[\"a\", \"b\"]","{ a, b }","2"],1,"ถ้าต้องการค่าให้ใช้ Object.values และถ้าต้องการคู่ให้ใช้ Object.entries"],
+  ["const { name } = { name: \"Ann\", age: 30 }; ตัวแปร name มีค่าอะไร?","",["{ name: \"Ann\" }","\"Ann\"","undefined","30"],1,"destructuring ดึงค่าของ key ที่ชื่อตรงกันออกมาเป็นตัวแปร"],
+  ["{ ...{ a: 1, b: 2 }, ...{ b: 9 } } ได้ผลอะไร?","",["{ a: 1, b: 2 }","{ a: 1, b: 9 }","{ b: 9 }","Error"],1,"ค่าจาก object ตัวหลังทับ key ที่ซ้ำกัน"],
+  ["[1, 2, 3].map(x => x * 10) ได้ผลอะไร?","",["60","[10, 20, 30]","[1, 2, 3]","undefined"],1,"map แปลงทุกตัว และได้ array ความยาวเท่าเดิม"],
+  ["[5, 12, 8, 20].filter(x => x > 10) ได้ผลอะไร?","",["[12, 20]","[5, 8]","true","12"],0,"filter เก็บเฉพาะตัวที่เงื่อนไขเป็น true"],
+  ["ผลรวม price × qty ของตะกร้านี้คือเท่าใด?","const cart = [{ price: 15, qty: 2 }, { price: 120, qty: 1 }];\ncart.reduce((s, c) => s + c.price * c.qty, 0);",["135","150","137","Error"],1,"15 × 2 + 120 × 1 = 150"],
+  ["[3, 7, 9].find(x => x > 5) ได้ค่าใด?","",["[7, 9]","7","true","9"],1,"find คืนตัวแรกที่ผ่านเงื่อนไข"],
+  ["[3, 7, 9].find(x => x > 100) ได้ค่าใด?","",["null","undefined","-1","[]"],1,"ไม่เจอจะได้ undefined ส่วน findIndex จะได้ -1"],
+  ["[2, 4, 6].every(x => x % 2 === 0) ได้ค่าใด?","",["true","false","[2, 4, 6]","3"],0,"ทุกตัวเป็นเลขคู่"],
+  ["โค้ดนี้ได้ผลอะไร?","[1, 2].map(x => { x * 2 });",["[2, 4]","[undefined, undefined]","Error","[1, 2]"],1,"เมื่อใช้ { } ต้องเขียน return เอง ไม่อย่างนั้นได้ undefined"],
+  ["[].reduce((s, x) => s + x) (ไม่ใส่ค่าเริ่มต้น) เกิดอะไรขึ้น?","",["ได้ 0","TypeError","ได้ undefined","ได้ []"],1,"ใส่ค่าเริ่มต้นเสมอ เช่น , 0"],
+  ["method ใด “แก้ array เดิม” โดยตรง?","",["map","filter","sort","slice"],2,"sort, push, pop, splice และ reverse แก้ array เดิม"],
+  ["({ a: 1 }) === ({ a: 1 }) ได้ค่าใด?","",["true","false","Error","undefined"],1,"เป็น object คนละตัวในหน่วยความจำ"],
+  ["ต้องการชื่อของผู้ใช้ที่อายุ 18 ขึ้นไป ควรใช้ method ใดต่อกัน?","",["map แล้ว filter","filter แล้ว map","reduce อย่างเดียว","sort แล้ว find"],1,"users.filter(u => u.age >= 18).map(u => u.name)"],
+  ["Object.entries({ x: 1 }) ได้ผลอะไร?","",["[\"x\"]","[1]","[[\"x\", 1]]","{ x: 1 }"],2,"ได้ array ของคู่ [key, value] ใช้วนด้วย for (const [k, v] of ...)"]
+ ]},
+
+{t:0, pos:-0.5, name:"JS พื้นฐาน: Scope, JSON และ Async", icon:"⏳",
+ lessons:[
+  {h:"Scope: ตัวแปรมองเห็นได้แค่ไหน", b:`<p><b>Scope</b> คือขอบเขตที่ตัวแปรถูกมองเห็น <code>let</code> และ <code>const</code> มองเห็นเฉพาะใน <b>{ } ที่ประกาศ</b> (block scope)</p><p><b>Closure</b> คือฟังก์ชันที่ “จำ” ตัวแปรของที่ที่มันถูกสร้างไว้ได้ แม้ฟังก์ชันภายนอกจะทำงานจบไปแล้ว</p>`, lang:"JavaScript",
+   code:`let x = 1;            // global
+if (true) {
+  let y = 2;          // มองเห็นแค่ใน { } นี้
+  console.log(x, y);  // 1 2
+}
+console.log(y);       // ❌ ReferenceError: y is not defined
+
+function makeCounter() {
+  let count = 0;            // ถูก “จำ” ไว้ใน closure
+  return () => ++count;
+}
+const next = makeCounter();
+next(); // 1
+next(); // 2`},
+  {h:"JSON: รูปแบบข้อความสำหรับส่งข้อมูล", b:`<p>API ส่งข้อมูลกันเป็น <b>ข้อความ JSON</b> แล้วเราแปลงไปมากับ object:</p><ul><li><code>JSON.stringify(obj)</code> แปลง object เป็นข้อความ</li><li><code>JSON.parse(text)</code> แปลงข้อความเป็น object และ<b>จะ throw error ถ้ารูปแบบผิด</b> จึงควรครอบด้วย try/catch</li></ul><p>กฎของ JSON: key ต้องอยู่ใน<b>เครื่องหมายคำพูดคู่</b> ห้ามมี comma เกินท้าย และไม่มี function หรือ undefined</p>`, lang:"JavaScript",
+   code:`const obj = { name: "Mali", tags: ["js", "sql"] };
+const text = JSON.stringify(obj);
+// '{"name":"Mali","tags":["js","sql"]}'
+
+JSON.parse(text).tags[0];      // "js"
+
+try {
+  JSON.parse("{name: 'Mali'}");  // ❌ key ไม่มี "  และใช้ ' แทน "
+} catch (e) {
+  console.log("รูปแบบ JSON ผิด:", e.message);
+}`},
+  {h:"Async: งานที่ต้องรอ และ Promise", b:`<p>งานบางอย่าง เช่นเรียก API หรืออ่านไฟล์ ต้อง<b>รอผล</b> JavaScript ไม่หยุดรอ แต่คืน <b>Promise</b> คือ “ใบรับคิว” ที่จะได้ผลในอนาคต</p><ul><li><b>สำเร็จ</b> (resolve) ได้ค่ากลับมา</li><li><b>ล้มเหลว</b> (reject) ได้ error</li></ul><p><code>async</code> / <code>await</code> ทำให้เขียนโค้ดที่ต้องรอได้อ่านง่ายเหมือนโค้ดปกติ และใช้ <code>try/catch</code> จับ error</p>`, flow:["เรียก API","ได้ Promise (รอ)","await","ได้ข้อมูล หรือ error → catch"], lang:"JavaScript",
+   code:`async function showUser(id) {
+  try {
+    const res = await fetch("/api/users/" + id);   // รอ response
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const user = await res.json();                 // รอแปลง JSON
+    return user.name;
+  } catch (err) {
+    return "unknown";                              // ล้มเหลว → ค่าสำรอง
+  }
+}
+// ⚠️ ฟังก์ชัน async คืน Promise เสมอ ผู้เรียกต้อง await ต่อ`},
+  {h:"รอทีละตัว vs รอพร้อมกัน (Promise.all)", b:`<p>ถ้างานไม่ขึ้นต่อกัน อย่า await ทีละตัวในลูป เพราะเวลาจะรวมกัน ให้เริ่มทุกงานพร้อมกันแล้วรอด้วย <b><code>Promise.all</code></b> เวลาจะเท่ากับงานที่ช้าที่สุดเท่านั้น</p><p><code>Promise.all</code> จะล้มทั้งชุดถ้ามีงานหนึ่งล้ม ถ้าต้องการผลของทุกงานแม้บางงานล้ม ให้ใช้ <code>Promise.allSettled</code></p>`, lang:"JavaScript",
+   code:`// ❌ ทีละตัว: 3 งาน × 1 วินาที = 3 วินาที
+for (const id of [1, 2, 3]) {
+  const u = await fetchUser(id);
+}
+
+// ✅ พร้อมกัน: ประมาณ 1 วินาที
+const users = await Promise.all([1, 2, 3].map(id => fetchUser(id)));`}
+ ],
+ quiz:[
+  ["โค้ดนี้เกิดอะไรขึ้น?","if (true) {\n  let y = 2;\n}\nconsole.log(y);",["แสดง 2","ReferenceError: y is not defined","แสดง undefined","แสดง null"],1,"let มีขอบเขตแค่ใน { } ที่ประกาศ"],
+  ["Closure คืออะไร?","",["การปิดโปรแกรม","ฟังก์ชันที่จำตัวแปรจากที่ที่มันถูกสร้างไว้ได้ แม้ฟังก์ชันภายนอกทำงานจบแล้ว","การลบตัวแปร","คำสั่งปิดไฟล์"],1,"เช่น makeCounter ที่ยังจำ count ไว้ได้"],
+  ["next() ครั้งที่สามได้ค่าเท่าใด?","function makeCounter() {\n  let count = 0;\n  return () => ++count;\n}\nconst next = makeCounter();\nnext(); next(); next();",["1","2","3","0"],2,"count ถูกเก็บไว้ใน closure และเพิ่มขึ้นทุกครั้งที่เรียก"],
+  ["JSON.stringify({ a: 1 }) ได้ผลอะไร?","",["{ a: 1 } (object)","'{\"a\":1}' (ข้อความ)","\"a=1\"","[\"a\", 1]"],1,"stringify แปลง object เป็นข้อความ JSON"],
+  ["JSON.parse('{\"n\": 5}').n ได้ค่าใด?","",["\"5\"","5","undefined","Error"],1,"parse แปลงข้อความกลับเป็น object"],
+  ["ข้อความใดเป็น JSON ที่ถูกต้อง?","",["{name: \"Mali\"}","{'name': 'Mali'}","{\"name\": \"Mali\"}","{\"name\": \"Mali\",}"],2,"key ต้องอยู่ในเครื่องหมายคำพูดคู่ และห้ามมี comma เกินท้าย"],
+  ["JSON.parse กับข้อความผิดรูปแบบ จะเกิดอะไรขึ้น?","",["คืน null","throw SyntaxError ต้องครอบด้วย try/catch","คืน {}","คืนข้อความเดิม"],1,"ข้อมูลจากภายนอกอาจผิดรูปแบบได้เสมอ"],
+  ["Promise คืออะไร?","",["ตัวแปรชนิดตัวเลข","ตัวแทนของผลลัพธ์ที่จะได้ในอนาคต อาจสำเร็จหรือล้มเหลว","คำสั่งหยุดโปรแกรม","ชนิดของ loop"],1,"เหมือนใบรับคิวที่จะได้ของทีหลัง"],
+  ["ฟังก์ชันที่ประกาศด้วย async คืนค่าอะไรเสมอ?","",["undefined","Promise","ตัวเลข","ข้อความ"],1,"แม้จะ return ค่าธรรมดา ก็จะถูกห่อเป็น Promise"],
+  ["await ใช้ทำอะไร?","",["หยุดโปรแกรมทั้งหมด","รอให้ Promise เสร็จแล้วได้ค่าออกมา (ใช้ในฟังก์ชัน async)","สร้าง loop","ลบตัวแปร"],1,"ทำให้โค้ดที่ต้องรออ่านง่ายเหมือนโค้ดปกติ"],
+  ["จะจับ error จาก await fetch(...) ได้อย่างไร?","",["ใช้ if","ครอบด้วย try { ... } catch (err) { ... }","ใช้ for","ไม่ต้องจับ"],1,"ถ้าไม่จับ จะได้ unhandled rejection"],
+  ["fetch ได้ response ที่ status 404 จะเกิดอะไรขึ้น?","",["throw error อัตโนมัติ","ไม่ throw ต้องเช็ก res.ok เอง","คืน null","หยุดโปรแกรม"],1,"fetch reject เฉพาะเมื่อ network ล้มเหลว ส่วน HTTP error ต้องตรวจเอง"],
+  ["เรียก API 3 ตัวที่ไม่ขึ้นต่อกัน ตัวละ 1 วินาที โดย await ทีละตัวในลูป จะใช้เวลาประมาณเท่าใด?","",["1 วินาที","3 วินาที","0 วินาที","6 วินาที"],1,"แต่ละตัวต้องรอตัวก่อนหน้าเสร็จ"],
+  ["งานเดียวกันถ้าใช้ Promise.all จะใช้เวลาประมาณเท่าใด?","",["1 วินาที","3 วินาที","9 วินาที","ไม่แน่นอนเลย"],0,"เริ่มทุกงานพร้อมกัน เวลารวมเท่ากับงานที่ช้าที่สุด"],
+  ["Promise.all([...]) จะเป็นอย่างไรถ้ามีงานหนึ่งล้ม?","",["ข้ามงานนั้น","reject ทั้งชุด","คืน null เฉพาะงานนั้น","รอใหม่"],1,"ถ้าต้องการผลทุกงานแม้บางงานล้ม ให้ใช้ Promise.allSettled"],
+  ["โค้ดนี้แสดงอะไรก่อน?","console.log(\"A\");\nsetTimeout(() => console.log(\"B\"), 0);\nconsole.log(\"C\");",["A, B, C","A, C, B","B, A, C","C, B, A"],1,"callback ของ setTimeout ถูกเลื่อนไปทำหลังโค้ด sync ปัจจุบันจบ แม้จะตั้ง 0 ms"],
+  ["ลืม await หน้าฟังก์ชัน async เช่น const user = getUser(1); แล้วใช้ user.name จะได้อะไร?","",["ชื่อผู้ใช้","undefined เพราะ user เป็น Promise ไม่ใช่ข้อมูล","Error ทันทีเสมอ","null"],1,"บั๊กยอดฮิต: ต้อง const user = await getUser(1)"],
+  ["ข้อใดเป็นตัวอย่างงาน async?","",["บวกเลขสองจำนวน","เรียก API ผ่าน network หรืออ่านไฟล์","เรียงลำดับ array เล็ก ๆ","if/else"],1,"งานที่ต้องรอสิ่งภายนอก"]
+ ]}
+];
+
+const BEGIN_MORE = {
+"JS พื้นฐาน: Object และ Array Methods":[
+ "<b>Object</b> เหมือน<b>บัตรประจำตัว</b>ที่มีช่องชื่อ ช่องอายุ ช่องที่อยู่ (key → ค่า) · <b>array ของ object</b> คือ<b>ตู้แฟ้มที่มีบัตรหลายใบ</b> · <b>map</b> = ถ่ายเอกสารทุกใบแล้วแก้ทีละใบ · <b>filter</b> = คัดเฉพาะใบที่ตรงเงื่อนไข · <b>reduce</b> = รวมทุกใบให้เหลือตัวเลขเดียว",
+ "ข้อมูลจาก API และฐานข้อมูลเกือบทั้งหมดอยู่ในรูป array ของ object ถ้าใช้ map / filter / reduce คล่อง โค้ดจะสั้นและอ่านง่าย",
+ [["object","ข้อมูลแบบ key → value"],["key / property","ชื่อช่องข้อมูลใน object"],["destructuring","ดึงค่าออกจาก object/array มาเป็นตัวแปร"],["spread (...)","กระจายหรือคัดลอกเป็นของใหม่"],["map / filter / reduce","แปลง / คัด / รวม"]]],
+"JS พื้นฐาน: Scope, JSON และ Async":[
+ "<b>Scope</b> = ห้องในบ้าน ของที่วางในห้องนอนคนในห้องรับแขกมองไม่เห็น · <b>JSON</b> = แบบฟอร์มกลางสำหรับส่งข้อมูลทางไปรษณีย์ · <b>Promise</b> = ใบรับคิวร้านกาแฟ ไม่ต้องยืนรอหน้าเคาน์เตอร์ ได้กาแฟเมื่อพร้อม · <b>Promise.all</b> = สั่งกาแฟ 3 แก้วพร้อมกัน แทนการสั่งทีละแก้วแล้วรอ",
+ "ทุกเว็บและแอปต้องเรียก API (async) และรับส่งข้อมูลเป็น JSON ส่วนบั๊กเรื่อง scope และการลืม await พบบ่อยมาก",
+ [["scope","ขอบเขตที่ตัวแปรถูกมองเห็น"],["closure","ฟังก์ชันที่จำตัวแปรจากที่ที่ถูกสร้าง"],["JSON","รูปแบบข้อความสำหรับส่งข้อมูล"],["Promise","ผลลัพธ์ที่จะได้ในอนาคต"],["async / await","วิธีเขียนโค้ดที่ต้องรอให้อ่านง่าย"]]]
+};
+
 /* ---------- Checklist ก่อนสอบ (จากคู่มือ หัวข้อ 19) ---------- */
 const CHECKLIST = [
   ["Coding",["ใช้ Map/Set แก้โจทย์ Frequency และ Duplicate ได้","อธิบาย O(1), O(log n), O(n), O(n log n), O(n²) ได้","ใช้ Two Pointers และ Sliding Window ระดับพื้นฐานได้","ตรวจ Null, Empty, Boundary และ Large Input","อ่าน Comparator และ Multi-field Sort ออก"]],
@@ -3497,7 +3661,8 @@ const CHECKLIST = [
    ===================================================================== */
 // normalise quiz items
 const OLD_COUNT = STAGES.length;              // จำนวนด่านในเวอร์ชัน 2 (ใช้ย้ายความคืบหน้าเดิม)
-STAGES.push(...MORE_ALGO, ...MORE_TOPICS, ...STARTER_STAGES);
+STAGES.push(...MORE_ALGO, ...MORE_TOPICS, ...STARTER_STAGES, ...MORE_JS);
+Object.assign(BEGIN, BEGIN_MORE);
 STAGES.forEach(s=>{ if(EXTRA_Q[s.name]) s.quiz.push(...EXTRA_Q[s.name]); if(EXTRA_Q2[s.name]) s.quiz.push(...EXTRA_Q2[s.name]); if(EXTRA_Q3[s.name]) s.quiz.push(...EXTRA_Q3[s.name]); });   // ต่อท้าย เพื่อให้ id ข้อเดิมไม่เปลี่ยน
 STAGES.forEach(s=>{ s.id=s.name; s.quiz = s.quiz.map((q,qi)=> Array.isArray(q)
   ? {type:"mc", q:q[0], code:q[1], opts:q[2], a:q[3], why:q[4], id:s.name+"#"+qi}
@@ -3555,7 +3720,7 @@ const RANKS = [[0,"Intern"],[2500,"Junior Coder"],[7000,"Code Explorer"],[13000,
 function totals(){
   let stars=0, xp=0, done=0;
   NODES.forEach((n,i)=>{ const p=P.nodes[n.id]; if(p){ stars+=p.stars; xp+= n.kind==="boss" ? p.best*20+p.stars*15 : p.best*25+p.stars*10; if(p.stars>0) done++; }});
-  if(P.lab){ xp += (Object.keys(P.lab.js||{}).length + Object.keys(P.lab.sql||{}).length) * 40; }
+  if(P.lab){ xp += (Object.keys(P.lab.js||{}).length + Object.keys(P.lab.sql||{}).length) * 40 + Object.keys(P.lab.term||{}).length * 20; }
   let rank=RANKS[0][1]; RANKS.forEach(([t,n])=>{ if(xp>=t) rank=n; });
   return {stars,xp,done,rank};
 }
@@ -3605,7 +3770,7 @@ function renderMap(){
     const nodes=NODES.filter(n=>n.w===wi);
     const ws=nodes.reduce((s,n)=>s+(P.nodes[n.id]?P.nodes[n.id].stars:0),0);
     sec.innerHTML=`<div class="world-head"><span class="world-num" style="background:${w.color}">WORLD ${wi}</span><h3>${w.name}</h3><span class="sub">${w.en} · ⭐ ${ws}/${nodes.length*3}</span></div>
-      <div class="wtopics">${w.topics.map(ti=>`<span class="tbadge"><b class="${wclass(TOPICS[ti].w)}">${TOPICS[ti].w}</b>${TOPICS[ti].t} · ${TOPICS[ti].pct?TOPICS[ti].pct+'%':'ไม่อยู่ในข้อสอบ แต่ช่วยให้เข้าใจทุกด่าน (ข้ามได้)'}</span>`).join("")}${w.lab?`<button class="lab-link" data-lab="${w.lab}">${w.lab==="js"?"⌨️ ฝึกเขียน JavaScript จริง ("+Object.keys(labState().js).length+"/"+JS_PROBLEMS.length+")":"🗃️ ฝึกเขียน SQL จริง ("+Object.keys(labState().sql).length+"/"+SQL_PROBLEMS.length+")"}</button>`:""}</div>`;
+      <div class="wtopics">${w.topics.map(ti=>`<span class="tbadge"><b class="${wclass(TOPICS[ti].w)}">${TOPICS[ti].w}</b>${TOPICS[ti].t} · ${TOPICS[ti].pct?TOPICS[ti].pct+'%':'ไม่อยู่ในข้อสอบ แต่ช่วยให้เข้าใจทุกด่าน (ข้ามได้)'}</span>`).join("")}${w.lab?`<button class="lab-link" data-lab="${w.lab}">${w.lab==="js"?"⌨️ ฝึกเขียน JavaScript จริง ("+Object.keys(labState().js).length+"/"+JS_PROBLEMS.length+")":w.lab==="sql"?"🗃️ ฝึกเขียน SQL จริง ("+Object.keys(labState().sql).length+"/"+SQL_PROBLEMS.length+")":"💻 ฝึกพิมพ์คำสั่ง Git/Docker ("+Object.keys(termState()).length+"/"+TERM_MISSIONS.length+")"}</button>`:""}</div>`;
     const path=el("div","path"); path.dataset.w=wi;
     nodes.forEach(n=>{
       const i=n.idx, open=unlocked(i), p=P.nodes[n.id];
@@ -3960,9 +4125,10 @@ const randStr=(n,alpha,seed)=>{ const r=rng(seed); let s=""; for(let i=0;i<n;i++
 
 const LAB_LEVELS = [
   {n:1, name:"ก้าวแรก", desc:"ตัวแปร if loop function — ทำได้หลังด่าน JS พื้นฐาน"},
-  {n:2, name:"Array & String", desc:"วนลูปกับ array และข้อความ — ฝึกก่อนเข้าด่าน Data Structures"},
-  {n:3, name:"Pattern ยอดฮิต", desc:"Map, Set, Two Pointers, Sliding Window, Stack, Sort — คู่กับด่าน Patterns"},
-  {n:4, name:"ระดับข้อสอบ", desc:"โจทย์แบบ HackerRank มี hidden test ข้อมูลใหญ่ ต้องเร็วพอ"}
+  {n:2, name:"Object, JSON & Async", desc:"map/filter/reduce, object, JSON, Promise และ async/await — ทำได้หลังด่าน JS พื้นฐาน: Object และ Scope/JSON/Async"},
+  {n:3, name:"Array & String", desc:"วนลูปกับ array และข้อความ — ฝึกก่อนเข้าด่าน Data Structures"},
+  {n:4, name:"Pattern ยอดฮิต", desc:"Map, Set, Two Pointers, Sliding Window, Stack, Sort — คู่กับด่าน Patterns"},
+  {n:5, name:"ระดับข้อสอบ", desc:"โจทย์แบบ HackerRank มี hidden test ข้อมูลใหญ่ ต้องเร็วพอ"}
 ];
 
 const JS_PROBLEMS = [
@@ -4024,56 +4190,56 @@ const JS_PROBLEMS = [
  sol:`function fizzBuzz(n) {\n  const result = [];\n  for (let i = 1; i <= n; i++) {\n    if (i % 15 === 0) result.push("FizzBuzz");\n    else if (i % 3 === 0) result.push("Fizz");\n    else if (i % 5 === 0) result.push("Buzz");\n    else result.push(String(i));\n  }\n  return result;\n}`},
 
 /* ---------- LEVEL 2 ---------- */
-{id:"findMax", lvl:2, title:"หาค่ามากที่สุด", fn:"findMax",
+{id:"findMax", lvl:3, title:"หาค่ามากที่สุด", fn:"findMax",
  desc:`<p>คืนค่ามากที่สุดใน array ถ้า array ว่างให้คืน <code>null</code></p><p>⚠️ ค่าอาจติดลบทั้งหมด</p>`,
  stub:`function findMax(arr) {\n  \n}`,
  tests:[[[3,9,2]],[[-5,-2,-9]],[[]]], hidden:[[[7]],[[0,-1]],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[randInts(100000,-1e9,1e9,11)]}],
  hint:"อย่าเริ่มที่ 0 ให้เริ่มจาก arr[0] (หรือ -Infinity) และเช็ก array ว่างก่อน",
  sol:`function findMax(arr) {\n  if (arr.length === 0) return null;\n  let best = arr[0];\n  for (const x of arr) if (x > best) best = x;\n  return best;\n}`},
 
-{id:"countVowels", lvl:2, title:"นับสระภาษาอังกฤษ", fn:"countVowels",
+{id:"countVowels", lvl:3, title:"นับสระภาษาอังกฤษ", fn:"countVowels",
  desc:`<p>นับจำนวนสระ a, e, i, o, u ในข้อความ โดยไม่สนตัวพิมพ์เล็กหรือใหญ่</p>`,
  stub:`function countVowels(s) {\n  \n}`,
  tests:[["hello"],["AEIOU"],[""]], hidden:[["Rhythm"],["Programming is fun"],{label:"ข้อความยาว 100,000 ตัว", gen:()=>[randStr(100000,"abcdeEIOUxyz ",3)]}],
  hint:"แปลงเป็นตัวเล็กด้วย toLowerCase() แล้วเช็กแต่ละตัวด้วย \"aeiou\".includes(ch)",
  sol:`function countVowels(s) {\n  let count = 0;\n  for (const ch of s.toLowerCase()) if ("aeiou".includes(ch)) count++;\n  return count;\n}`},
 
-{id:"isPalindrome", lvl:2, title:"Palindrome", fn:"isPalindrome",
+{id:"isPalindrome", lvl:3, title:"Palindrome", fn:"isPalindrome",
  desc:`<p>คืน <code>true</code> ถ้าข้อความอ่านจากหน้าไปหลังและหลังไปหน้าได้เหมือนกัน โดย<b>ไม่สนตัวพิมพ์</b> และ<b>ไม่สนอักขระที่ไม่ใช่ตัวอักษรหรือตัวเลข</b> (เว้นวรรค จุลภาค ฯลฯ)</p>`,
  stub:`function isPalindrome(s) {\n  \n}`,
  tests:[["racecar"],["A man, a plan, a canal: Panama"],["hello"]], hidden:[[""],["ab"],["No 'x' in Nixon"],["0P"]],
  hint:"ขั้นแรก normalize: s.toLowerCase().replace(/[^a-z0-9]/g, \"\") แล้วใช้ two pointers หรือเทียบกับข้อความกลับด้าน",
  sol:`function isPalindrome(s) {\n  const t = s.toLowerCase().replace(/[^a-z0-9]/g, "");\n  let l = 0, r = t.length - 1;\n  while (l < r) {\n    if (t[l] !== t[r]) return false;\n    l++; r--;\n  }\n  return true;\n}`},
 
-{id:"removeDuplicates", lvl:2, title:"ลบค่าซ้ำ (คงลำดับเดิม)", fn:"removeDuplicates",
+{id:"removeDuplicates", lvl:3, title:"ลบค่าซ้ำ (คงลำดับเดิม)", fn:"removeDuplicates",
  desc:`<p>คืน array ใหม่ที่ไม่มีค่าซ้ำ โดยเก็บตัวที่เจอ<b>ครั้งแรก</b>และคงลำดับเดิม</p>`,
  stub:`function removeDuplicates(arr) {\n  \n}`,
  tests:[[[1,2,2,3,1]],[[]]], hidden:[[["a","b","a"]],[[5,5,5]],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[randInts(100000,1,50000,5)]}],
  hint:"ใช้ Set จำค่าที่เคยเห็น (Set.has เป็น O(1)) หรือ [...new Set(arr)] — ถ้าใช้ includes ใน loop จะช้าเกินกับข้อมูลใหญ่",
  sol:`function removeDuplicates(arr) {\n  return [...new Set(arr)];\n}`},
 
-{id:"capitalizeWords", lvl:2, title:"ขึ้นต้นคำด้วยตัวใหญ่", fn:"capitalizeWords",
+{id:"capitalizeWords", lvl:3, title:"ขึ้นต้นคำด้วยตัวใหญ่", fn:"capitalizeWords",
  desc:`<p>ทำให้ทุกคำขึ้นต้นด้วยตัวพิมพ์ใหญ่ และตัวที่เหลือเป็นตัวพิมพ์เล็ก คำคั่นด้วยเว้นวรรค และต้อง<b>คงจำนวนเว้นวรรคเดิม</b>ไว้</p><p>เช่น <code>"javaScript IS fun"</code> → <code>"Javascript Is Fun"</code></p>`,
  stub:`function capitalizeWords(s) {\n  \n}`,
  tests:[["hello world"],["javaScript IS fun"]], hidden:[[""],["a"],["multiple   spaces"]],
  hint:"s.split(\" \") แล้ว map แต่ละคำ: ถ้าคำว่าง (เกิดจากเว้นวรรคติดกัน) ให้คืนคำว่างไว้เหมือนเดิม",
  sol:`function capitalizeWords(s) {\n  return s.split(" ")\n    .map(w => w ? w[0].toUpperCase() + w.slice(1).toLowerCase() : w)\n    .join(" ");\n}`},
 
-{id:"average", lvl:2, title:"ค่าเฉลี่ย (ทศนิยม 2 ตำแหน่ง)", fn:"average",
+{id:"average", lvl:3, title:"ค่าเฉลี่ย (ทศนิยม 2 ตำแหน่ง)", fn:"average",
  desc:`<p>คืนค่าเฉลี่ยของ array <b>ปัดเศษเป็นทศนิยม 2 ตำแหน่ง</b> (ใช้ <code>Math.round(x * 100) / 100</code>) ถ้า array ว่างให้คืน <code>0</code></p>`,
  stub:`function average(arr) {\n  \n}`,
  tests:[[[1,2,3,4]],[[]]], hidden:[[[1,2]],[[10,10,11]],[[-3,3]]],
  hint:"ระวังหารด้วย 0 เมื่อ array ว่าง",
  sol:`function average(arr) {\n  if (arr.length === 0) return 0;\n  const sum = arr.reduce((s, x) => s + x, 0);\n  return Math.round((sum / arr.length) * 100) / 100;\n}`},
 
-{id:"secondLargest", lvl:2, title:"ค่ามากอันดับสอง", fn:"secondLargest",
+{id:"secondLargest", lvl:3, title:"ค่ามากอันดับสอง", fn:"secondLargest",
  desc:`<p>คืนค่าที่มากเป็น<b>อันดับสองแบบไม่ซ้ำ</b> (distinct) ถ้าไม่มีให้คืน <code>null</code></p><p>เช่น <code>[5, 1, 9, 7]</code> → 7 · <code>[4, 4, 4]</code> → null</p>`,
  stub:`function secondLargest(arr) {\n  \n}`,
  tests:[[[5,1,9,7]],[[4,4,4]]], hidden:[[[1]],[[]],[[-1,-2]],[[3,3,2]],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[randInts(100000,-1e6,1e6,13)]}],
  hint:"เก็บตัวแปร first และ second ระหว่างวนรอบเดียว (O(n)) หรือ sort ค่าที่ไม่ซ้ำแล้วหยิบตัวที่สอง",
  sol:`function secondLargest(arr) {\n  let first = -Infinity, second = -Infinity;\n  for (const x of arr) {\n    if (x > first) { second = first; first = x; }\n    else if (x < first && x > second) second = x;\n  }\n  return second === -Infinity ? null : second;\n}`},
 
-{id:"charFrequency", lvl:2, title:"นับความถี่ตัวอักษร", fn:"charFrequency",
+{id:"charFrequency", lvl:3, title:"นับความถี่ตัวอักษร", fn:"charFrequency",
  desc:`<p>คืน <b>object</b> ที่บอกว่าแต่ละตัวอักษรปรากฏกี่ครั้ง <b>ไม่นับเว้นวรรค</b> และแยกตัวพิมพ์เล็กกับใหญ่</p><p>เช่น <code>"hello"</code> → <code>{ h: 1, e: 1, l: 2, o: 1 }</code></p>`,
  stub:`function charFrequency(s) {\n  const count = {};\n  \n  return count;\n}`,
  tests:[["hello"],[""]], hidden:[["a a b"],["AaA"]],
@@ -4081,56 +4247,56 @@ const JS_PROBLEMS = [
  sol:`function charFrequency(s) {\n  const count = {};\n  for (const ch of s) {\n    if (ch === " ") continue;\n    count[ch] = (count[ch] || 0) + 1;\n  }\n  return count;\n}`},
 
 /* ---------- LEVEL 3 ---------- */
-{id:"twoSum", lvl:3, title:"Two Sum", fn:"twoSum",
+{id:"twoSum", lvl:4, title:"Two Sum", fn:"twoSum",
  desc:`<p>คืน <code>[i, j]</code> (i &lt; j) เป็น index ของสองตัวที่รวมกันได้ target รับประกันว่ามีคำตอบเดียว</p><p>⏱️ hidden test มีข้อมูล 100,000 ตัว วิธี loop ซ้อน O(n²) จะ<b>ช้าเกิน</b></p>`,
  stub:`function twoSum(nums, target) {\n  \n}`,
  tests:[[[2,7,11,15],9],[[3,2,4],6]], hidden:[[[3,3],6],[[-1,-2,-3,-4,-5],-8],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[Array.from({length:100000},(_,i)=>i+1),199999]}],
  hint:"ใช้ Map เก็บ ค่า → index ทุกรอบเช็กว่ามี target - nums[i] อยู่ใน Map แล้วหรือยัง",
  sol:`function twoSum(nums, target) {\n  const seen = new Map();\n  for (let i = 0; i < nums.length; i++) {\n    const need = target - nums[i];\n    if (seen.has(need)) return [seen.get(need), i];\n    seen.set(nums[i], i);\n  }\n  return [];\n}`},
 
-{id:"isAnagram", lvl:3, title:"Anagram", fn:"isAnagram",
+{id:"isAnagram", lvl:4, title:"Anagram", fn:"isAnagram",
  desc:`<p>คืน <code>true</code> ถ้า a และ b ใช้ตัวอักษรชุดเดียวกันพอดี (จำนวนแต่ละตัวเท่ากัน)</p>`,
  stub:`function isAnagram(a, b) {\n  \n}`,
  tests:[["listen","silent"],["rat","car"]], hidden:[["",""],["a","ab"],["aab","abb"],{label:"ข้อความยาว 100,000 ตัว", gen:()=>{ const s=randStr(100000,"abcdefghij",21); return [s, s.split("").reverse().join("")]; }}],
  hint:"ถ้าความยาวไม่เท่ากันคืน false ทันที แล้วนับความถี่ด้วย Map: บวกจาก a ลบจาก b",
  sol:`function isAnagram(a, b) {\n  if (a.length !== b.length) return false;\n  const count = new Map();\n  for (const ch of a) count.set(ch, (count.get(ch) || 0) + 1);\n  for (const ch of b) {\n    if (!count.get(ch)) return false;\n    count.set(ch, count.get(ch) - 1);\n  }\n  return true;\n}`},
 
-{id:"maxSumK", lvl:3, title:"ผลรวมมากสุดของช่วงยาว k", fn:"maxSumK",
+{id:"maxSumK", lvl:4, title:"ผลรวมมากสุดของช่วงยาว k", fn:"maxSumK",
  desc:`<p>คืนผลรวมมากที่สุดของ subarray ที่<b>ต่อเนื่อง</b>และยาว k ตัวพอดี (รับประกัน 1 ≤ k ≤ arr.length)</p><p>⏱️ hidden test: n = 100,000 และ k = 50,000 ถ้าคำนวณใหม่ทุกช่วง O(n·k) จะช้าเกิน</p>`,
  stub:`function maxSumK(arr, k) {\n  \n}`,
  tests:[[[2,1,5,1,3,2],3],[[1,2,3],1]], hidden:[[[-1,-2,-3],2],[[5],1],{label:"n = 100,000, k = 50,000", gen:()=>[randInts(100000,-100,100,31),50000]}],
  hint:"Sliding Window: รวม k ตัวแรก แล้วเลื่อนทีละช่อง: sum += arr[i] - arr[i - k]",
  sol:`function maxSumK(arr, k) {\n  let sum = 0;\n  for (let i = 0; i < k; i++) sum += arr[i];\n  let best = sum;\n  for (let i = k; i < arr.length; i++) {\n    sum += arr[i] - arr[i - k];\n    best = Math.max(best, sum);\n  }\n  return best;\n}`},
 
-{id:"binarySearch", lvl:3, title:"Binary Search", fn:"binarySearch",
+{id:"binarySearch", lvl:4, title:"Binary Search", fn:"binarySearch",
  desc:`<p>arr เรียงจากน้อยไปมากและไม่มีค่าซ้ำ คืน index ของ x ถ้าไม่มีให้คืน <code>-1</code></p>`,
  stub:`function binarySearch(arr, x) {\n  let left = 0, right = arr.length - 1;\n  \n  return -1;\n}`,
  tests:[[[1,3,5,7,9],7],[[1,3,5],4]], hidden:[[[],1],[[5],5],[[1,2],1],[[1,2],2],{label:"array 1,000,000 ตัว", gen:()=>[Array.from({length:1000000},(_,i)=>i*2),777776]}],
  hint:"while (left <= right) หา mid = Math.floor((left + right) / 2) แล้วเลื่อน left = mid + 1 หรือ right = mid - 1",
  sol:`function binarySearch(arr, x) {\n  let left = 0, right = arr.length - 1;\n  while (left <= right) {\n    const mid = Math.floor((left + right) / 2);\n    if (arr[mid] === x) return mid;\n    if (arr[mid] < x) left = mid + 1;\n    else right = mid - 1;\n  }\n  return -1;\n}`},
 
-{id:"isValid", lvl:3, title:"วงเล็บถูกต้อง", fn:"isValid",
+{id:"isValid", lvl:4, title:"วงเล็บถูกต้อง", fn:"isValid",
  desc:`<p>s มีแต่ตัวอักษร <code>()[]{}</code> คืน <code>true</code> ถ้าทุกวงเล็บเปิดถูกปิดด้วยชนิดเดียวกันและถูกลำดับ</p>`,
  stub:`function isValid(s) {\n  const stack = [];\n  \n}`,
  tests:[["()[]{}"],["(]"],["([)]"]], hidden:[[""],["(("],["{[]}"],["]"],{label:"ความยาว 100,000", gen:()=>["(".repeat(50000)+")".repeat(50000)]}],
  hint:"เจอวงเล็บเปิดให้ push เจอวงเล็บปิดให้ pop แล้วเทียบคู่ จบแล้ว stack ต้องว่าง",
  sol:`function isValid(s) {\n  const pair = { ")": "(", "]": "[", "}": "{" };\n  const stack = [];\n  for (const ch of s) {\n    if ("([{".includes(ch)) stack.push(ch);\n    else if (stack.pop() !== pair[ch]) return false;\n  }\n  return stack.length === 0;\n}`},
 
-{id:"firstUniqChar", lvl:3, title:"ตัวอักษรแรกที่ไม่ซ้ำ", fn:"firstUniqChar",
+{id:"firstUniqChar", lvl:4, title:"ตัวอักษรแรกที่ไม่ซ้ำ", fn:"firstUniqChar",
  desc:`<p>คืน index ของตัวอักษรตัวแรกที่ปรากฏ<b>เพียงครั้งเดียว</b> ถ้าไม่มีให้คืน <code>-1</code></p>`,
  stub:`function firstUniqChar(s) {\n  \n}`,
  tests:[["leetcode"],["loveleetcode"],["aabb"]], hidden:[[""],["z"],{label:"ข้อความยาว 100,000 ตัว", gen:()=>[randStr(99999,"abcdefghijklmnopqrstuvwxy",41)+"z"]}],
  hint:"วนรอบแรกนับความถี่ด้วย Map วนรอบสองหาตัวแรกที่นับได้ 1 — ถ้าใช้ indexOf/lastIndexOf ในลูปจะช้า",
  sol:`function firstUniqChar(s) {\n  const freq = new Map();\n  for (const ch of s) freq.set(ch, (freq.get(ch) || 0) + 1);\n  for (let i = 0; i < s.length; i++) if (freq.get(s[i]) === 1) return i;\n  return -1;\n}`},
 
-{id:"mergeIntervals", lvl:3, title:"รวมช่วงที่ซ้อนกัน", fn:"mergeIntervals",
+{id:"mergeIntervals", lvl:4, title:"รวมช่วงที่ซ้อนกัน", fn:"mergeIntervals",
  desc:`<p>รับ array ของช่วง <code>[start, end]</code> รวมช่วงที่ซ้อนหรือชนกันแล้วคืนผลที่เรียงตาม start</p><p>เช่น <code>[[1,3],[2,6],[8,10]]</code> → <code>[[1,6],[8,10]]</code> · ช่วงที่ปลายชนกันพอดี เช่น [1,4] กับ [4,5] ให้รวมเป็น [1,5]</p>`,
  stub:`function mergeIntervals(intervals) {\n  \n}`,
  tests:[[[[1,3],[2,6],[8,10],[15,18]]],[[[1,4],[4,5]]]], hidden:[[[]],[[[1,4],[0,4]]],[[[1,10],[2,3]]],[[[5,6],[1,2]]]],
  hint:"sort ตาม start ก่อน (a, b) => a[0] - b[0] แล้ววนรวม: ถ้า start ≤ end ของช่วงล่าสุดให้ขยาย end",
  sol:`function mergeIntervals(intervals) {\n  const arr = intervals.map(x => [...x]).sort((a, b) => a[0] - b[0]);\n  const out = [];\n  for (const [s, e] of arr) {\n    const prev = out[out.length - 1];\n    if (prev && s <= prev[1]) prev[1] = Math.max(prev[1], e);\n    else out.push([s, e]);\n  }\n  return out;\n}`},
 
-{id:"sortUsers", lvl:3, title:"เรียงผู้ใช้หลายเงื่อนไข", fn:"sortUsers",
+{id:"sortUsers", lvl:4, title:"เรียงผู้ใช้หลายเงื่อนไข", fn:"sortUsers",
  desc:`<p>รับ array ของ <code>{ name, age }</code> คืน <b>array ของชื่อ</b> ที่เรียงตาม age <b>มากไปน้อย</b> ถ้า age เท่ากันให้เรียง name จาก A ไป Z</p>`,
  stub:`function sortUsers(users) {\n  \n}`,
  tests:[[[{name:"Ann",age:30},{name:"Bo",age:25},{name:"Cy",age:30}]]], hidden:[[[]],[[{name:"b",age:1},{name:"a",age:1}]],[[{name:"Zed",age:20},{name:"Amy",age:40},{name:"Kim",age:40},{name:"Bob",age:20}]]],
@@ -4138,35 +4304,35 @@ const JS_PROBLEMS = [
  sol:`function sortUsers(users) {\n  return [...users]\n    .sort((a, b) => b.age - a.age || a.name.localeCompare(b.name))\n    .map(u => u.name);\n}`},
 
 /* ---------- LEVEL 4 ---------- */
-{id:"lengthOfLongest", lvl:4, title:"Substring ยาวสุดที่ไม่มีตัวซ้ำ", fn:"lengthOfLongest",
+{id:"lengthOfLongest", lvl:5, title:"Substring ยาวสุดที่ไม่มีตัวซ้ำ", fn:"lengthOfLongest",
  desc:`<p>คืนความยาวของ substring (ช่วงที่ติดกัน) ที่ยาวที่สุดและไม่มีตัวอักษรซ้ำ</p><p>เช่น <code>"abcabcbb"</code> → 3 (\"abc\") · <code>"pwwkew"</code> → 3 (\"wke\")</p>`,
  stub:`function lengthOfLongest(s) {\n  \n}`,
  tests:[["abcabcbb"],["bbbbb"],["pwwkew"]], hidden:[[""],["dvdf"],["abba"],{label:"ข้อความยาว 100,000 ตัว", gen:()=>[randStr(100000,"abcdefghijklmnopqrstuvwxyz",51)]}],
  hint:"Sliding Window + Map เก็บ index ล่าสุดของแต่ละตัว ถ้าเจอซ้ำภายใน window ให้เลื่อน left ไปหลังตัวซ้ำ",
  sol:`function lengthOfLongest(s) {\n  const last = new Map();\n  let left = 0, best = 0;\n  for (let r = 0; r < s.length; r++) {\n    if (last.has(s[r]) && last.get(s[r]) >= left) left = last.get(s[r]) + 1;\n    last.set(s[r], r);\n    best = Math.max(best, r - left + 1);\n  }\n  return best;\n}`},
 
-{id:"subarraySum", lvl:4, title:"นับ subarray ที่ผลรวมเท่ากับ k", fn:"subarraySum",
+{id:"subarraySum", lvl:5, title:"นับ subarray ที่ผลรวมเท่ากับ k", fn:"subarraySum",
  desc:`<p>นับจำนวน subarray ที่<b>ต่อเนื่อง</b>และผลรวมเท่ากับ k (ค่าใน array <b>ติดลบได้</b>)</p><p>⏱️ hidden test มี n = 100,000 ตัว</p>`,
  stub:`function subarraySum(nums, k) {\n  \n}`,
  tests:[[[1,1,1],2],[[1,2,3],3]], hidden:[[[1,-1,0],0],[[0,0,0],0],[[3],3],{label:"n = 100,000 (มีค่าติดลบ)", gen:()=>[randInts(100000,-3,3,61),4]}],
  hint:"Sliding Window ใช้ไม่ได้เพราะมีค่าติดลบ ให้ใช้ Prefix Sum + Map: count += seen.get(sum - k)",
  sol:`function subarraySum(nums, k) {\n  const seen = new Map([[0, 1]]);\n  let sum = 0, count = 0;\n  for (const x of nums) {\n    sum += x;\n    count += seen.get(sum - k) || 0;\n    seen.set(sum, (seen.get(sum) || 0) + 1);\n  }\n  return count;\n}`},
 
-{id:"topKFrequent", lvl:4, title:"k ค่าที่พบบ่อยที่สุด", fn:"topKFrequent",
+{id:"topKFrequent", lvl:5, title:"k ค่าที่พบบ่อยที่สุด", fn:"topKFrequent",
  desc:`<p>คืน k ค่าที่ปรากฏบ่อยที่สุด เรียงตามความถี่<b>มากไปน้อย</b> ถ้าความถี่เท่ากันให้เรียงค่า<b>น้อยไปมาก</b></p>`,
  stub:`function topKFrequent(nums, k) {\n  \n}`,
  tests:[[[1,1,1,2,2,3],2],[[1],1]], hidden:[[[4,4,5,5,6],2],[[9,8,7],3],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[randInts(100000,1,2000,71),10]}],
  hint:"นับด้วย Map แล้วแปลงเป็น array ของ [ค่า, ความถี่] จากนั้น sort ด้วย (a, b) => b[1] - a[1] || a[0] - b[0]",
  sol:`function topKFrequent(nums, k) {\n  const freq = new Map();\n  for (const x of nums) freq.set(x, (freq.get(x) || 0) + 1);\n  return [...freq.entries()]\n    .sort((a, b) => b[1] - a[1] || a[0] - b[0])\n    .slice(0, k)\n    .map(e => e[0]);\n}`},
 
-{id:"groupAnagrams", lvl:4, title:"จัดกลุ่ม Anagram", fn:"groupAnagrams",
+{id:"groupAnagrams", lvl:5, title:"จัดกลุ่ม Anagram", fn:"groupAnagrams",
  desc:`<p>จัดกลุ่มคำที่เป็น anagram กัน เพื่อให้ตรวจได้แน่นอน:</p><ul><li>คำในแต่ละกลุ่ม<b>เรียงตามตัวอักษร</b></li><li>กลุ่มทั้งหมด<b>เรียงตามคำแรก</b>ของกลุ่ม</li></ul><p>เช่น <code>["eat","tea","tan","ate","nat","bat"]</code> → <code>[["ate","eat","tea"],["bat"],["nat","tan"]]</code></p>`,
  stub:`function groupAnagrams(words) {\n  \n}`,
  tests:[[["eat","tea","tan","ate","nat","bat"]]], hidden:[[[""]],[["a"]],[["abc","bca","xyz","zyx","cab"]]],
  hint:"key ของแต่ละคำ = word.split(\"\").sort().join(\"\") เก็บกลุ่มใน Map แล้ว sort ตามที่โจทย์กำหนด",
  sol:`function groupAnagrams(words) {\n  const groups = new Map();\n  for (const w of words) {\n    const key = w.split("").sort().join("");\n    if (!groups.has(key)) groups.set(key, []);\n    groups.get(key).push(w);\n  }\n  return [...groups.values()]\n    .map(g => g.sort())\n    .sort((a, b) => a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0);\n}`},
 
-{id:"shortestPath", lvl:4, title:"ทางสั้นที่สุดใน Grid", fn:"shortestPath",
+{id:"shortestPath", lvl:5, title:"ทางสั้นที่สุดใน Grid", fn:"shortestPath",
  desc:`<p>grid มี 0 = ทางเดิน และ 1 = กำแพง เดินขึ้น ลง ซ้าย ขวาได้ทีละช่อง คืนจำนวน<b>ก้าว</b>ที่น้อยที่สุดจากมุมซ้ายบน (0,0) ไปมุมขวาล่าง ถ้าไปไม่ได้ (รวมถึงจุดเริ่มหรือจุดจบเป็นกำแพง) ให้คืน <code>-1</code></p>`,
  stub:`function shortestPath(grid) {\n  \n}`,
  tests:[[[[0,0,0],[1,1,0],[0,0,0]]],[[[0,1],[1,0]]]], hidden:[[[[0]]],[[[1]]],[[[0,0],[0,1]]],{label:"grid 300 × 300", gen:()=>[Array.from({length:300},()=>Array(300).fill(0))]}],
@@ -4381,6 +4547,119 @@ shortestPath:{story:"หุ่นยนต์เดินในโกดัง�
  steps:[{t:"grid", g:[[0,0,0],[1,1,0],[0,0,0]], path:[[0,0],[0,1],[0,2],[1,2],[2,2]], cap:"เส้นทางที่สั้นที่สุด = 4 ก้าว"},{t:"grid", g:[[0,1],[1,0]], cap:"กำแพงล้อมไว้ ไปไม่ถึง → -1"}],
  warn:["จุดเริ่มหรือจุดจบเป็นกำแพง → -1","grid 1×1 ที่เป็น 0 → 0 ก้าว"]}
 };
+/* ---------- LEVEL 2: Object, JSON & Async ---------- */
+const FAKE_API = `// ===== API จำลอง (มีให้แล้ว เรียกใช้ได้เลย) =====
+function fetchUser(id) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      if (typeof id !== "number" || id < 1 || id > 1000) reject(new Error("User " + id + " not found"));
+      else resolve({ id: id, name: "User" + id, age: 18 + (id * 7) % 40 });
+    }, 100);
+  });
+}`;
+const mkUsers = (n, seed) => { const r = rng(seed), cities = ["Bangkok","Chiang Mai","Phuket","Khon Kaen","Hat Yai"];
+  return Array.from({length:n}, (_, i) => ({ name: "U" + i, age: 5 + Math.floor(r() * 70), city: cities[Math.floor(r() * cities.length)] })); };
+const mkCart = (n, seed) => { const r = rng(seed); return Array.from({length:n}, (_, i) => ({ item: "P" + i, price: 1 + Math.floor(r() * 500), qty: Math.floor(r() * 5) })); };
+const U3 = [{name:"Ann",age:30,city:"Bangkok"},{name:"Bo",age:17,city:"Phuket"},{name:"Cee",age:18,city:"Bangkok"}];
+
+const JS_PROBLEMS_L2 = [
+{id:"getNames", lvl:2, title:"ดึงชื่อจากรายชื่อผู้ใช้", fn:"getNames",
+ desc:`<p>รับ <code>users</code> ซึ่งเป็น array ของ object <code>{ name, age, city }</code> แล้วคืน <b>array ของชื่อ</b>ตามลำดับเดิม</p>`,
+ stub:`function getNames(users) {\n  // ใช้ map\n  \n}`,
+ tests:[[U3],[[]]], hidden:[[[{name:"Z",age:1,city:"X"}]],{label:"ผู้ใช้ 100,000 คน", gen:()=>[mkUsers(100000,21)]}],
+ hint:"users.map(u => u.name)",
+ sol:`function getNames(users) {\n  return users.map(u => u.name);\n}`},
+
+{id:"adults", lvl:2, title:"ชื่อของผู้ใหญ่ (อายุ 18 ขึ้นไป)", fn:"adults",
+ desc:`<p>คืน array ของ<b>ชื่อ</b>ผู้ใช้ที่ <code>age &gt;= 18</code> ตามลำดับเดิม</p>`,
+ stub:`function adults(users) {\n  \n}`,
+ tests:[[U3],[[{name:"Kid",age:10,city:"Bangkok"}]]], hidden:[[[]],[[{name:"Edge",age:18,city:"A"},{name:"Under",age:17,city:"A"}]],{label:"ผู้ใช้ 100,000 คน", gen:()=>[mkUsers(100000,22)]}],
+ hint:"filter ก่อน (age >= 18) แล้วค่อย map เอาชื่อ",
+ sol:`function adults(users) {\n  return users.filter(u => u.age >= 18).map(u => u.name);\n}`},
+
+{id:"totalPrice", lvl:2, title:"ยอดรวมในตะกร้าสินค้า", fn:"totalPrice",
+ desc:`<p>รับ <code>cart</code> ซึ่งเป็น array ของ <code>{ item, price, qty }</code> แล้วคืน<b>ยอดรวม</b> = ผลรวมของ <code>price × qty</code> (ตะกร้าว่าง → 0)</p>`,
+ stub:`function totalPrice(cart) {\n  \n}`,
+ tests:[[[{item:"Pen",price:15,qty:2},{item:"Book",price:120,qty:1}]],[[]]], hidden:[[[{item:"Bag",price:450,qty:0}]],{label:"สินค้า 100,000 รายการ", gen:()=>[mkCart(100000,23)]}],
+ hint:"cart.reduce((sum, c) => sum + c.price * c.qty, 0) — อย่าลืมค่าเริ่มต้น 0",
+ sol:`function totalPrice(cart) {\n  return cart.reduce((sum, c) => sum + c.price * c.qty, 0);\n}`},
+
+{id:"groupByCity", lvl:2, title:"จัดกลุ่มผู้ใช้ตามเมือง", fn:"groupByCity",
+ desc:`<p>คืน <b>object</b> ที่ key คือชื่อเมือง และ value คือ array ของชื่อผู้ใช้ในเมืองนั้น (ตามลำดับที่พบ)</p><p>ตัวอย่าง: <code>{ Bangkok: ["Ann", "Cee"], Phuket: ["Bo"] }</code></p>`,
+ stub:`function groupByCity(users) {\n  const groups = {};\n  \n  return groups;\n}`,
+ tests:[[U3],[[]]], hidden:[[[{name:"A",age:1,city:"X"},{name:"B",age:2,city:"X"}]],{label:"ผู้ใช้ 100,000 คน", gen:()=>[mkUsers(100000,24)]}],
+ hint:"วนทีละคน: ถ้ายังไม่มี groups[u.city] ให้สร้าง [] ก่อน แล้ว push(u.name)",
+ sol:`function groupByCity(users) {\n  const groups = {};\n  for (const u of users) {\n    if (!groups[u.city]) groups[u.city] = [];\n    groups[u.city].push(u.name);\n  }\n  return groups;\n}`},
+
+{id:"mergeSettings", lvl:2, title:"รวมค่าตั้งค่า (default + ของผู้ใช้)", fn:"mergeSettings",
+ desc:`<p>รับ <code>defaults</code> และ <code>user</code> (เป็น object ทั้งคู่) แล้วคืน <b>object ใหม่</b> ที่มีทุก key โดยค่าของ <code>user</code> ทับค่า default</p><p>ห้ามแก้ object ที่รับเข้ามา</p>`,
+ stub:`function mergeSettings(defaults, user) {\n  \n}`,
+ tests:[[{theme:"light",lang:"th",size:14},{theme:"dark"}],[{a:1},{}]], hidden:[[{},{x:5}],[{a:1,b:2},{b:null,c:3}]],
+ hint:"return { ...defaults, ...user } — ตัวหลังทับตัวหน้า",
+ sol:`function mergeSettings(defaults, user) {\n  return { ...defaults, ...user };\n}`},
+
+{id:"pickFields", lvl:2, title:"เลือกเฉพาะบาง field", fn:"pickFields",
+ desc:`<p>รับ <code>obj</code> และ <code>keys</code> (array ของชื่อ key) แล้วคืน object ใหม่ที่มี<b>เฉพาะ key ที่ระบุ และมีอยู่จริงใน obj</b></p><p>ใช้บ่อยตอนส่งข้อมูลออกจาก API โดยไม่ให้ field ลับหลุดไป เช่น password</p>`,
+ stub:`function pickFields(obj, keys) {\n  \n}`,
+ tests:[[{id:1,name:"Mali",password:"x"},["id","name"]],[{a:1},[]]], hidden:[[{a:1,b:2},["b","zzz"]],[{v:0,w:false},["v","w"]]],
+ hint:"วน keys: ถ้า k in obj ให้ result[k] = obj[k] (ระวังค่า 0 กับ false ก็ต้องเก็บ อย่าเช็กด้วย if (obj[k]))",
+ sol:`function pickFields(obj, keys) {\n  const out = {};\n  for (const k of keys) if (k in obj) out[k] = obj[k];\n  return out;\n}`},
+
+{id:"parseJSONSafe", lvl:2, title:"แปลง JSON อย่างปลอดภัย", fn:"parseJSONSafe",
+ desc:`<p>รับข้อความ <code>text</code> แล้วคืนผลของ <code>JSON.parse(text)</code></p><p>ถ้ารูปแบบผิดจน parse ไม่ได้ ให้คืน <code>null</code> แทนการให้โปรแกรมพัง</p>`,
+ stub:`function parseJSONSafe(text) {\n  \n}`,
+ tests:[['{"name":"Mali","age":20}'],['{name: Mali}']], hidden:[['[1,2,3]'],[''],['{"a":1,}'],['"hello"']],
+ hint:"try { return JSON.parse(text); } catch (e) { return null; }",
+ sol:`function parseJSONSafe(text) {\n  try {\n    return JSON.parse(text);\n  } catch (e) {\n    return null;\n  }\n}`},
+
+{id:"getUserName", lvl:2, title:"⏳ async: ดึงชื่อผู้ใช้จาก API", fn:"getUserName", prelude:FAKE_API,
+ desc:`<p>มีฟังก์ชัน <code>fetchUser(id)</code> ให้แล้ว มันคืน <b>Promise</b> ที่ใช้เวลาประมาณ 0.1 วินาที แล้วได้ <code>{ id, name, age }</code> หรือ <b>reject</b> ถ้าไม่พบผู้ใช้ (id ต้องอยู่ระหว่าง 1–1000)</p><p>เขียน <code>async function getUserName(id)</code> ให้คืนชื่อผู้ใช้ และถ้าเกิด error ให้คืน <code>"unknown"</code></p>`,
+ stub:`// fetchUser(id) มีให้แล้ว → Promise<{ id, name, age }>\nasync function getUserName(id) {\n  \n}`,
+ tests:[[1],[42],[0]], hidden:[[1000],[1001],[-5]],
+ hint:"try { const u = await fetchUser(id); return u.name; } catch (e) { return \"unknown\"; }",
+ sol:`async function getUserName(id) {\n  try {\n    const u = await fetchUser(id);\n    return u.name;\n  } catch (e) {\n    return "unknown";\n  }\n}`},
+
+{id:"getTotalAge", lvl:2, title:"⏳ async: รวมอายุหลายคนพร้อมกัน", fn:"getTotalAge", prelude:FAKE_API,
+ desc:`<p>ใช้ <code>fetchUser(id)</code> ตัวเดิม (แต่ละครั้งใช้เวลาประมาณ 0.1 วินาที) รับ <code>ids</code> เป็น array ของ id ที่<b>มีอยู่จริงทั้งหมด</b> แล้วคืน<b>ผลรวมอายุ</b> (ว่าง → 0)</p><p>⚠️ hidden test มี 40 คน และจำกัดเวลา 3 วินาที ถ้า await ทีละคนจะใช้ 4 วินาที ต้องดึงพร้อมกัน</p>`,
+ stub:`async function getTotalAge(ids) {\n  \n}`,
+ tests:[[[1,2,3]],[[]]], hidden:[[[10]],{label:"40 คน (ต้องเสร็จใน 3 วินาที)", gen:()=>[Array.from({length:40},(_,i)=>i*20+1)]}],
+ hint:"const users = await Promise.all(ids.map(id => fetchUser(id))); แล้ว reduce รวม age",
+ sol:`async function getTotalAge(ids) {\n  const users = await Promise.all(ids.map(id => fetchUser(id)));\n  return users.reduce((s, u) => s + u.age, 0);\n}`}
+];
+
+const JS_VIZ_L2 = {
+getNames:{story:"หน้ารายชื่อสมาชิก: ต้องการแค่ชื่อไปแสดงในรายการ", inp:"users — array ของ { name, age, city }", out:"array ของชื่อ ความยาวเท่าเดิม",
+ steps:[{t:"map", m:[["users[0]","{ name: \"Ann\", age: 30 }"],["users[1]","{ name: \"Bo\", age: 17 }"],["users[2]","{ name: \"Cee\", age: 18 }"]], cap:"ข้อมูลเข้า: object 3 ตัว"},{t:"arr", v:["Ann","Bo","Cee"], hi:[0,1,2], cap:"map(u => u.name) ได้ชื่อทีละคน"}],
+ warn:["array ว่าง → []","ห้ามเรียงใหม่ ต้องตามลำดับเดิม"]},
+adults:{story:"ระบบขายตั๋วคอนเสิร์ตที่จำกัดอายุ 18+", inp:"users — array ของ { name, age, city }", out:"array ของชื่อผู้ที่ age ≥ 18",
+ steps:[{t:"arr", v:["Ann 30","Bo 17","Cee 18"], hi:[0,2], dim:[1], cap:"filter: Bo อายุ 17 ถูกคัดออก"},{t:"arr", v:["Ann","Cee"], hi:[0,1], cap:"map: เหลือแค่ชื่อ"}],
+ warn:["อายุ 18 พอดีต้องผ่าน (≥ ไม่ใช่ >)"]},
+totalPrice:{story:"หน้าชำระเงินของร้านออนไลน์", inp:"cart — array ของ { item, price, qty }", out:"ตัวเลขยอดรวม",
+ steps:[{t:"calc", lines:["sum = 0","Pen:  0 + 15 × 2   = 30","Book: 30 + 120 × 1 = 150   → return 150"], cap:"reduce สะสมค่าทีละรายการ"}],
+ warn:["ตะกร้าว่าง → 0 (ต้องใส่ค่าเริ่มต้นให้ reduce)","qty = 0 ไม่เพิ่มยอด"]},
+groupByCity:{story:"สรุปรายชื่อสมาชิกแยกตามจังหวัด", inp:"users — array ของ { name, age, city }", out:"object { เมือง: [ชื่อ, ...] }",
+ steps:[{t:"arr", v:["Ann·Bangkok","Bo·Phuket","Cee·Bangkok"], ptr:{0:"i"}, cap:"วนทีละคน"},{t:"map", m:[["Bangkok","[\"Ann\", \"Cee\"]"],["Phuket","[\"Bo\"]"]], cap:"ครั้งแรกที่เจอเมืองให้สร้าง [] ก่อน แล้ว push ชื่อ"}],
+ warn:["array ว่าง → {}","ลำดับชื่อในกลุ่มต้องตามลำดับที่พบ"]},
+mergeSettings:{story:"ค่าตั้งค่าแอป: ใช้ค่าเริ่มต้น แต่ผู้ใช้เปลี่ยนบางอย่างเองได้", inp:"defaults, user — object สองตัว", out:"object ใหม่ที่รวมกัน",
+ steps:[{t:"map", m:[["theme","\"light\""],["lang","\"th\""],["size","14"]], cap:"defaults"},{t:"map", m:[["theme","\"dark\""]], cap:"user"},{t:"map", m:[["theme","\"dark\"  ← ทับ"],["lang","\"th\""],["size","14"]], cap:"ผลลัพธ์: { ...defaults, ...user }"}],
+ warn:["ค่า null ของ user ก็ทับได้","ห้ามแก้ defaults เดิม"]},
+pickFields:{story:"ก่อนส่งข้อมูลผู้ใช้ออกไป ต้องตัด password ทิ้ง", inp:"obj — object · keys — array ของชื่อ key", out:"object ใหม่ที่มีแค่ key ที่ขอ",
+ steps:[{t:"map", m:[["id","1"],["name","\"Mali\""],["password","\"x\"  ✗"]], cap:"keys = [\"id\", \"name\"]"},{t:"map", m:[["id","1"],["name","\"Mali\""]], cap:"ผลลัพธ์"}],
+ warn:["key ที่ไม่มีใน obj ห้ามใส่ (ไม่ใช่ใส่เป็น undefined)","ค่า 0 และ false ต้องเก็บไว้"]},
+parseJSONSafe:{story:"รับข้อมูลจากภายนอกที่อาจส่งมาผิดรูปแบบ", inp:"text — ข้อความ", out:"ข้อมูลที่ parse แล้ว หรือ null",
+ steps:[{t:"flow", v:["text","try: JSON.parse","สำเร็จ → คืนค่า","พัง → catch → null"]},{t:"calc", lines:["'{\"a\":1}'  → { a: 1 }","'{name: Mali}' → null  (key ไม่มี \")","''  → null","'[1,2,3]' → [1, 2, 3]"]}],
+ warn:["comma เกินท้ายผิดรูปแบบ","ข้อความว่างก็ parse ไม่ได้"]},
+getUserName:{story:"หน้าโปรไฟล์ที่ต้องรอข้อมูลจาก server", inp:"id — ตัวเลข", out:"Promise ของชื่อ หรือ \"unknown\"",
+ steps:[{t:"flow", v:["เรียก fetchUser(id)","await (รอ 0.1 วินาที)","ได้ user → return user.name","reject → catch → \"unknown\""]},{t:"calc", lines:["getUserName(42) → \"User42\"","getUserName(0)  → \"unknown\"  (ไม่พบ)"]}],
+ warn:["ต้องมี await ไม่อย่างนั้นได้ Promise แทนข้อมูล","id ที่ไม่มีอยู่ต้องไม่ทำให้โปรแกรมพัง"]},
+getTotalAge:{story:"แดชบอร์ดที่ต้องดึงข้อมูลสมาชิกหลายคน", inp:"ids — array ของ id", out:"Promise ของผลรวมอายุ",
+ steps:[{t:"calc", lines:["❌ ทีละคน:  [■]→[■]→[■] ... 40 × 0.1s = 4 วินาที → TLE","✅ พร้อมกัน: [■][■][■] ... ≈ 0.1 วินาที"], cap:"Promise.all เริ่มทุกคำขอพร้อมกัน แล้วรอให้ครบ"}],
+ warn:["for + await ทีละตัว จะเกินเวลาใน hidden test","ids ว่าง → 0"]}
+};
+
+JS_PROBLEMS.splice(JS_PROBLEMS.findIndex(p=>p.lvl>1),0,...JS_PROBLEMS_L2);
+Object.assign(JS_VIZ, JS_VIZ_L2);
+
 
 const SQL_VIZ = {
 s_bkk:{story:"ฝ่ายการตลาดอยากส่งโปรโมชันให้ลูกค้าที่อยู่กรุงเทพ", tables:["customers"], warn:["ข้อความต้องอยู่ใน single quote: 'Bangkok'","อย่าลืม ORDER BY name"]},
@@ -4441,7 +4720,7 @@ const warnHTML = w => w&&w.length ? `<div class="pi-warn"><div class="pi-k">⚠�
 const SQLJS_URL = "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-asm.js";
 const LAB = {tab:"js", pid:null};
 const LAB_XP = 40;
-function labState(){ P.lab = P.lab || {js:{}, sql:{}}; P.lab.js=P.lab.js||{}; P.lab.sql=P.lab.sql||{}; P.drafts = P.drafts || {}; return P.lab; }
+function labState(){ P.lab = P.lab || {js:{}, sql:{}}; P.lab.js=P.lab.js||{}; P.lab.sql=P.lab.sql||{}; P.lab.term=P.lab.term||{}; P.drafts = P.drafts || {}; return P.lab; }
 const escHTML = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 /* ---------- เปรียบเทียบผลลัพธ์ ---------- */
@@ -4461,18 +4740,20 @@ function fmtVal(v, max=160){
 /* ---------- ตัวรัน JavaScript ใน Web Worker (จำกัดเวลา) ---------- */
 const WORKER_PRE = 'var __logs=[];var __fmt=function(x){try{return typeof x==="string"?x:JSON.stringify(x)}catch(e){return String(x)}};console.log=function(){if(__logs.length<100)__logs.push(Array.prototype.map.call(arguments,__fmt).join(" "))};\n';
 const PRE_LINES = WORKER_PRE.split("\n").length-1;
-function runInWorker(code, fn, argsList, limitMs){
-  const post = `\n;self.onmessage=function(e){var f=(typeof ${fn}==="function")?${fn}:null;if(!f){self.postMessage({nofn:true,logs:__logs});return;}var out=[];for(var i=0;i<e.data.length;i++){try{var t0=performance.now();var r=f.apply(null,e.data[i]);out.push({ok:true,v:r,ms:performance.now()-t0});}catch(err){out.push({ok:false,err:String(err&&err.message||err)});}}try{self.postMessage({out:out,logs:__logs});}catch(x){self.postMessage({out:out.map(function(o){return o.ok?{ok:true,v:String(o.v),ms:o.ms}:o}),logs:__logs});}};`;
+function runInWorker(code, fn, argsList, limitMs, prelude){
+  const pre = WORKER_PRE + (prelude ? prelude+"\n" : "");
+  const preLines = pre.split("\n").length-1;
+  const post = `\n;self.onmessage=async function(e){var f=(typeof ${fn}==="function")?${fn}:null;if(!f){self.postMessage({nofn:true,logs:__logs});return;}var out=[];for(var i=0;i<e.data.length;i++){try{var t0=performance.now();var r=await f.apply(null,e.data[i]);out.push({ok:true,v:r,ms:performance.now()-t0});}catch(err){out.push({ok:false,err:String(err&&err.message||err)});}}try{self.postMessage({out:out,logs:__logs});}catch(x){self.postMessage({out:out.map(function(o){return o.ok?{ok:true,v:String(o.v),ms:o.ms}:o}),logs:__logs});}};`;
   return new Promise(resolve=>{
     let url, w, done=false;
     const finish = r => { if(done) return; done=true; clearTimeout(timer); try{ w.terminate(); }catch(e){} try{ URL.revokeObjectURL(url); }catch(e){} resolve(r); };
     try{
-      url = URL.createObjectURL(new Blob([WORKER_PRE+code+post], {type:"text/javascript"}));
+      url = URL.createObjectURL(new Blob([pre+code+post], {type:"text/javascript"}));
       w = new Worker(url);
     }catch(e){ return resolve({fatal:"เบราว์เซอร์นี้รันโค้ดไม่ได้: "+e.message}); }
     const timer = setTimeout(()=>finish({tle:true}), limitMs);
     w.onmessage = e => finish(e.data);
-    w.onerror = e => { e.preventDefault && e.preventDefault(); finish({syntax:e.message||"Syntax error", line: e.lineno? e.lineno-PRE_LINES : null}); };
+    w.onerror = e => { e.preventDefault && e.preventDefault(); finish({syntax:e.message||"Syntax error", line: e.lineno? e.lineno-preLines : null}); };
     w.postMessage(argsList);
   });
 }
@@ -4480,7 +4761,7 @@ const expectCache = new Map();
 async function expectedFor(p, key, argsList){
   const k=p.id+"|"+key;
   if(expectCache.has(k)) return expectCache.get(k);
-  const r = await runInWorker(p.sol, p.fn, argsList, 15000);
+  const r = await runInWorker(p.sol, p.fn, argsList, 15000, p.prelude);
   const vals = r.out ? r.out.map(o=>o.v) : argsList.map(()=>undefined);
   expectCache.set(k, vals); return vals;
 }
@@ -4527,17 +4808,18 @@ const labLevels = () => LAB.tab==="js" ? LAB_LEVELS : SQL_LEVELS;
 function openLab(tab, pid){ S=null; labState(); if(tab) LAB.tab=tab; LAB.pid=pid||null; renderLab(); }
 function renderLab(){
   show("lab"); renderStats();
-  const root=$("#lab"); root.innerHTML=""; root.style.setProperty("--c", LAB.tab==="js" ? "#5eead4" : "#a78bfa");
-  if(LAB.pid) return renderProblem(root);
+  const root=$("#lab"); root.innerHTML=""; root.style.setProperty("--c", LAB.tab==="js" ? "#5eead4" : LAB.tab==="sql" ? "#a78bfa" : "#fb923c");
+  if(LAB.pid) return LAB.tab==="term" ? renderTermMission(root) : renderProblem(root);
   const L=labState();
   const top=el("div","lv-top"); const back=el("button","back","← แผนที่"); back.onclick=()=>{ LAB.pid=null; renderMap(); }; top.appendChild(back);
   top.appendChild(el("div","lv-title",`<div class="k">PRACTICE LAB</div><h2>⌨️ ห้องฝึกเขียนโค้ดจริง</h2>`)); root.appendChild(top);
 
   const intro=el("div","card"); intro.style.animation="none";
   intro.innerHTML=`<div class="eyebrow">ทำไมต้องฝึกที่นี่</div><p class="lab-p">ข้อสอบ HackerRank ส่วน Coding และ SQL ต้อง<b>พิมพ์โค้ดเองให้ผ่าน hidden test</b> ห้องนี้จำลองแบบเดียวกัน: เขียนโค้ด → <b>▶ รันตัวอย่าง</b> ดูผล → <b>✅ ส่งคำตอบ</b> เพื่อตรวจกับ hidden test (รวมข้อมูลขนาดใหญ่ที่ต้องเร็วพอ) · ติดแล้วกด 💡 คำใบ้ได้ · ข้อที่ผ่านได้ +${LAB_XP} XP</p>
-    <div class="lab-tabs"><button class="lab-tab ${LAB.tab==="js"?"on":""}" data-t="js">⌨️ JavaScript <b>${Object.keys(L.js).length}/${JS_PROBLEMS.length}</b></button><button class="lab-tab ${LAB.tab==="sql"?"on":""}" data-t="sql">🗃️ SQL <b>${Object.keys(L.sql).length}/${SQL_PROBLEMS.length}</b></button></div>`;
+    <div class="lab-tabs"><button class="lab-tab ${LAB.tab==="js"?"on":""}" data-t="js">⌨️ JavaScript <b>${Object.keys(L.js).length}/${JS_PROBLEMS.length}</b></button><button class="lab-tab ${LAB.tab==="sql"?"on":""}" data-t="sql">🗃️ SQL <b>${Object.keys(L.sql).length}/${SQL_PROBLEMS.length}</b></button><button class="lab-tab ${LAB.tab==="term"?"on":""}" data-t="term">💻 Terminal <b>${Object.keys(L.term).length}/${TERM_MISSIONS.length}</b></button></div>`;
   intro.querySelectorAll(".lab-tab").forEach(b=>b.onclick=()=>{ LAB.tab=b.dataset.t; renderLab(); });
   root.appendChild(intro);
+  if(LAB.tab==="term") return renderTermList(root);
 
   if(LAB.tab==="sql"){
     const sc=el("div","card"); sc.style.animation="none";
@@ -4635,7 +4917,7 @@ function markSolved(kind, id){ const L=labState(); const first=!L[kind][id]; L[k
 async function runJSProblem(p, code, submit, out){
   const vis = p.tests;
   const expV = await expectedFor(p,"v",vis);
-  const r = await runInWorker(code, p.fn, vis, 3000);
+  const r = await runInWorker(code, p.fn, vis, 3000, p.prelude);
   if(r.fatal){ out.innerHTML=`<div class="why r"><strong>รันไม่ได้</strong>${escHTML(r.fatal)}</div>`; return; }
   if(r.syntax){ out.innerHTML=`<div class="why r"><strong>❌ โค้ดมีข้อผิดพลาด (Syntax / Runtime Error)</strong>${escHTML(r.syntax)}${r.line?` · บรรทัดที่ ${r.line}`:""}<br><span class="muted">อ่านข้อความ error แล้วดูบรรทัดที่บอก มักเกิดจากวงเล็บไม่ครบ หรือพิมพ์ชื่อผิด</span></div>`; return; }
   if(r.tle){ out.innerHTML=`<div class="why r"><strong>⏱️ Time Limit Exceeded</strong>โค้ดทำงานนานเกิน 3 วินาทีกับตัวอย่างเล็ก ๆ น่าจะมี loop ที่ไม่มีวันจบ (เช่นลืม i++)</div>`; return; }
@@ -4653,7 +4935,7 @@ async function runJSProblem(p, code, submit, out){
   const expH = await expectedFor(p,"h",hs.map(h=>h.args));
   let rows="", pass=0;
   for(let i=0;i<hs.length;i++){
-    const rr = await runInWorker(code, p.fn, [hs[i].args], 3000);
+    const rr = await runInWorker(code, p.fn, [hs[i].args], 3000, p.prelude);
     let st, msg="";
     if(rr.tle){ st=false; msg="⏱️ ช้าเกินเวลา (Time Limit Exceeded) — ลองหา complexity ที่ดีกว่านี้"; }
     else if(rr.syntax){ st=false; msg="Error: "+rr.syntax; }
@@ -4689,6 +4971,361 @@ async function runSQLProblem(p, q, submit, out){
   if(all){ const first=markSolved("sql",p.id); head=`<div class="why g"><strong>🎉 ผ่านทั้งข้อมูลตัวอย่างและข้อมูลชุดซ่อน${first?` · +${LAB_XP} XP`:""}</strong>query ของคุณถูกต้องโดยไม่ได้ “บังเอิญ” ตรงกับข้อมูลชุดเดียว</div>`; }
   else head=`<div class="why r"><strong>ผลการตรวจ</strong>ฐานข้อมูลตัวอย่าง: ${okA?"✅ ผ่าน":"❌ "+escHTML(why)}<br>ฐานข้อมูลชุดซ่อน (ข้อมูลต่างกัน มีค่าเท่ากัน / NULL / ลูกค้าที่ไม่มี order): ${okB?"✅ ผ่าน":"❌ "+escHTML(whyB)}<br><span class="muted">ถ้าผ่านแค่ชุดตัวอย่าง แปลว่า query อาจ hardcode ค่า หรือยังไม่รองรับกรณีพิเศษ</span></div>`;
   out.innerHTML = head + html + expD;
+}
+
+/* ---------------- 💻 TERMINAL จำลอง (Git & Docker) ---------------- */
+const TERM_XP = 20;
+function termTokens(line){
+  const out=[]; let cur="", q=null, has=false;
+  for(const ch of line.trim()){
+    if(q){ if(ch===q){ q=null; } else cur+=ch; continue; }
+    if(ch==='"'||ch==="'"){ q=ch; has=true; continue; }
+    if(/\s/.test(ch)){ if(cur||has){ out.push(cur); cur=""; has=false; } continue; }
+    cur+=ch;
+  }
+  if(cur||has) out.push(cur);
+  return {t:out, unclosed:!!q};
+}
+// อ่าน flag แบบไม่สนลำดับ: คืน {flags:{name:value|true}, args:[...]}
+function termParse(t, withValue){
+  const flags={}, args=[];
+  for(let i=0;i<t.length;i++){
+    const x=t[i];
+    if(x.startsWith("-") && x.length>1){
+      if(x.includes("=")){ const [k,...v]=x.split("="); flags[k]=v.join("="); continue; }
+      if(withValue.includes(x)){ flags[x]=t[i+1]; i++; continue; }
+      if(/^-[a-zA-Z]{2,}$/.test(x)) { const cs=[...x.slice(1)]; cs.forEach((c,j)=>{ if(j===cs.length-1 && withValue.includes("-"+c)){ flags["-"+c]=t[i+1]; i++; } else flags["-"+c]=true; }); continue; }
+      flags[x]=true;
+    } else args.push(x);
+  }
+  return {flags, args};
+}
+const GIT_LOG = `a1b2c3d (HEAD -> main) Add discount calculation   ← commit นี้ทำให้ยอดเงินผิด
+9f8e7d6 Fix login redirect
+5c4b3a2 Add product page
+1a2b3c4 Initial commit`;
+
+const TERM_GROUPS = [
+  {g:"git", name:"Git: ทำงานเป็นทีม", desc:"ทำตามขั้นตอนจริงของนักพัฒนา: ดูสถานะ → stage → commit → แตก branch → push → stash → ดูประวัติ → ย้อนแก้"},
+  {g:"docker", name:"Docker: ส่งแอปขึ้นเครื่องจริง", desc:"build image → run container → ดูสถานะ/log → เข้าไปดูข้างใน → หยุด → รันหลาย service ด้วย compose"}
+];
+
+const TERM_MISSIONS = [
+{id:"g_status", g:"git", title:"ดูว่าไฟล์ไหนเปลี่ยน", cwd:"~/shop",
+ story:"คุณเพิ่งแก้ไฟล์ <code>login.js</code> และสร้างไฟล์ใหม่ <code>notes.txt</code> ก่อนจะทำอะไรต่อ ต้อง<b>ดูสถานะของ working directory</b>",
+ goal:"แสดงสถานะไฟล์ใน repository", hint:"git status",
+ check(t){ if(t[0]==="git"&&t[1]==="status") return {ok:true, out:`On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+        modified:   login.js
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        notes.txt
+
+no changes added to commit (use "git add")`}; },
+ explain:"<code>git status</code> ไม่เปลี่ยนอะไรเลย ใช้ดูได้บ่อยเท่าที่ต้องการ · <b>modified</b> = ไฟล์ที่ Git รู้จักแต่ถูกแก้ · <b>untracked</b> = ไฟล์ใหม่ที่ Git ยังไม่ติดตาม"},
+
+{id:"g_add", g:"git", title:"เตรียมไฟล์เข้า commit (stage)", cwd:"~/shop",
+ story:"ต้องการ commit เฉพาะ <code>login.js</code> ส่วน <code>notes.txt</code> เป็นโน้ตส่วนตัว ไม่ต้องการให้เข้า repository",
+ goal:"stage เฉพาะไฟล์ login.js", hint:"git add login.js",
+ check(t){ if(t[0]!=="git"||t[1]!=="add") return;
+   if(t.length<3) return {msg:"git add ต้องบอกด้วยว่าจะ add ไฟล์อะไร เช่น git add ชื่อไฟล์"};
+   if(t.includes(".")||t.includes("-A")||t.includes("--all")) return {msg:"คำสั่งนี้จะ stage ทุกไฟล์ รวมถึง notes.txt ด้วย โจทย์ต้องการเฉพาะ login.js"};
+   if(t.slice(2).length===1 && t[2]==="login.js") return {ok:true, out:`(ไม่มีข้อความแสดง = สำเร็จ)
+
+$ git status
+Changes to be committed:
+        modified:   login.js
+Untracked files:
+        notes.txt`};
+   return {msg:"ชื่อไฟล์ไม่ตรง ไฟล์ที่ต้องการคือ login.js"}; },
+ explain:"<code>git add</code> ย้ายการเปลี่ยนแปลงเข้า <b>staging area</b> (ห้องรอถ่ายรูป) commit จะเก็บเฉพาะสิ่งที่อยู่ในนั้น · <code>git add .</code> จะ add ทุกไฟล์ในโฟลเดอร์ ต้องระวังไฟล์ที่ไม่ตั้งใจ (ใช้ <code>.gitignore</code> ช่วย)"},
+
+{id:"g_commit", g:"git", title:"บันทึก commit พร้อมข้อความ", cwd:"~/shop",
+ story:"login.js อยู่ใน staging แล้ว บันทึกเป็น commit พร้อม<b>ข้อความที่อธิบายว่าแก้อะไร</b>",
+ goal:"commit พร้อมข้อความ (ใช้ -m)", hint:'git commit -m "Fix login validation"',
+ check(t,raw,u){ if(t[0]!=="git"||t[1]!=="commit") return;
+   if(u) return {msg:"ลืมปิดเครื่องหมายคำพูด \" ของข้อความ"};
+   const {flags}=termParse(t.slice(2),["-m","--message"]); const m=flags["-m"]||flags["--message"];
+   if(m===undefined) return {msg:"ถ้าไม่ใส่ -m Git จะเปิด text editor ให้พิมพ์ข้อความ ใน terminal นี้ให้ใส่ -m \"ข้อความ\" ต่อท้าย"};
+   if(m===true||!String(m).trim()) return {msg:"ข้อความ commit ห้ามว่าง ใส่ในเครื่องหมายคำพูด เช่น -m \"Fix login\""};
+   if(flags["-a"]) return {ok:true, out:`[main 7e6f5d4] ${m}\n 1 file changed, 12 insertions(+), 3 deletions(-)\n\n(หมายเหตุ: -a จะ stage ไฟล์ที่ถูกแก้ทั้งหมดให้อัตโนมัติก่อน commit)`};
+   return {ok:true, out:`[main 7e6f5d4] ${m}\n 1 file changed, 12 insertions(+), 3 deletions(-)`}; },
+ explain:"commit message ที่ดีบอกว่า<b>ทำอะไร/ทำไม</b> เช่น <code>Fix login validation for empty email</code> ไม่ใช่ <code>update</code> หรือ <code>fix bug</code> · ผลลัพธ์แสดง hash สั้น (7e6f5d4) ที่ใช้อ้างถึง commit นี้ได้"},
+
+{id:"g_branch", g:"git", title:"แตก branch ใหม่สำหรับฟีเจอร์", cwd:"~/shop",
+ story:"หัวหน้าทีมให้ทำฟีเจอร์หน้า login ใหม่ ทีมมีกฎว่า<b>ห้ามทำงานบน main โดยตรง</b> ให้สร้าง branch ชื่อ <code>feature/login</code> แล้วสลับไปทันที",
+ goal:"สร้างและสลับไป branch feature/login ในคำสั่งเดียว", hint:"git switch -c feature/login  (หรือ git checkout -b feature/login)",
+ check(t){ if(t[0]!=="git") return;
+   if(t[1]==="branch" && t[2]==="feature/login") return {msg:"git branch สร้าง branch ได้ แต่ยังไม่ได้สลับไป โจทย์ต้องการ “สร้างและสลับ” ในคำสั่งเดียว"};
+   const ok=(t[1]==="switch"&&(t[2]==="-c"||t[2]==="--create"))||(t[1]==="checkout"&&t[2]==="-b");
+   if(!ok){ if(t[1]==="switch"||t[1]==="checkout") return {msg:t[3]===undefined&&t[2]==="feature/login"?"branch feature/login ยังไม่มี ต้องใส่ -c (switch) หรือ -b (checkout) เพื่อสร้างใหม่":"รูปแบบ: git switch -c ชื่อbranch"}; return; }
+   if(t[3]!=="feature/login") return {msg:"ชื่อ branch ต้องเป็น feature/login"};
+   return {ok:true, out:"Switched to a new branch 'feature/login'"}; },
+ explain:"branch คือเส้นทางแยกให้ทำงานได้โดยไม่กระทบ main · <code>git switch -c</code> (คำสั่งใหม่) กับ <code>git checkout -b</code> (คำสั่งเดิม) ได้ผลเหมือนกัน · ตั้งชื่อตาม convention ของทีม เช่น <code>feature/…</code>, <code>fix/…</code>"},
+
+{id:"g_push", g:"git", title:"ส่ง branch ขึ้น remote", cwd:"~/shop",
+ story:"ทำฟีเจอร์เสร็จและ commit แล้วบน <code>feature/login</code> ต้อง<b>ส่ง branch นี้ขึ้น GitHub</b> (remote ชื่อ <code>origin</code>) เพื่อเปิด Pull Request",
+ goal:"push branch feature/login ไปที่ origin", hint:"git push -u origin feature/login",
+ check(t){ if(t[0]!=="git"||t[1]!=="push") return;
+   const {flags,args}=termParse(t.slice(2),[]);
+   if(flags["--force"]||flags["-f"]) return {msg:"⚠️ --force จะเขียนทับประวัติบน remote อันตรายมากกับ branch ที่คนอื่นใช้ ไม่จำเป็นสำหรับการ push ครั้งแรก"};
+   if(args.length===0) return {msg:"fatal: The current branch feature/login has no upstream branch.\n→ ครั้งแรกต้องระบุ remote และชื่อ branch: git push -u origin feature/login"};
+   if(args[0]!=="origin") return {msg:`fatal: '${args[0]}' does not appear to be a git repository → remote ชื่อ origin`};
+   if(args[1]==="main") return {msg:"นี่จะ push ขึ้น main โดยตรง ทีมห้ามทำ ให้ push branch feature/login แล้วเปิด Pull Request"};
+   if(args[1]!=="feature/login") return {msg:"ระบุชื่อ branch ด้วย: git push -u origin feature/login"};
+   return {ok:true, out:`Enumerating objects: 5, done.
+Writing objects: 100% (3/3), 412 bytes | 412.00 KiB/s, done.
+remote: Create a pull request for 'feature/login' on GitHub by visiting:
+remote:      https://github.com/team/shop/pull/new/feature/login
+To github.com:team/shop.git
+ * [new branch]      feature/login -> feature/login${flags["-u"]||flags["--set-upstream"]?"\nbranch 'feature/login' set up to track 'origin/feature/login'.":""}`}; },
+ explain:"<code>-u</code> (หรือ <code>--set-upstream</code>) จำว่า branch นี้ผูกกับ origin/feature/login ครั้งถัดไปพิมพ์แค่ <code>git push</code> ได้เลย · ขั้นต่อไปคือเปิด <b>Pull Request</b> ให้เพื่อน review ก่อน merge เข้า main"},
+
+{id:"g_stash", g:"git", title:"เก็บงานค้างไว้ชั่วคราว", cwd:"~/shop",
+ story:"กำลังแก้โค้ดค้างอยู่ (ยังไม่พร้อม commit) แต่มี<b>บั๊กด่วน</b>ต้องสลับไปแก้ที่ branch อื่นก่อน ต้อง<b>เก็บงานที่ค้างไว้ชั่วคราว</b>ให้ working directory สะอาด",
+ goal:"เก็บการเปลี่ยนแปลงที่ยังไม่ commit ไว้ชั่วคราว", hint:"git stash",
+ check(t){ if(t[0]!=="git") return;
+   if(t[1]==="reset"||t[1]==="checkout"&&t[2]==="--") return {msg:"⚠️ คำสั่งนี้จะทิ้งงานที่ค้างไปเลย โจทย์ต้องการเก็บไว้ใช้ต่อ"};
+   if(t[1]==="stash"&&(t.length===2||t[2]==="push"||t[2]==="save"||t[2]==="-u")) return {ok:true, out:"Saved working directory and index state WIP on feature/login: 7e6f5d4 Fix login validation"};
+   if(t[1]==="stash"&&t[2]==="pop") return {msg:"pop คือการเอากลับมา ตอนนี้ต้องการเก็บก่อน"}; },
+ explain:"stash เหมือน<b>ลิ้นชักพักงาน</b> เก็บงานค้างแล้ว working directory กลับเป็นเหมือน commit ล่าสุด จึงสลับ branch ได้อย่างปลอดภัย · <code>git stash list</code> ดูของในลิ้นชัก"},
+
+{id:"g_pop", g:"git", title:"เอางานที่เก็บไว้กลับมา", cwd:"~/shop",
+ story:"แก้บั๊กด่วนเสร็จแล้วและกลับมาที่ branch เดิม ถึงเวลา<b>เอางานที่ stash ไว้กลับมาทำต่อ</b>",
+ goal:"นำงานล่าสุดใน stash กลับมา", hint:"git stash pop",
+ check(t){ if(t[0]!=="git"||t[1]!=="stash") return;
+   if(t[2]==="pop") return {ok:true, out:`On branch feature/login
+Changes not staged for commit:
+        modified:   login.js
+Dropped refs/stash@{0} (3f2e1d0c9b8a7f6e5d4c3b2a1f0e9d8c7b6a5f4e)`};
+   if(t[2]==="apply") return {ok:true, out:"On branch feature/login\nChanges not staged for commit:\n        modified:   login.js\n\n(apply เอากลับมาแต่ยังเก็บสำเนาไว้ใน stash ด้วย ส่วน pop เอากลับมาแล้วลบออก)"};
+   if(t[2]==="list") return {msg:"stash@{0}: WIP on feature/login: 7e6f5d4 Fix login validation\n→ เห็นแล้วว่ามีงานเก็บไว้ ต่อไปเอากลับมา"};
+   return {msg:"ต้องการเอากลับมา ไม่ใช่เก็บเพิ่ม"}; },
+ explain:"<code>pop</code> = เอากลับมาและลบออกจาก stash · <code>apply</code> = เอากลับมาแต่ยังเก็บไว้ · ถ้าโค้ดชนกันจะเกิด conflict ให้แก้เหมือน merge conflict"},
+
+{id:"g_log", g:"git", title:"ดูประวัติ commit แบบย่อ", cwd:"~/shop",
+ story:"QA แจ้งว่า<b>ยอดเงินในตะกร้าคำนวณผิด</b>หลัง deploy ล่าสุด ต้องหาว่า commit ไหนเป็นต้นเหตุ ดูประวัติแบบ<b>บรรทัดเดียวต่อ commit</b>",
+ goal:"แสดงประวัติ commit แบบย่อ", hint:"git log --oneline",
+ check(t){ if(t[0]!=="git"||t[1]!=="log") return;
+   if(t.includes("--oneline")) return {ok:true, out:GIT_LOG};
+   return {msg:"commit a1b2c3d4e5f6a7b8c9d0...\nAuthor: Dev <dev@team.com>\nDate:   Mon Nov 2 10:15 2026\n\n    Add discount calculation\n...(ยาวมาก)\n→ ได้ข้อมูลแต่ยาวเกินไป ลองใส่ option ให้เหลือบรรทัดเดียวต่อ commit"}; },
+ explain:"<code>--oneline</code> แสดง hash สั้นกับข้อความ อ่านง่าย · ใช้คู่ <code>--graph</code> เพื่อดูการแตกและรวม branch · ตัวบนสุดคือ commit ล่าสุด"},
+
+{id:"g_revert", g:"git", title:"ย้อน commit ที่ทำให้พัง อย่างปลอดภัย", cwd:"~/shop",
+ story:`จากประวัติด้านล่าง commit <code>a1b2c3d</code> คือต้นเหตุ และ<b>ถูก push ขึ้น main ที่ทั้งทีมใช้แล้ว</b> ต้องยกเลิกผลของ commit นั้นโดย<b>ไม่ลบประวัติ</b><pre class="term-pre">${GIT_LOG}</pre>`,
+ goal:"ยกเลิกผลของ commit a1b2c3d ด้วยการสร้าง commit ใหม่", hint:"git revert a1b2c3d",
+ check(t){ if(t[0]!=="git") return;
+   if(t[1]==="reset") return {msg:"⚠️ git reset เขียนประวัติใหม่ ถ้า commit ถูก push และคนอื่น pull ไปแล้ว ประวัติจะไม่ตรงกัน ทำให้ทีมเดือดร้อน · กับ branch ที่แชร์ให้ใช้ revert"};
+   if(t[1]!=="revert") return;
+   if(!t[2]) return {msg:"ต้องระบุ commit ที่จะ revert"};
+   if(!/^a1b2c3d/.test(t[2])) return {msg:`fatal: bad revision '${t[2]}' → ดู hash จากประวัติ commit ที่ทำให้ยอดเงินผิด`};
+   return {ok:true, out:`[main 2d3e4f5] Revert "Add discount calculation"
+ 1 file changed, 4 insertions(+), 18 deletions(-)
+
+$ git log --oneline
+2d3e4f5 (HEAD -> main) Revert "Add discount calculation"
+${GIT_LOG.replace(" (HEAD -> main)","")}`}; },
+ explain:"<b>revert</b> สร้าง commit ใหม่ที่ทำตรงข้ามกับ commit เดิม ประวัติยังอยู่ครบ ปลอดภัยกับ branch ที่แชร์ · <b>reset</b> ย้าย HEAD ถอยหลังและลบ commit ออกจากประวัติ ใช้ได้กับงานที่ยังไม่ push เท่านั้น"},
+
+/* ---------- DOCKER ---------- */
+{id:"d_build", g:"docker", title:"สร้าง image จาก Dockerfile", cwd:"~/api",
+ story:"โฟลเดอร์นี้มี <code>Dockerfile</code> ของ API (Node.js ที่ฟังพอร์ต 3000) ให้ <b>build image</b> ชื่อ <code>myapp</code> tag <code>1.0</code> จากโฟลเดอร์ปัจจุบัน",
+ goal:"build image myapp:1.0 จากโฟลเดอร์ปัจจุบัน", hint:"docker build -t myapp:1.0 .",
+ check(t){ if(t[0]!=="docker"||t[1]!=="build") return;
+   const {flags,args}=termParse(t.slice(2),["-t","--tag","-f","--file"]); const tag=flags["-t"]||flags["--tag"];
+   if(!tag||tag===true) return {msg:"ไม่มีชื่อ image (จะได้ image ชื่อ <none>) ใส่ -t myapp:1.0"};
+   if(tag!=="myapp:1.0") return {msg:`tag ต้องเป็น myapp:1.0 (ได้ ${tag})`};
+   if(args.length===0) return {msg:"ERROR: \"docker buildx build\" requires exactly 1 argument.\n→ ลืมบอก build context: ใส่ . (จุด) ท้ายคำสั่ง = โฟลเดอร์ปัจจุบัน"};
+   if(args[0]!==".") return {msg:"build context ควรเป็น . (โฟลเดอร์ปัจจุบันที่มี Dockerfile)"};
+   return {ok:true, out:`[+] Building 18.4s (10/10) FINISHED
+ => [1/5] FROM docker.io/library/node:20-alpine
+ => [2/5] WORKDIR /app
+ => [3/5] COPY package*.json ./
+ => [4/5] RUN npm ci --omit=dev
+ => [5/5] COPY . .
+ => exporting to image
+ => => naming to docker.io/library/myapp:1.0`}; },
+ explain:"<b>image</b> = แม่พิมพ์ (โปรแกรม + ทุกอย่างที่ต้องใช้) · <code>-t ชื่อ:tag</code> ตั้งชื่อและเวอร์ชัน · <code>.</code> ท้ายคำสั่งคือ <b>build context</b> โฟลเดอร์ที่ส่งให้ Docker ใช้ COPY · แต่ละบรรทัดใน Dockerfile = 1 layer ที่ cache ได้"},
+
+{id:"d_run", g:"docker", title:"รัน container เบื้องหลัง พร้อมเปิดพอร์ต", cwd:"~/api",
+ story:"รัน image <code>myapp:1.0</code> เป็น container ชื่อ <code>api</code> ให้<b>ทำงานเบื้องหลัง</b> และให้เข้าจากเครื่องเราที่ <code>localhost:8080</code> ได้ (แอปข้างใน container ฟังพอร์ต <b>3000</b>)",
+ goal:"รัน container ชื่อ api แบบ detached, map พอร์ต 8080 → 3000", hint:"docker run -d -p 8080:3000 --name api myapp:1.0",
+ check(t){ if(t[0]!=="docker"||t[1]!=="run") return;
+   const {flags,args}=termParse(t.slice(2),["-p","--publish","--name","-e","--env","-v","--volume"]);
+   const img=args[0], p=flags["-p"]||flags["--publish"], nm=flags["--name"];
+   if(img!=="myapp:1.0") return {msg: img? `image ต้องเป็น myapp:1.0 (ได้ ${img}) · image ต้องอยู่หลัง option ทั้งหมด` : "ลืมระบุ image ท้ายคำสั่ง"};
+   if(!p) return {msg:"ไม่ได้ map พอร์ต จะเข้าจากเครื่องเราไม่ได้ ใช้ -p พอร์ตเครื่องเรา:พอร์ตใน container"};
+   if(p==="3000:8080") return {msg:"สลับกัน! รูปแบบคือ -p พอร์ตเครื่องเรา(host):พอร์ตใน container → 8080:3000"};
+   if(p!=="8080:3000") return {msg:"พอร์ตต้องเป็น 8080:3000"};
+   if(nm!=="api") return {msg:"ตั้งชื่อ container ด้วย --name api"};
+   if(!flags["-d"]&&!flags["--detach"]) return {msg:"ไม่มี -d container จะผูกกับ terminal (ปิด terminal = แอปหยุด) ใส่ -d เพื่อรันเบื้องหลัง"};
+   return {ok:true, out:"f3a9c1e07b2d5e8a4c6f1b0d9e7a3c5b2f4d6e8a0c1b3d5e7f9a2c4b6d8e0f1a\n\n$ curl localhost:8080/health\n{\"status\":\"ok\"}"}; },
+ explain:"<code>-d</code> = detached (รันเบื้องหลัง) · <code>-p 8080:3000</code> = <b>host:container</b> ผู้ใช้เรียก 8080 ที่เครื่องเรา แล้ว Docker ส่งต่อไป 3000 ใน container · <code>--name</code> ตั้งชื่อให้เรียกง่าย · option ต้องอยู่<b>ก่อน</b>ชื่อ image"},
+
+{id:"d_ps", g:"docker", title:"ดู container ที่กำลังทำงาน", cwd:"~/api",
+ story:"ตรวจว่า container <code>api</code> กำลังทำงานจริง และดูว่า map พอร์ตอะไรไว้",
+ goal:"แสดงรายการ container ที่ทำงานอยู่", hint:"docker ps",
+ check(t){ if(t[0]!=="docker") return;
+   if(t[1]==="ps"||(t[1]==="container"&&(t[2]==="ls"||t[2]==="list"))) return {ok:true, out:`CONTAINER ID   IMAGE       COMMAND                  STATUS          PORTS                    NAMES
+f3a9c1e07b2d   myapp:1.0   "docker-entrypoint.s…"   Up 2 minutes    0.0.0.0:8080->3000/tcp   api${t.includes("-a")?"\n0b1c2d3e4f5a   myapp:0.9   \"docker-entrypoint.s…\"   Exited (1) 1 day ago                            old-api\n(-a แสดง container ที่หยุดแล้วด้วย)":""}`};
+   if(t[1]==="images") return {msg:"REPOSITORY   TAG   IMAGE ID       SIZE\nmyapp        1.0   8d2f0a1b3c4e   182MB\n→ นี่คือ image (แม่พิมพ์) โจทย์ต้องการดู container (ตัวที่รันอยู่)"}; },
+ explain:"<code>docker ps</code> แสดงเฉพาะที่ <b>Up</b> อยู่ · <code>docker ps -a</code> รวมตัวที่หยุดแล้ว (ใช้หา container ที่ crash) · คอลัมน์ PORTS ยืนยันว่า 8080 ถูกส่งต่อไป 3000"},
+
+{id:"d_logs", g:"docker", title:"อ่าน log ของ container", cwd:"~/api",
+ story:"ผู้ใช้แจ้งว่าบางครั้งเรียก API แล้วได้ error 500 ต้อง<b>ดู log ของ container api</b> เพื่อหาสาเหตุ",
+ goal:"แสดง log ของ container ชื่อ api", hint:"docker logs api",
+ check(t){ if(t[0]!=="docker") return;
+   if(t[1]==="logs"||(t[1]==="container"&&t[2]==="logs")){ const name=t.filter(x=>!x.startsWith("-")).pop();
+     if(name!=="api") return {msg:"ระบุชื่อ container ที่จะดู log: api"};
+     return {ok:true, out:`> api@1.0.0 start
+> node server.js
+Server listening on port 3000
+GET /health 200 2ms
+GET /orders 200 35ms
+GET /orders/999 500 12ms
+Error: connect ECONNREFUSED 127.0.0.1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete]${t.includes("-f")||t.includes("--follow")?"\n(-f กำลังติดตาม log ใหม่แบบ real-time กด Ctrl+C เพื่อออก)":""}`}; } },
+ explain:"<code>docker logs</code> แสดงสิ่งที่แอปเขียนออก stdout/stderr · <code>-f</code> ติดตามแบบสด · <code>--tail 100</code> ดูแค่ 100 บรรทัดท้าย · log นี้บอกว่าต่อฐานข้อมูลไม่ได้ เพราะใน container <b>localhost หมายถึงตัว container เอง</b> ไม่ใช่เครื่องเรา (จึงต้องใช้ compose ในด่านสุดท้าย)"},
+
+{id:"d_exec", g:"docker", title:"เข้าไปสั่งงานใน container", cwd:"~/api",
+ story:"ต้องการ<b>เปิด shell ข้างใน container api</b> เพื่อตรวจว่ามีไฟล์ config ครบไหม (image นี้ใช้ alpine จึงมีแค่ <code>sh</code>)",
+ goal:"เปิด shell แบบโต้ตอบใน container api", hint:"docker exec -it api sh",
+ check(t){ if(t[0]!=="docker") return;
+   if(t[1]==="attach") return {msg:"attach จะต่อเข้ากับ process หลักของแอป (เห็น output และอาจหยุดแอปได้ถ้ากด Ctrl+C) โจทย์ต้องการเปิด shell ใหม่ข้างใน"};
+   if(t[1]!=="exec") return;
+   const {flags,args}=termParse(t.slice(2),["-u","--user","-w","--workdir","-e"]);
+   if(args[0]!=="api") return {msg:"ระบุชื่อ container: api"};
+   if(!args[1]) return {msg:"ต้องบอกคำสั่งที่จะรันข้างใน เช่น sh"};
+   if(!(flags["-i"]&&flags["-t"])&&!(flags["--interactive"]&&flags["--tty"])) return {msg:"ถ้าไม่มี -it จะพิมพ์โต้ตอบกับ shell ไม่ได้ (-i รับ input, -t จำลองหน้าจอ terminal)"};
+   if(args[1]==="bash"||args[1]==="/bin/bash") return {msg:"OCI runtime exec failed: exec: \"bash\": executable file not found in $PATH\n→ image alpine ไม่มี bash ใช้ sh แทน"};
+   if(args[1]!=="sh"&&args[1]!=="/bin/sh") return {msg:"ใช้ sh เป็น shell"};
+   return {ok:true, out:"/app # ls\nnode_modules  package.json  server.js  config\n/app # exit"}; },
+ explain:"<code>docker exec</code> รันคำสั่งเพิ่มใน container ที่ทำงานอยู่ · <code>-it</code> = interactive + tty ใช้พิมพ์โต้ตอบ · อย่าแก้ไฟล์ใน container เพื่อแก้บั๊กถาวร เพราะเมื่อสร้าง container ใหม่จะหายหมด ให้แก้ที่โค้ดหรือ Dockerfile แล้ว build ใหม่"},
+
+{id:"d_stop", g:"docker", title:"หยุด container", cwd:"~/api",
+ story:"จะ deploy เวอร์ชันใหม่ ต้อง<b>หยุด container api</b> อย่างนุ่มนวล (ให้แอปปิด connection ให้เรียบร้อยก่อน)",
+ goal:"หยุด container ชื่อ api", hint:"docker stop api",
+ check(t){ if(t[0]!=="docker") return;
+   if(t[1]==="kill") return {msg:"kill ส่ง SIGKILL ตัดทันที แอปไม่มีโอกาสปิดงานให้เรียบร้อย ใช้เมื่อ stop ไม่ได้ผลเท่านั้น"};
+   if(t[1]==="rm"&&!t.includes("-f")) return {msg:"Error: cannot remove container \"api\": container is running: stop the container before removing"};
+   if(t[1]==="rm") return {msg:"rm -f จะบังคับลบทันที โจทย์ต้องการหยุดอย่างนุ่มนวลก่อน"};
+   if(t[1]==="stop"||(t[1]==="container"&&t[2]==="stop")){ if(t[t.length-1]!=="api") return {msg:"ระบุชื่อ container: api"}; return {ok:true, out:"api\n\n$ docker ps\nCONTAINER ID   IMAGE   COMMAND   STATUS   PORTS   NAMES\n(ว่าง — ไม่มี container ทำงานอยู่)"}; } },
+ explain:"<code>stop</code> ส่ง SIGTERM ให้แอปปิดตัวเอง รอ 10 วินาทีแล้วจึงตัด · container ที่หยุดแล้วยังอยู่ (เห็นใน <code>ps -a</code>) เริ่มใหม่ด้วย <code>docker start api</code> หรือลบด้วย <code>docker rm api</code>"},
+
+{id:"d_compose", g:"docker", title:"รัน API + ฐานข้อมูลพร้อมกันด้วย Compose", cwd:"~/api",
+ story:`จาก log ก่อนหน้า API ต่อฐานข้อมูลไม่ได้ ทีมจึงเขียน <code>compose.yaml</code> ที่มี 2 service ไว้แล้ว ให้<b>สั่งเปิดทั้งหมดแบบเบื้องหลัง</b><pre class="term-pre">services:
+  api:
+    build: .
+    ports: ["8080:3000"]
+    environment:
+      DB_HOST: db        # ← ใช้ชื่อ service แทน localhost
+    depends_on: [db]
+  db:
+    image: postgres:16</pre>`,
+ goal:"เปิดทุก service ใน compose.yaml แบบ detached", hint:"docker compose up -d",
+ check(t){ const c = (t[0]==="docker"&&t[1]==="compose") ? t.slice(2) : (t[0]==="docker-compose" ? t.slice(1) : null);
+   if(!c) return;
+   if(c[0]!=="up") return {msg: c[0]==="down"?"down คือหยุดและลบ ตอนนี้ต้องการเปิด":"คำสั่งเปิด service คือ up"};
+   if(!c.includes("-d")&&!c.includes("--detach")) return {msg:"ไม่มี -d จะผูกกับ terminal และแสดง log ของทุก service ปนกัน ใส่ -d เพื่อรันเบื้องหลัง"};
+   return {ok:true, out:`[+] Running 3/3
+ ✔ Network api_default  Created
+ ✔ Container api-db-1   Started
+ ✔ Container api-api-1  Started
+
+$ docker compose ps
+NAME        SERVICE   STATUS         PORTS
+api-api-1   api       Up 5 seconds   0.0.0.0:8080->3000/tcp
+api-db-1    db        Up 6 seconds   5432/tcp${t[0]==="docker-compose"?"\n\n(หมายเหตุ: docker-compose คือเวอร์ชันเก่า ปัจจุบันใช้ docker compose)":""}`}; },
+ explain:"Compose สร้าง <b>network</b> ให้ทุก service คุยกันด้วยชื่อ service (api เรียก <code>db:5432</code>) · <code>depends_on</code> กำหนดลำดับการเริ่ม (แต่ไม่รอให้ db พร้อม ต้องมี retry หรือ healthcheck) · ปิดทั้งหมดด้วย <code>docker compose down</code>"}
+];
+
+function termGeneric(t){
+  const c=t[0];
+  if(c==="clear") return {clear:true};
+  if(c==="help") return {out:"คำสั่งที่จำลองได้: git …, docker …, docker compose …, ls, pwd, clear, help\nกด 💡 คำใบ้ ถ้าติด · ↑ เรียกคำสั่งก่อนหน้า"};
+  if(c==="ls") return {out:"Dockerfile  compose.yaml  login.js  notes.txt  package.json  server.js"};
+  if(c==="pwd") return {out:"/home/dev/project"};
+  if(c==="cd") return {out:"(terminal นี้อยู่ในโฟลเดอร์โปรเจกต์อยู่แล้ว ไม่ต้อง cd)"};
+  if(c==="git"&&!t[1]) return {out:"usage: git <command> [<args>]  เช่น status, add, commit, switch, push, log, stash, revert"};
+  if(c==="docker"&&!t[1]) return {out:"Usage: docker [OPTIONS] COMMAND  เช่น build, run, ps, logs, exec, stop, compose"};
+  if(c==="git") return {out:`(คำสั่ง git ${t[1]} ทำงานได้จริง แต่ไม่ใช่สิ่งที่โจทย์ข้อนี้ต้องการ อ่านเป้าหมายอีกครั้ง)`, warn:true};
+  if(c==="docker") return {out:`(คำสั่ง docker ${t[1]} มีจริง แต่ไม่ใช่สิ่งที่โจทย์ข้อนี้ต้องการ อ่านเป้าหมายอีกครั้ง)`, warn:true};
+  if(c==="sudo") return {out:"ไม่ต้องใช้ sudo ในแบบฝึกนี้", warn:true};
+  return {out:`${c}: command not found`, warn:true};
+}
+
+const TERM = {tab:"git"};
+function termState(){ const L=labState(); L.term=L.term||{}; return L.term; }
+
+function renderTermList(root){
+  const T=termState();
+  const gsec=el("div","card"); gsec.style.animation="none";
+  gsec.innerHTML=`<div class="eyebrow">จำลอง terminal · ไม่ได้รันคำสั่งจริง</div><p class="lab-p">ข้อสอบ Git/Docker ส่วนใหญ่ถามว่า<b>สถานการณ์นี้ต้องใช้คำสั่งอะไร</b> แบบฝึกนี้ให้พิมพ์คำสั่งเองตามสถานการณ์ แล้วเห็นผลลัพธ์แบบที่เครื่องจริงจะแสดง ถ้าพิมพ์ผิดจะบอกว่าผิดตรงไหน · ผ่านข้อละ +${TERM_XP} XP</p>`;
+  root.appendChild(gsec);
+  TERM_GROUPS.forEach(g=>{
+    const ms=TERM_MISSIONS.filter(m=>m.g===g.g);
+    const sec=el("div","card"); sec.style.animation="none";
+    sec.innerHTML=`<div class="eyebrow">${g.g.toUpperCase()} · ${ms.filter(m=>T[m.id]).length}/${ms.length}</div><h3>${g.name}</h3><p class="lab-p muted">${g.desc}</p>`;
+    const grid=el("div","plist");
+    ms.forEach((m,i)=>{ const b=el("button","pcard"+(T[m.id]?" ok":""),`<span class="pst">${T[m.id]?"✓":i+1}</span><span>${m.title}</span>`); b.onclick=()=>{ LAB.pid=m.id; renderLab(); window.scrollTo(0,0); }; grid.appendChild(b); });
+    sec.appendChild(grid); root.appendChild(sec);
+  });
+}
+
+function renderTermMission(root){
+  const T=termState(); const idx=TERM_MISSIONS.findIndex(m=>m.id===LAB.pid); const m=TERM_MISSIONS[idx];
+  if(!m){ LAB.pid=null; return renderLab(); }
+  const grpList=TERM_MISSIONS.filter(x=>x.g===m.g); const gi=grpList.indexOf(m);
+  const top=el("div","lv-top"); const back=el("button","back","← รายการ"); back.onclick=()=>{ LAB.pid=null; renderLab(); }; top.appendChild(back);
+  top.appendChild(el("div","lv-title",`<div class="k">TERMINAL · ${m.g.toUpperCase()} · ข้อ ${gi+1}/${grpList.length}${T[m.id]?" · ✓ ผ่านแล้ว":""}</div><h2>${m.title}</h2>`)); root.appendChild(top);
+
+  const card=el("div","card"); card.style.animation="none";
+  card.innerHTML=`<div class="eyebrow">📖 สถานการณ์</div><div class="lab-p">${m.story}</div><div class="term-goal">🎯 <b>เป้าหมาย:</b> ${m.goal}</div>`;
+  root.appendChild(card);
+
+  const term=el("div","term");
+  term.innerHTML=`<div class="term-bar"><span></span><span></span><span></span><em>dev@quest: ${m.cwd}</em></div><div class="term-out" aria-live="polite"></div><div class="term-in"><span class="term-ps">${m.cwd} $</span><input class="term-input" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="พิมพ์คำสั่ง" placeholder="พิมพ์คำสั่งแล้วกด Enter"></div>`;
+  root.appendChild(term);
+  const out=term.querySelector(".term-out"), inp=term.querySelector(".term-input");
+  const hist=[]; let hp=0;
+  const write=(txt,cls)=>{ const d=el("div","term-line"+(cls?" "+cls:"")); d.textContent=txt; out.appendChild(d); out.scrollTop=out.scrollHeight; };
+  write("พิมพ์ help เพื่อดูคำสั่งที่ใช้ได้","dim");
+
+  const res=el("div"); root.appendChild(res);
+  const bar=el("div","lab-bar");
+  const hb=el("button","btn sec sm","💡 คำใบ้"); hb.onclick=()=>{ write("คำใบ้: "+m.hint,"hint"); inp.focus(); };
+  bar.appendChild(hb);
+  if(idx<TERM_MISSIONS.length-1){ const nb=el("button","btn sec sm","ข้อถัดไป →"); nb.onclick=()=>{ LAB.pid=TERM_MISSIONS[idx+1].id; renderLab(); window.scrollTo(0,0); }; bar.appendChild(nb); }
+  root.appendChild(bar);
+
+  const success=(o)=>{
+    write(o,"ok-out");
+    const first=!T[m.id]; T[m.id]=true; save(); renderStats();
+    res.innerHTML=`<div class="why g"><strong>✅ ถูกต้อง!${first?` +${TERM_XP} XP`:""}</strong>${m.explain}</div>`;
+    if(idx<TERM_MISSIONS.length-1){ const nb=el("button","btn","ข้อถัดไป →"); nb.id="term-next"; nb.onclick=()=>{ LAB.pid=TERM_MISSIONS[idx+1].id; renderLab(); window.scrollTo(0,0); }; res.appendChild(nb); }
+    else { const nb=el("button","btn","กลับไปรายการ"); nb.onclick=()=>{ LAB.pid=null; renderLab(); }; res.appendChild(nb); }
+  };
+  inp.addEventListener("keydown",e=>{
+    if(e.key==="ArrowUp"){ if(hp>0){ hp--; inp.value=hist[hp]; } e.preventDefault(); return; }
+    if(e.key==="ArrowDown"){ if(hp<hist.length){ hp++; inp.value=hist[hp]||""; } e.preventDefault(); return; }
+    if(e.key!=="Enter") return;
+    e.preventDefault();
+    const raw=inp.value; inp.value="";
+    if(!raw.trim()) return;
+    hist.push(raw); hp=hist.length;
+    write(m.cwd+" $ "+raw,"cmd");
+    const {t,unclosed}=termTokens(raw);
+    const r=m.check(t,raw,unclosed);
+    if(r&&r.ok) return success(r.out);
+    if(r&&r.msg) return write(r.msg,"warn");
+    const g=termGeneric(t);
+    if(g.clear){ out.innerHTML=""; return; }
+    write(g.out, g.warn?"warn":"");
+  });
+  setTimeout(()=>inp.focus(),0);
+  term.onclick=()=>inp.focus();
 }
 
 /* ---------------- KEYBOARD ---------------- */
