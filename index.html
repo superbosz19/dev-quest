@@ -211,6 +211,89 @@
   .legend b{font-family:"Silkscreen"; font-size:11px; color:var(--gold); padding-top:3px}
   .plan{margin:0; padding-left:20px; font-size:14.5px; color:#d6d9f5}
   @media (max-width:640px){ .fmt{grid-template-columns:1fr 1fr} .legend{grid-template-columns:1fr} .flash .term{font-size:23px} }
+
+
+  /* problem visuals */
+  .pi{margin:4px 0 12px}
+  .pi-story{background:#11142e; border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:10px; padding:10px 14px; font-size:15px; margin-bottom:10px}
+  .pi-io{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  .pi-io > div{background:#11142e; border:1px solid var(--line); border-radius:10px; padding:10px 14px; font-size:14.5px}
+  .pi-k{font-size:13px; font-weight:600; color:var(--c); margin-bottom:4px}
+  .pi-sec{margin-top:14px}
+  .pi-warn{margin-top:14px; background:rgba(252,211,77,.07); border:1px solid rgba(252,211,77,.35); border-radius:10px; padding:10px 14px; font-size:14.5px}
+  .pi-warn .pi-k{color:var(--gold)} .pi-warn ul{margin:4px 0 0; padding-left:20px}
+  .vz-step{display:flex; gap:12px; align-items:flex-start; background:#0f1230; border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin-top:8px}
+  .vz-n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--c); color:#0d1024; display:grid; place-items:center; font-family:"Silkscreen"; font-size:12px}
+  .vz-body{flex:1; min-width:0; overflow-x:auto}
+  .vz-cap{font-size:14.5px; color:#d6d9f5; margin-top:8px}
+  .vz-arr{display:flex; gap:0; align-items:flex-end; padding:2px 0}
+  .vz-cell{padding:0 2px}
+  .vz-cell.win .vz-idx{align-self:stretch; text-align:center; border-top:3px solid var(--c); color:var(--c)}
+  .vz-cell{display:flex; flex-direction:column; align-items:center; gap:2px; min-width:40px}
+  .vz-ptr{font-size:11px; color:var(--gold); text-align:center; min-height:28px; line-height:1.15; display:flex; align-items:flex-end; justify-content:center; white-space:nowrap}
+  .vz-box{min-width:40px; height:40px; padding:0 6px; display:grid; place-items:center; background:var(--bg2); border:2px solid var(--line); border-radius:8px; font-family:"JetBrains Mono",monospace; font-size:15px; color:var(--ink)}
+  .vz-idx{font-family:"JetBrains Mono"; font-size:11px; color:var(--dim)}
+  .vz-cell.hi .vz-box{border-color:var(--good); background:rgba(74,222,128,.15)}
+  .vz-cell.bad .vz-box{border-color:var(--bad); background:rgba(251,113,133,.15); text-decoration:line-through}
+  .vz-cell.dim .vz-box{opacity:.4}
+  .vz-cell.win .vz-box{border-top-color:var(--c); border-bottom-color:var(--c); background:color-mix(in srgb,var(--c) 14%,var(--bg2))}
+  .vz-cell.wl .vz-box{border-left-color:var(--c)} .vz-cell.wr .vz-box{border-right-color:var(--c)}
+  .vz-cell.win.hi .vz-box{border-color:var(--good)}
+  .vz-empty{color:var(--dim); font-family:"JetBrains Mono"; font-size:14px; padding:8px 0}
+  .vz-grid{display:grid; gap:3px}
+  .vz-g{width:34px; height:34px; border-radius:6px; background:var(--bg2); border:1px solid var(--line); display:grid; place-items:center; font-family:"JetBrains Mono"; font-size:13px}
+  .vz-g.wall{background:#2a1a2a; border-color:#5c3046}
+  .vz-g.path{background:rgba(74,222,128,.2); border-color:var(--good); color:var(--good); font-weight:600}
+  .vz-stack{display:flex; gap:4px; align-items:center}
+  .vz-stack .vz-box.top{border-color:var(--gold)}
+  .vz-lbl{font-size:11px; color:var(--dim); margin:0 4px}
+  .vz-map{display:flex; flex-wrap:wrap; gap:6px}
+  .vz-kv{border:1px solid var(--line); border-radius:8px; overflow:hidden; text-align:center; min-width:46px}
+  .vz-kv .k{background:#11142e; color:var(--c); font-family:"JetBrains Mono"; font-size:13px; padding:3px 8px}
+  .vz-kv .v{padding:3px 8px; font-size:13.5px}
+  .vz-iv{position:relative; height:74px; margin:6px 10px 0}
+  .vz-bar{position:absolute; top:6px; height:26px; background:rgba(167,139,250,.25); border:2px solid #a78bfa; border-radius:6px; font-size:11.5px; display:grid; place-items:center; overflow:visible; white-space:nowrap}
+  .vz-bar:nth-child(even){top:30px}
+  .vz-bar.ok{background:rgba(74,222,128,.2); border-color:var(--good); top:14px}
+  .vz-axis{position:absolute; left:0; right:0; bottom:0; border-top:1px solid var(--line); height:16px}
+  .vz-axis span{position:absolute; transform:translateX(-50%); font-size:10.5px; color:var(--dim); top:2px; font-family:"JetBrains Mono"}
+  .vz-calc{border-left-color:var(--gold); margin:0; font-size:13.5px}
+  .exrow{display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#0f1230; border:1px solid var(--line); border-radius:8px; padding:6px 10px; margin:6px 0}
+  .ex-arrow{color:var(--c); font-weight:700}
+  .ex-out code{color:var(--good)}
+  @media (max-width:640px){ .pi-io{grid-template-columns:1fr} .vz-cell{min-width:32px} .vz-box{min-width:32px; height:34px; font-size:13px} }
+  /* code lab */
+  .lab-p{margin:6px 0 0; color:#d6d9f5}
+  .muted{color:var(--muted)}
+  .lab-tabs{display:flex; gap:8px; margin-top:14px; flex-wrap:wrap}
+  .lab-tab{background:var(--bg2); border:2px solid var(--line); color:var(--ink); border-radius:12px; padding:10px 16px; font-size:15px}
+  .lab-tab.on{border-color:var(--c); background:color-mix(in srgb,var(--c) 15%,var(--bg2))}
+  .lab-tab b{font-family:"JetBrains Mono"; font-size:12px; color:var(--muted); margin-left:6px}
+  .plist{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:8px; margin-top:12px}
+  .pcard{display:flex; gap:10px; align-items:center; text-align:left; background:var(--bg2); border:1px solid var(--line); color:var(--ink); border-radius:10px; padding:10px 12px; font-size:14.5px}
+  .pcard:hover{border-color:var(--c)}
+  .pcard .pst{width:22px; height:22px; border-radius:6px; display:grid; place-items:center; background:var(--line); font-size:12px; flex:none}
+  .pcard.ok .pst{background:var(--good); color:#0d1024}
+  .code-ed{width:100%; min-height:260px; resize:vertical; font-family:"JetBrains Mono",monospace; font-size:14px; line-height:1.55; background:#0a0c1c; color:#dfe3ff; border:1px solid var(--line); border-left:3px solid var(--c); border-radius:10px; padding:12px 14px; tab-size:2; white-space:pre; overflow:auto}
+  .code-ed:focus{outline:2px solid color-mix(in srgb,var(--c) 50%,transparent)}
+  .lab-bar{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; align-items:center}
+  .lab-out{margin-top:12px}
+  .lab-note{font-size:13px; color:var(--muted); margin:6px 0}
+  .tbl-wrap{overflow-x:auto; margin:6px 0}
+  .tbl{border-collapse:collapse; width:100%; font-size:13.5px; margin:8px 0}
+  .tbl th,.tbl td{border:1px solid var(--line); padding:6px 9px; text-align:left; vertical-align:top}
+  .tbl th{background:#11142e; color:var(--muted); font-weight:500}
+  .tbl td code{background:none; border:0; padding:0; word-break:break-all}
+  .tbl tr.pass td:first-child{color:var(--good)} .tbl tr.fail{background:rgba(251,113,133,.06)}
+  .tbl .err{color:var(--bad)} .nul{color:var(--dim)}
+  .console{border-left-color:var(--gold); max-height:200px}
+  .ex{margin-top:12px} .exrow{margin:4px 0; font-size:14px}
+  .schema{display:grid; gap:8px; margin:10px 0; font-size:14px}
+  .schema .cols{color:var(--muted); font-size:13px; margin-top:2px}
+  .schema-d{margin-top:10px} .schema-d summary{cursor:pointer; color:var(--c); font-size:14px}
+  .tblname{margin:14px 0 2px; font-family:"JetBrains Mono"; font-size:13px; color:var(--c)}
+  .lab-link{display:inline-block; margin-left:4px; background:color-mix(in srgb,var(--c) 18%,var(--bg2)); border:1px solid var(--c); color:var(--ink); border-radius:8px; padding:3px 10px; font-size:13px}
+  .lab-link:hover{background:color-mix(in srgb,var(--c) 30%,var(--bg2))}
   @media (max-width:640px){
     .card{padding:20px 18px}
     .world-head .sub{margin-left:0; width:100%}
@@ -229,6 +312,7 @@
       <div><h1 class="pixel">DEV QUEST</h1><small>Software Developer Competency 2026</small></div>
     </div>
     <div class="stats">
+      <button class="chip" id="btn-lab">⌨️ ฝึกโค้ด</button>
       <button class="chip" id="btn-review">📚 ทบทวน</button>
       <div class="chip">⭐ <b id="st-stars">0</b><span style="color:var(--dim)" id="st-max">/0</span></div>
       <div class="chip">⚡ <b id="st-xp">0</b> XP</div>
@@ -239,6 +323,7 @@
   <main id="map" class="view"></main>
   <main id="level" class="view"></main>
   <main id="review" class="view"></main>
+  <main id="lab" class="view"></main>
 </div>
 
 <script>
@@ -267,8 +352,8 @@ const TOPICS = [
 
 const WORLDS = [
   {name:"หมู่บ้านเริ่มต้น", en:"Starter Village", color:"#fda4af", topics:[16], boss:"🐣", intro:true},
-  {name:"ป่าอัลกอริทึม", en:"Algorithm Forest", color:"#5eead4", topics:[0], boss:"🐉"},
-  {name:"หุบเขาข้อมูล", en:"Data Valley", color:"#a78bfa", topics:[1,2], boss:"🦑"},
+  {name:"ป่าอัลกอริทึม", en:"Algorithm Forest", color:"#5eead4", topics:[0], boss:"🐉", lab:"js"},
+  {name:"หุบเขาข้อมูล", en:"Data Valley", color:"#a78bfa", topics:[1,2], boss:"🦑", lab:"sql"},
   {name:"ปราสาทวัตถุและกาลเวลา", en:"OOP & Git Castle", color:"#f472b6", topics:[3,4], boss:"🧙"},
   {name:"นครสถาปัตยกรรม", en:"Architecture City", color:"#fbbf24", topics:[5,6,7], boss:"🤖"},
   {name:"ป้อมปราการคุณภาพ", en:"Quality Fortress", color:"#60a5fa", topics:[8,9,10], boss:"👾"},
@@ -3470,6 +3555,7 @@ const RANKS = [[0,"Intern"],[2500,"Junior Coder"],[7000,"Code Explorer"],[13000,
 function totals(){
   let stars=0, xp=0, done=0;
   NODES.forEach((n,i)=>{ const p=P.nodes[n.id]; if(p){ stars+=p.stars; xp+= n.kind==="boss" ? p.best*20+p.stars*15 : p.best*25+p.stars*10; if(p.stars>0) done++; }});
+  if(P.lab){ xp += (Object.keys(P.lab.js||{}).length + Object.keys(P.lab.sql||{}).length) * 40; }
   let rank=RANKS[0][1]; RANKS.forEach(([t,n])=>{ if(xp>=t) rank=n; });
   return {stars,xp,done,rank};
 }
@@ -3481,7 +3567,7 @@ const el = (tag, cls, html) => { const e=document.createElement(tag); if(cls) e.
 const starStr = n => [0,1,2].map(k=>`<span class="${k<n?'on':''}">★</span>`).join("");
 const wclass = w => w==="A+"?"w-Ap":"w-"+w;
 function shuffle(a){ a=a.slice(); for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1)); [a[k],a[j]]=[a[j],a[k]];} return a; }
-function show(id){ ["map","level","review"].forEach(v=>$("#"+v).style.display = v===id?"block":"none"); window.scrollTo(0,0); }
+function show(id){ ["map","level","review","lab"].forEach(v=>$("#"+v).style.display = v===id?"block":"none"); window.scrollTo(0,0); }
 
 /* ---------------- MAP ---------------- */
 function renderStats(){
@@ -3504,6 +3590,7 @@ function renderMap(){
     <p>${STAGES.length} ด่านบทเรียนและ ${WORLDS.length} ด่านบอส จาก 16 Competency ของคู่มืออ่านสอบ HackerRank 2026 ทุกด่านเริ่มด้วยการ์ด 🌱 อธิบายแบบมือใหม่ แล้วจึงตอบคำถาม 18–19 ข้อ ตอบถูก 70% ขึ้นไปจึงผ่าน · <b style="color:var(--ink)">เพิ่งเริ่มจากศูนย์?</b> เริ่มที่ World 0 ถ้ามีพื้นฐานแล้วข้ามไป World 1 ได้เลย</p></div>
     <div class="hero-prog"><span>ความคืบหน้า ${t.done}/${NODES.length} ด่าน</span><div class="bar"><i style="width:${t.done/NODES.length*100}%"></i></div>
     <div class="hero-btns">${current>=0?`<button class="btn sm" id="continue">▶ ${NODES[current].kind==="boss"?"สู้บอส":"เล่นด่าน "+(current+1)}</button>`:""}
+    <button class="btn sec sm" id="hero-lab">⌨️ ฝึกเขียนโค้ดจริง</button>
     <button class="btn sec sm" id="hero-review">📚 ทบทวน${P.wrong.length?` (${P.wrong.length})`:""}</button></div></div>`;
   map.appendChild(hero);
 
@@ -3518,7 +3605,7 @@ function renderMap(){
     const nodes=NODES.filter(n=>n.w===wi);
     const ws=nodes.reduce((s,n)=>s+(P.nodes[n.id]?P.nodes[n.id].stars:0),0);
     sec.innerHTML=`<div class="world-head"><span class="world-num" style="background:${w.color}">WORLD ${wi}</span><h3>${w.name}</h3><span class="sub">${w.en} · ⭐ ${ws}/${nodes.length*3}</span></div>
-      <div class="wtopics">${w.topics.map(ti=>`<span class="tbadge"><b class="${wclass(TOPICS[ti].w)}">${TOPICS[ti].w}</b>${TOPICS[ti].t} · ${TOPICS[ti].pct?TOPICS[ti].pct+'%':'ไม่อยู่ในข้อสอบ แต่ช่วยให้เข้าใจทุกด่าน (ข้ามได้)'}</span>`).join("")}</div>`;
+      <div class="wtopics">${w.topics.map(ti=>`<span class="tbadge"><b class="${wclass(TOPICS[ti].w)}">${TOPICS[ti].w}</b>${TOPICS[ti].t} · ${TOPICS[ti].pct?TOPICS[ti].pct+'%':'ไม่อยู่ในข้อสอบ แต่ช่วยให้เข้าใจทุกด่าน (ข้ามได้)'}</span>`).join("")}${w.lab?`<button class="lab-link" data-lab="${w.lab}">${w.lab==="js"?"⌨️ ฝึกเขียน JavaScript จริง ("+Object.keys(labState().js).length+"/"+JS_PROBLEMS.length+")":"🗃️ ฝึกเขียน SQL จริง ("+Object.keys(labState().sql).length+"/"+SQL_PROBLEMS.length+")"}</button>`:""}</div>`;
     const path=el("div","path"); path.dataset.w=wi;
     nodes.forEach(n=>{
       const i=n.idx, open=unlocked(i), p=P.nodes[n.id];
@@ -3545,6 +3632,8 @@ function renderMap(){
 
   const c=$("#continue"); if(c) c.onclick=()=>openNode(current);
   $("#hero-review").onclick=renderReview;
+  $("#hero-lab").onclick=()=>openLab();
+  map.querySelectorAll("[data-lab]").forEach(b=>b.onclick=()=>openLab(b.dataset.lab));
   layoutPaths();
 }
 
@@ -3737,6 +3826,7 @@ function resultCard(){
   const retry=el("button","btn sec", isBoss?"↻ สู้ใหม่ (สุ่มคำถามใหม่)":"↻ ตอบคำถามใหม่");
   retry.onclick=()=>{ if(isBoss) openNode(i); else { S.items=makeItems(STAGES[NODES[i].s].quiz.map((_,qi)=>({s:NODES[i].s,qi}))); S.phase="quiz"; S.qi=0; renderLevel(); } };
   act.appendChild(retry);
+  if(!isBoss && (STAGES[NODES[i].s].t===0 || STAGES[NODES[i].s].t===1)){ const lb=el("button","btn sec", STAGES[NODES[i].s].t===0?"⌨️ ฝึกเขียนโค้ดจริง":"🗃️ ฝึกเขียน SQL จริง"); lb.onclick=()=>openLab(STAGES[NODES[i].s].t===0?"js":"sql"); act.appendChild(lb); }
   if(!isBoss){ const rv=el("button","btn sec","📖 ทบทวนบทเรียน"); rv.onclick=()=>{ S.items=makeItems(STAGES[NODES[i].s].quiz.map((_,qi)=>({s:NODES[i].s,qi}))); S.phase="lesson"; S.step=0; S.qi=0; renderLevel(); }; act.appendChild(rv); }
   if(passed && i+1<NODES.length){ const nx=el("button","btn", NODES[i+1].kind==="boss"?"สู้บอส →":"ด่านถัดไป →"); nx.onclick=()=>openNode(i+1); act.appendChild(nx); }
   else if(passed){ const m=el("button","btn","กลับแผนที่ 🗺️"); m.onclick=exitSession; act.appendChild(m); }
@@ -3860,6 +3950,747 @@ function renderFlash(){
   opts.append(lb,sh); box.appendChild(opts);
 }
 
+/* ============ ⌨️ CODE LAB: โจทย์ JavaScript ============
+   tests  = ตัวอย่างที่เห็นได้ (args ของฟังก์ชัน)
+   hidden = hidden tests (args หรือ {label, gen:()=>args} สำหรับข้อมูลใหญ่)
+   คำตอบที่ถูกคำนวณจาก sol (เฉลย) ทุกครั้ง จึงตรงกับเฉลยเสมอ */
+function rng(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0; let t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+const randInts=(n,lo,hi,seed)=>{ const r=rng(seed); return Array.from({length:n},()=>lo+Math.floor(r()*(hi-lo+1))); };
+const randStr=(n,alpha,seed)=>{ const r=rng(seed); let s=""; for(let i=0;i<n;i++) s+=alpha[Math.floor(r()*alpha.length)]; return s; };
+
+const LAB_LEVELS = [
+  {n:1, name:"ก้าวแรก", desc:"ตัวแปร if loop function — ทำได้หลังด่าน JS พื้นฐาน"},
+  {n:2, name:"Array & String", desc:"วนลูปกับ array และข้อความ — ฝึกก่อนเข้าด่าน Data Structures"},
+  {n:3, name:"Pattern ยอดฮิต", desc:"Map, Set, Two Pointers, Sliding Window, Stack, Sort — คู่กับด่าน Patterns"},
+  {n:4, name:"ระดับข้อสอบ", desc:"โจทย์แบบ HackerRank มี hidden test ข้อมูลใหญ่ ต้องเร็วพอ"}
+];
+
+const JS_PROBLEMS = [
+/* ---------- LEVEL 1 ---------- */
+{id:"add", lvl:1, title:"บวกเลขสองจำนวน", fn:"add",
+ desc:`<p>เขียนฟังก์ชัน <code>add(a, b)</code> ที่<b>คืนค่า</b> (return) ผลบวกของ a กับ b</p><p>💡 นี่คือโจทย์แรก ลองกด <b>▶ รันตัวอย่าง</b> ดูก่อนว่าโค้ดเริ่มต้นผ่านหรือไม่ แล้วแก้ให้ถูก</p>`,
+ stub:`function add(a, b) {\n  // เขียนโค้ดตรงนี้\n  return 0;\n}`,
+ tests:[[2,3],[-1,1],[0,0]], hidden:[[100,250],[-5,-7],[1.5,2.5]],
+ hint:"ใช้เครื่องหมาย + แล้ว return ผลลัพธ์ออกไป",
+ sol:`function add(a, b) {\n  return a + b;\n}`},
+
+{id:"isEven", lvl:1, title:"เลขคู่หรือไม่", fn:"isEven",
+ desc:`<p>คืน <code>true</code> ถ้า n เป็นเลขคู่ และ <code>false</code> ถ้าเป็นเลขคี่ (n อาจติดลบหรือเป็น 0)</p>`,
+ stub:`function isEven(n) {\n  \n}`,
+ tests:[[4],[7],[0]], hidden:[[-3],[-8],[1000001]],
+ hint:"เลขคู่หาร 2 ลงตัว ใช้ n % 2 === 0 (ระวัง: -3 % 2 ได้ -1 ไม่ใช่ 1 อย่าเทียบกับ 1)",
+ sol:`function isEven(n) {\n  return n % 2 === 0;\n}`},
+
+{id:"maxOfThree", lvl:1, title:"ค่ามากที่สุดของสามตัว", fn:"maxOfThree",
+ desc:`<p>คืนค่าที่มากที่สุดระหว่าง a, b, c (อาจติดลบหรือเท่ากัน)</p>`,
+ stub:`function maxOfThree(a, b, c) {\n  \n}`,
+ tests:[[1,5,3],[9,2,4],[-1,-5,-3]], hidden:[[7,7,2],[0,0,0],[-10,-2,-30]],
+ hint:"ใช้ if เทียบทีละคู่ หรือใช้ Math.max(a, b, c)",
+ sol:`function maxOfThree(a, b, c) {\n  return Math.max(a, b, c);\n}`},
+
+{id:"grade", lvl:1, title:"ตัดเกรด", fn:"grade",
+ desc:`<p>รับคะแนน 0–100 แล้วคืนเกรดเป็นข้อความ:</p><ul><li>80 ขึ้นไป → <code>"A"</code></li><li>70–79 → <code>"B"</code></li><li>60–69 → <code>"C"</code></li><li>50–59 → <code>"D"</code></li><li>ต่ำกว่า 50 → <code>"F"</code></li></ul>`,
+ stub:`function grade(score) {\n  \n}`,
+ tests:[[85],[72],[40]], hidden:[[80],[79],[60],[50],[49],[100],[0]],
+ hint:"ใช้ if ... else if ... เรียงจากเงื่อนไขสูงไปต่ำ และระวังค่าบนขอบ เช่น 80, 70, 50",
+ sol:`function grade(score) {\n  if (score >= 80) return "A";\n  if (score >= 70) return "B";\n  if (score >= 60) return "C";\n  if (score >= 50) return "D";\n  return "F";\n}`},
+
+{id:"sumArray", lvl:1, title:"ผลรวมของ array", fn:"sumArray",
+ desc:`<p>คืนผลรวมของตัวเลขทั้งหมดใน array ถ้า array ว่างให้คืน <code>0</code></p>`,
+ stub:`function sumArray(arr) {\n  let total = 0;\n  // วน loop บวกทีละตัว\n  return total;\n}`,
+ tests:[[[1,2,3]],[[10]],[[]]], hidden:[[[-1,-2,3]],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[randInts(100000,-1000,1000,7)]}],
+ hint:"for (const x of arr) total += x;",
+ sol:`function sumArray(arr) {\n  let total = 0;\n  for (const x of arr) total += x;\n  return total;\n}`},
+
+{id:"countPositive", lvl:1, title:"นับจำนวนบวก", fn:"countPositive",
+ desc:`<p>นับว่าใน array มีตัวเลขที่<b>มากกว่า 0</b> กี่ตัว (0 ไม่นับเป็นบวก)</p>`,
+ stub:`function countPositive(arr) {\n  \n}`,
+ tests:[[[1,-2,3,0]],[[]]], hidden:[[[0,0,0]],[[-1,-2]],[[5,5,5,5]]],
+ hint:"ตั้งตัวนับ count = 0 แล้ว if (x > 0) count++",
+ sol:`function countPositive(arr) {\n  let count = 0;\n  for (const x of arr) if (x > 0) count++;\n  return count;\n}`},
+
+{id:"reverseString", lvl:1, title:"กลับข้อความ", fn:"reverseString",
+ desc:`<p>คืนข้อความที่กลับด้านจากหลังไปหน้า เช่น <code>"hello"</code> → <code>"olleh"</code></p>`,
+ stub:`function reverseString(s) {\n  \n}`,
+ tests:[["hello"],["a"],[""]], hidden:[["JavaScript"],["racecar"],["ab cd"]],
+ hint:"วน loop จากตัวสุดท้ายไปตัวแรก หรือใช้ s.split(\"\").reverse().join(\"\")",
+ sol:`function reverseString(s) {\n  return s.split("").reverse().join("");\n}`},
+
+{id:"fizzBuzz", lvl:1, title:"FizzBuzz", fn:"fizzBuzz",
+ desc:`<p>คืน <b>array ของข้อความ</b> สำหรับเลข 1 ถึง n:</p><ul><li>หาร 3 และ 5 ลงตัว → <code>"FizzBuzz"</code></li><li>หาร 3 ลงตัว → <code>"Fizz"</code></li><li>หาร 5 ลงตัว → <code>"Buzz"</code></li><li>นอกนั้น → ตัวเลขนั้นในรูปข้อความ เช่น <code>"1"</code></li></ul><p>ถ้า n = 0 ให้คืน array ว่าง</p>`,
+ stub:`function fizzBuzz(n) {\n  const result = [];\n  \n  return result;\n}`,
+ tests:[[5],[1]], hidden:[[15],[0],[30]],
+ hint:"ตรวจกรณีหารทั้ง 3 และ 5 ลงตัว (i % 15 === 0) ก่อน ไม่อย่างนั้นจะได้แค่ Fizz",
+ sol:`function fizzBuzz(n) {\n  const result = [];\n  for (let i = 1; i <= n; i++) {\n    if (i % 15 === 0) result.push("FizzBuzz");\n    else if (i % 3 === 0) result.push("Fizz");\n    else if (i % 5 === 0) result.push("Buzz");\n    else result.push(String(i));\n  }\n  return result;\n}`},
+
+/* ---------- LEVEL 2 ---------- */
+{id:"findMax", lvl:2, title:"หาค่ามากที่สุด", fn:"findMax",
+ desc:`<p>คืนค่ามากที่สุดใน array ถ้า array ว่างให้คืน <code>null</code></p><p>⚠️ ค่าอาจติดลบทั้งหมด</p>`,
+ stub:`function findMax(arr) {\n  \n}`,
+ tests:[[[3,9,2]],[[-5,-2,-9]],[[]]], hidden:[[[7]],[[0,-1]],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[randInts(100000,-1e9,1e9,11)]}],
+ hint:"อย่าเริ่มที่ 0 ให้เริ่มจาก arr[0] (หรือ -Infinity) และเช็ก array ว่างก่อน",
+ sol:`function findMax(arr) {\n  if (arr.length === 0) return null;\n  let best = arr[0];\n  for (const x of arr) if (x > best) best = x;\n  return best;\n}`},
+
+{id:"countVowels", lvl:2, title:"นับสระภาษาอังกฤษ", fn:"countVowels",
+ desc:`<p>นับจำนวนสระ a, e, i, o, u ในข้อความ โดยไม่สนตัวพิมพ์เล็กหรือใหญ่</p>`,
+ stub:`function countVowels(s) {\n  \n}`,
+ tests:[["hello"],["AEIOU"],[""]], hidden:[["Rhythm"],["Programming is fun"],{label:"ข้อความยาว 100,000 ตัว", gen:()=>[randStr(100000,"abcdeEIOUxyz ",3)]}],
+ hint:"แปลงเป็นตัวเล็กด้วย toLowerCase() แล้วเช็กแต่ละตัวด้วย \"aeiou\".includes(ch)",
+ sol:`function countVowels(s) {\n  let count = 0;\n  for (const ch of s.toLowerCase()) if ("aeiou".includes(ch)) count++;\n  return count;\n}`},
+
+{id:"isPalindrome", lvl:2, title:"Palindrome", fn:"isPalindrome",
+ desc:`<p>คืน <code>true</code> ถ้าข้อความอ่านจากหน้าไปหลังและหลังไปหน้าได้เหมือนกัน โดย<b>ไม่สนตัวพิมพ์</b> และ<b>ไม่สนอักขระที่ไม่ใช่ตัวอักษรหรือตัวเลข</b> (เว้นวรรค จุลภาค ฯลฯ)</p>`,
+ stub:`function isPalindrome(s) {\n  \n}`,
+ tests:[["racecar"],["A man, a plan, a canal: Panama"],["hello"]], hidden:[[""],["ab"],["No 'x' in Nixon"],["0P"]],
+ hint:"ขั้นแรก normalize: s.toLowerCase().replace(/[^a-z0-9]/g, \"\") แล้วใช้ two pointers หรือเทียบกับข้อความกลับด้าน",
+ sol:`function isPalindrome(s) {\n  const t = s.toLowerCase().replace(/[^a-z0-9]/g, "");\n  let l = 0, r = t.length - 1;\n  while (l < r) {\n    if (t[l] !== t[r]) return false;\n    l++; r--;\n  }\n  return true;\n}`},
+
+{id:"removeDuplicates", lvl:2, title:"ลบค่าซ้ำ (คงลำดับเดิม)", fn:"removeDuplicates",
+ desc:`<p>คืน array ใหม่ที่ไม่มีค่าซ้ำ โดยเก็บตัวที่เจอ<b>ครั้งแรก</b>และคงลำดับเดิม</p>`,
+ stub:`function removeDuplicates(arr) {\n  \n}`,
+ tests:[[[1,2,2,3,1]],[[]]], hidden:[[["a","b","a"]],[[5,5,5]],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[randInts(100000,1,50000,5)]}],
+ hint:"ใช้ Set จำค่าที่เคยเห็น (Set.has เป็น O(1)) หรือ [...new Set(arr)] — ถ้าใช้ includes ใน loop จะช้าเกินกับข้อมูลใหญ่",
+ sol:`function removeDuplicates(arr) {\n  return [...new Set(arr)];\n}`},
+
+{id:"capitalizeWords", lvl:2, title:"ขึ้นต้นคำด้วยตัวใหญ่", fn:"capitalizeWords",
+ desc:`<p>ทำให้ทุกคำขึ้นต้นด้วยตัวพิมพ์ใหญ่ และตัวที่เหลือเป็นตัวพิมพ์เล็ก คำคั่นด้วยเว้นวรรค และต้อง<b>คงจำนวนเว้นวรรคเดิม</b>ไว้</p><p>เช่น <code>"javaScript IS fun"</code> → <code>"Javascript Is Fun"</code></p>`,
+ stub:`function capitalizeWords(s) {\n  \n}`,
+ tests:[["hello world"],["javaScript IS fun"]], hidden:[[""],["a"],["multiple   spaces"]],
+ hint:"s.split(\" \") แล้ว map แต่ละคำ: ถ้าคำว่าง (เกิดจากเว้นวรรคติดกัน) ให้คืนคำว่างไว้เหมือนเดิม",
+ sol:`function capitalizeWords(s) {\n  return s.split(" ")\n    .map(w => w ? w[0].toUpperCase() + w.slice(1).toLowerCase() : w)\n    .join(" ");\n}`},
+
+{id:"average", lvl:2, title:"ค่าเฉลี่ย (ทศนิยม 2 ตำแหน่ง)", fn:"average",
+ desc:`<p>คืนค่าเฉลี่ยของ array <b>ปัดเศษเป็นทศนิยม 2 ตำแหน่ง</b> (ใช้ <code>Math.round(x * 100) / 100</code>) ถ้า array ว่างให้คืน <code>0</code></p>`,
+ stub:`function average(arr) {\n  \n}`,
+ tests:[[[1,2,3,4]],[[]]], hidden:[[[1,2]],[[10,10,11]],[[-3,3]]],
+ hint:"ระวังหารด้วย 0 เมื่อ array ว่าง",
+ sol:`function average(arr) {\n  if (arr.length === 0) return 0;\n  const sum = arr.reduce((s, x) => s + x, 0);\n  return Math.round((sum / arr.length) * 100) / 100;\n}`},
+
+{id:"secondLargest", lvl:2, title:"ค่ามากอันดับสอง", fn:"secondLargest",
+ desc:`<p>คืนค่าที่มากเป็น<b>อันดับสองแบบไม่ซ้ำ</b> (distinct) ถ้าไม่มีให้คืน <code>null</code></p><p>เช่น <code>[5, 1, 9, 7]</code> → 7 · <code>[4, 4, 4]</code> → null</p>`,
+ stub:`function secondLargest(arr) {\n  \n}`,
+ tests:[[[5,1,9,7]],[[4,4,4]]], hidden:[[[1]],[[]],[[-1,-2]],[[3,3,2]],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[randInts(100000,-1e6,1e6,13)]}],
+ hint:"เก็บตัวแปร first และ second ระหว่างวนรอบเดียว (O(n)) หรือ sort ค่าที่ไม่ซ้ำแล้วหยิบตัวที่สอง",
+ sol:`function secondLargest(arr) {\n  let first = -Infinity, second = -Infinity;\n  for (const x of arr) {\n    if (x > first) { second = first; first = x; }\n    else if (x < first && x > second) second = x;\n  }\n  return second === -Infinity ? null : second;\n}`},
+
+{id:"charFrequency", lvl:2, title:"นับความถี่ตัวอักษร", fn:"charFrequency",
+ desc:`<p>คืน <b>object</b> ที่บอกว่าแต่ละตัวอักษรปรากฏกี่ครั้ง <b>ไม่นับเว้นวรรค</b> และแยกตัวพิมพ์เล็กกับใหญ่</p><p>เช่น <code>"hello"</code> → <code>{ h: 1, e: 1, l: 2, o: 1 }</code></p>`,
+ stub:`function charFrequency(s) {\n  const count = {};\n  \n  return count;\n}`,
+ tests:[["hello"],[""]], hidden:[["a a b"],["AaA"]],
+ hint:"count[ch] = (count[ch] || 0) + 1 และข้ามตัวที่เป็น \" \"",
+ sol:`function charFrequency(s) {\n  const count = {};\n  for (const ch of s) {\n    if (ch === " ") continue;\n    count[ch] = (count[ch] || 0) + 1;\n  }\n  return count;\n}`},
+
+/* ---------- LEVEL 3 ---------- */
+{id:"twoSum", lvl:3, title:"Two Sum", fn:"twoSum",
+ desc:`<p>คืน <code>[i, j]</code> (i &lt; j) เป็น index ของสองตัวที่รวมกันได้ target รับประกันว่ามีคำตอบเดียว</p><p>⏱️ hidden test มีข้อมูล 100,000 ตัว วิธี loop ซ้อน O(n²) จะ<b>ช้าเกิน</b></p>`,
+ stub:`function twoSum(nums, target) {\n  \n}`,
+ tests:[[[2,7,11,15],9],[[3,2,4],6]], hidden:[[[3,3],6],[[-1,-2,-3,-4,-5],-8],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[Array.from({length:100000},(_,i)=>i+1),199999]}],
+ hint:"ใช้ Map เก็บ ค่า → index ทุกรอบเช็กว่ามี target - nums[i] อยู่ใน Map แล้วหรือยัง",
+ sol:`function twoSum(nums, target) {\n  const seen = new Map();\n  for (let i = 0; i < nums.length; i++) {\n    const need = target - nums[i];\n    if (seen.has(need)) return [seen.get(need), i];\n    seen.set(nums[i], i);\n  }\n  return [];\n}`},
+
+{id:"isAnagram", lvl:3, title:"Anagram", fn:"isAnagram",
+ desc:`<p>คืน <code>true</code> ถ้า a และ b ใช้ตัวอักษรชุดเดียวกันพอดี (จำนวนแต่ละตัวเท่ากัน)</p>`,
+ stub:`function isAnagram(a, b) {\n  \n}`,
+ tests:[["listen","silent"],["rat","car"]], hidden:[["",""],["a","ab"],["aab","abb"],{label:"ข้อความยาว 100,000 ตัว", gen:()=>{ const s=randStr(100000,"abcdefghij",21); return [s, s.split("").reverse().join("")]; }}],
+ hint:"ถ้าความยาวไม่เท่ากันคืน false ทันที แล้วนับความถี่ด้วย Map: บวกจาก a ลบจาก b",
+ sol:`function isAnagram(a, b) {\n  if (a.length !== b.length) return false;\n  const count = new Map();\n  for (const ch of a) count.set(ch, (count.get(ch) || 0) + 1);\n  for (const ch of b) {\n    if (!count.get(ch)) return false;\n    count.set(ch, count.get(ch) - 1);\n  }\n  return true;\n}`},
+
+{id:"maxSumK", lvl:3, title:"ผลรวมมากสุดของช่วงยาว k", fn:"maxSumK",
+ desc:`<p>คืนผลรวมมากที่สุดของ subarray ที่<b>ต่อเนื่อง</b>และยาว k ตัวพอดี (รับประกัน 1 ≤ k ≤ arr.length)</p><p>⏱️ hidden test: n = 100,000 และ k = 50,000 ถ้าคำนวณใหม่ทุกช่วง O(n·k) จะช้าเกิน</p>`,
+ stub:`function maxSumK(arr, k) {\n  \n}`,
+ tests:[[[2,1,5,1,3,2],3],[[1,2,3],1]], hidden:[[[-1,-2,-3],2],[[5],1],{label:"n = 100,000, k = 50,000", gen:()=>[randInts(100000,-100,100,31),50000]}],
+ hint:"Sliding Window: รวม k ตัวแรก แล้วเลื่อนทีละช่อง: sum += arr[i] - arr[i - k]",
+ sol:`function maxSumK(arr, k) {\n  let sum = 0;\n  for (let i = 0; i < k; i++) sum += arr[i];\n  let best = sum;\n  for (let i = k; i < arr.length; i++) {\n    sum += arr[i] - arr[i - k];\n    best = Math.max(best, sum);\n  }\n  return best;\n}`},
+
+{id:"binarySearch", lvl:3, title:"Binary Search", fn:"binarySearch",
+ desc:`<p>arr เรียงจากน้อยไปมากและไม่มีค่าซ้ำ คืน index ของ x ถ้าไม่มีให้คืน <code>-1</code></p>`,
+ stub:`function binarySearch(arr, x) {\n  let left = 0, right = arr.length - 1;\n  \n  return -1;\n}`,
+ tests:[[[1,3,5,7,9],7],[[1,3,5],4]], hidden:[[[],1],[[5],5],[[1,2],1],[[1,2],2],{label:"array 1,000,000 ตัว", gen:()=>[Array.from({length:1000000},(_,i)=>i*2),777776]}],
+ hint:"while (left <= right) หา mid = Math.floor((left + right) / 2) แล้วเลื่อน left = mid + 1 หรือ right = mid - 1",
+ sol:`function binarySearch(arr, x) {\n  let left = 0, right = arr.length - 1;\n  while (left <= right) {\n    const mid = Math.floor((left + right) / 2);\n    if (arr[mid] === x) return mid;\n    if (arr[mid] < x) left = mid + 1;\n    else right = mid - 1;\n  }\n  return -1;\n}`},
+
+{id:"isValid", lvl:3, title:"วงเล็บถูกต้อง", fn:"isValid",
+ desc:`<p>s มีแต่ตัวอักษร <code>()[]{}</code> คืน <code>true</code> ถ้าทุกวงเล็บเปิดถูกปิดด้วยชนิดเดียวกันและถูกลำดับ</p>`,
+ stub:`function isValid(s) {\n  const stack = [];\n  \n}`,
+ tests:[["()[]{}"],["(]"],["([)]"]], hidden:[[""],["(("],["{[]}"],["]"],{label:"ความยาว 100,000", gen:()=>["(".repeat(50000)+")".repeat(50000)]}],
+ hint:"เจอวงเล็บเปิดให้ push เจอวงเล็บปิดให้ pop แล้วเทียบคู่ จบแล้ว stack ต้องว่าง",
+ sol:`function isValid(s) {\n  const pair = { ")": "(", "]": "[", "}": "{" };\n  const stack = [];\n  for (const ch of s) {\n    if ("([{".includes(ch)) stack.push(ch);\n    else if (stack.pop() !== pair[ch]) return false;\n  }\n  return stack.length === 0;\n}`},
+
+{id:"firstUniqChar", lvl:3, title:"ตัวอักษรแรกที่ไม่ซ้ำ", fn:"firstUniqChar",
+ desc:`<p>คืน index ของตัวอักษรตัวแรกที่ปรากฏ<b>เพียงครั้งเดียว</b> ถ้าไม่มีให้คืน <code>-1</code></p>`,
+ stub:`function firstUniqChar(s) {\n  \n}`,
+ tests:[["leetcode"],["loveleetcode"],["aabb"]], hidden:[[""],["z"],{label:"ข้อความยาว 100,000 ตัว", gen:()=>[randStr(99999,"abcdefghijklmnopqrstuvwxy",41)+"z"]}],
+ hint:"วนรอบแรกนับความถี่ด้วย Map วนรอบสองหาตัวแรกที่นับได้ 1 — ถ้าใช้ indexOf/lastIndexOf ในลูปจะช้า",
+ sol:`function firstUniqChar(s) {\n  const freq = new Map();\n  for (const ch of s) freq.set(ch, (freq.get(ch) || 0) + 1);\n  for (let i = 0; i < s.length; i++) if (freq.get(s[i]) === 1) return i;\n  return -1;\n}`},
+
+{id:"mergeIntervals", lvl:3, title:"รวมช่วงที่ซ้อนกัน", fn:"mergeIntervals",
+ desc:`<p>รับ array ของช่วง <code>[start, end]</code> รวมช่วงที่ซ้อนหรือชนกันแล้วคืนผลที่เรียงตาม start</p><p>เช่น <code>[[1,3],[2,6],[8,10]]</code> → <code>[[1,6],[8,10]]</code> · ช่วงที่ปลายชนกันพอดี เช่น [1,4] กับ [4,5] ให้รวมเป็น [1,5]</p>`,
+ stub:`function mergeIntervals(intervals) {\n  \n}`,
+ tests:[[[[1,3],[2,6],[8,10],[15,18]]],[[[1,4],[4,5]]]], hidden:[[[]],[[[1,4],[0,4]]],[[[1,10],[2,3]]],[[[5,6],[1,2]]]],
+ hint:"sort ตาม start ก่อน (a, b) => a[0] - b[0] แล้ววนรวม: ถ้า start ≤ end ของช่วงล่าสุดให้ขยาย end",
+ sol:`function mergeIntervals(intervals) {\n  const arr = intervals.map(x => [...x]).sort((a, b) => a[0] - b[0]);\n  const out = [];\n  for (const [s, e] of arr) {\n    const prev = out[out.length - 1];\n    if (prev && s <= prev[1]) prev[1] = Math.max(prev[1], e);\n    else out.push([s, e]);\n  }\n  return out;\n}`},
+
+{id:"sortUsers", lvl:3, title:"เรียงผู้ใช้หลายเงื่อนไข", fn:"sortUsers",
+ desc:`<p>รับ array ของ <code>{ name, age }</code> คืน <b>array ของชื่อ</b> ที่เรียงตาม age <b>มากไปน้อย</b> ถ้า age เท่ากันให้เรียง name จาก A ไป Z</p>`,
+ stub:`function sortUsers(users) {\n  \n}`,
+ tests:[[[{name:"Ann",age:30},{name:"Bo",age:25},{name:"Cy",age:30}]]], hidden:[[[]],[[{name:"b",age:1},{name:"a",age:1}]],[[{name:"Zed",age:20},{name:"Amy",age:40},{name:"Kim",age:40},{name:"Bob",age:20}]]],
+ hint:"comparator: (a, b) => b.age - a.age || a.name.localeCompare(b.name) แล้ว map เอาแค่ name",
+ sol:`function sortUsers(users) {\n  return [...users]\n    .sort((a, b) => b.age - a.age || a.name.localeCompare(b.name))\n    .map(u => u.name);\n}`},
+
+/* ---------- LEVEL 4 ---------- */
+{id:"lengthOfLongest", lvl:4, title:"Substring ยาวสุดที่ไม่มีตัวซ้ำ", fn:"lengthOfLongest",
+ desc:`<p>คืนความยาวของ substring (ช่วงที่ติดกัน) ที่ยาวที่สุดและไม่มีตัวอักษรซ้ำ</p><p>เช่น <code>"abcabcbb"</code> → 3 (\"abc\") · <code>"pwwkew"</code> → 3 (\"wke\")</p>`,
+ stub:`function lengthOfLongest(s) {\n  \n}`,
+ tests:[["abcabcbb"],["bbbbb"],["pwwkew"]], hidden:[[""],["dvdf"],["abba"],{label:"ข้อความยาว 100,000 ตัว", gen:()=>[randStr(100000,"abcdefghijklmnopqrstuvwxyz",51)]}],
+ hint:"Sliding Window + Map เก็บ index ล่าสุดของแต่ละตัว ถ้าเจอซ้ำภายใน window ให้เลื่อน left ไปหลังตัวซ้ำ",
+ sol:`function lengthOfLongest(s) {\n  const last = new Map();\n  let left = 0, best = 0;\n  for (let r = 0; r < s.length; r++) {\n    if (last.has(s[r]) && last.get(s[r]) >= left) left = last.get(s[r]) + 1;\n    last.set(s[r], r);\n    best = Math.max(best, r - left + 1);\n  }\n  return best;\n}`},
+
+{id:"subarraySum", lvl:4, title:"นับ subarray ที่ผลรวมเท่ากับ k", fn:"subarraySum",
+ desc:`<p>นับจำนวน subarray ที่<b>ต่อเนื่อง</b>และผลรวมเท่ากับ k (ค่าใน array <b>ติดลบได้</b>)</p><p>⏱️ hidden test มี n = 100,000 ตัว</p>`,
+ stub:`function subarraySum(nums, k) {\n  \n}`,
+ tests:[[[1,1,1],2],[[1,2,3],3]], hidden:[[[1,-1,0],0],[[0,0,0],0],[[3],3],{label:"n = 100,000 (มีค่าติดลบ)", gen:()=>[randInts(100000,-3,3,61),4]}],
+ hint:"Sliding Window ใช้ไม่ได้เพราะมีค่าติดลบ ให้ใช้ Prefix Sum + Map: count += seen.get(sum - k)",
+ sol:`function subarraySum(nums, k) {\n  const seen = new Map([[0, 1]]);\n  let sum = 0, count = 0;\n  for (const x of nums) {\n    sum += x;\n    count += seen.get(sum - k) || 0;\n    seen.set(sum, (seen.get(sum) || 0) + 1);\n  }\n  return count;\n}`},
+
+{id:"topKFrequent", lvl:4, title:"k ค่าที่พบบ่อยที่สุด", fn:"topKFrequent",
+ desc:`<p>คืน k ค่าที่ปรากฏบ่อยที่สุด เรียงตามความถี่<b>มากไปน้อย</b> ถ้าความถี่เท่ากันให้เรียงค่า<b>น้อยไปมาก</b></p>`,
+ stub:`function topKFrequent(nums, k) {\n  \n}`,
+ tests:[[[1,1,1,2,2,3],2],[[1],1]], hidden:[[[4,4,5,5,6],2],[[9,8,7],3],{label:"ข้อมูลใหญ่ 100,000 ตัว", gen:()=>[randInts(100000,1,2000,71),10]}],
+ hint:"นับด้วย Map แล้วแปลงเป็น array ของ [ค่า, ความถี่] จากนั้น sort ด้วย (a, b) => b[1] - a[1] || a[0] - b[0]",
+ sol:`function topKFrequent(nums, k) {\n  const freq = new Map();\n  for (const x of nums) freq.set(x, (freq.get(x) || 0) + 1);\n  return [...freq.entries()]\n    .sort((a, b) => b[1] - a[1] || a[0] - b[0])\n    .slice(0, k)\n    .map(e => e[0]);\n}`},
+
+{id:"groupAnagrams", lvl:4, title:"จัดกลุ่ม Anagram", fn:"groupAnagrams",
+ desc:`<p>จัดกลุ่มคำที่เป็น anagram กัน เพื่อให้ตรวจได้แน่นอน:</p><ul><li>คำในแต่ละกลุ่ม<b>เรียงตามตัวอักษร</b></li><li>กลุ่มทั้งหมด<b>เรียงตามคำแรก</b>ของกลุ่ม</li></ul><p>เช่น <code>["eat","tea","tan","ate","nat","bat"]</code> → <code>[["ate","eat","tea"],["bat"],["nat","tan"]]</code></p>`,
+ stub:`function groupAnagrams(words) {\n  \n}`,
+ tests:[[["eat","tea","tan","ate","nat","bat"]]], hidden:[[[""]],[["a"]],[["abc","bca","xyz","zyx","cab"]]],
+ hint:"key ของแต่ละคำ = word.split(\"\").sort().join(\"\") เก็บกลุ่มใน Map แล้ว sort ตามที่โจทย์กำหนด",
+ sol:`function groupAnagrams(words) {\n  const groups = new Map();\n  for (const w of words) {\n    const key = w.split("").sort().join("");\n    if (!groups.has(key)) groups.set(key, []);\n    groups.get(key).push(w);\n  }\n  return [...groups.values()]\n    .map(g => g.sort())\n    .sort((a, b) => a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0);\n}`},
+
+{id:"shortestPath", lvl:4, title:"ทางสั้นที่สุดใน Grid", fn:"shortestPath",
+ desc:`<p>grid มี 0 = ทางเดิน และ 1 = กำแพง เดินขึ้น ลง ซ้าย ขวาได้ทีละช่อง คืนจำนวน<b>ก้าว</b>ที่น้อยที่สุดจากมุมซ้ายบน (0,0) ไปมุมขวาล่าง ถ้าไปไม่ได้ (รวมถึงจุดเริ่มหรือจุดจบเป็นกำแพง) ให้คืน <code>-1</code></p>`,
+ stub:`function shortestPath(grid) {\n  \n}`,
+ tests:[[[[0,0,0],[1,1,0],[0,0,0]]],[[[0,1],[1,0]]]], hidden:[[[[0]]],[[[1]]],[[[0,0],[0,1]]],{label:"grid 300 × 300", gen:()=>[Array.from({length:300},()=>Array(300).fill(0))]}],
+ hint:"BFS ด้วย queue (ใช้ index ชี้หัวคิวแทน shift) เก็บระยะใน dist และเช็กขอบเขต กำแพง และช่องที่เคยไปแล้ว",
+ sol:`function shortestPath(grid) {\n  const R = grid.length, C = grid[0].length;\n  if (grid[0][0] === 1 || grid[R - 1][C - 1] === 1) return -1;\n  const dist = Array.from({ length: R }, () => Array(C).fill(-1));\n  const q = [[0, 0]];\n  dist[0][0] = 0;\n  for (let h = 0; h < q.length; h++) {\n    const [r, c] = q[h];\n    for (const [dr, dc] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {\n      const nr = r + dr, nc = c + dc;\n      if (nr >= 0 && nr < R && nc >= 0 && nc < C && grid[nr][nc] === 0 && dist[nr][nc] === -1) {\n        dist[nr][nc] = dist[r][c] + 1;\n        q.push([nr, nc]);\n      }\n    }\n  }\n  return dist[R - 1][C - 1];\n}`}
+];
+
+/* ============ 🗃️ SQL LAB ============
+   ฐานข้อมูลตัวอย่าง 2 ชุด: A = ชุดที่เห็น (ใช้รันตัวอย่าง) · B = ชุดซ่อน (hidden test ตอนส่งคำตอบ)
+   คำตอบที่ถูกได้จากการรัน ref (เฉลย) บนฐานข้อมูลชุดเดียวกัน */
+const SQL_SCHEMA = `
+CREATE TABLE customers (id INTEGER PRIMARY KEY, name TEXT NOT NULL, city TEXT, email TEXT);
+CREATE TABLE products (id INTEGER PRIMARY KEY, name TEXT NOT NULL, category TEXT NOT NULL, price REAL NOT NULL);
+CREATE TABLE orders (id INTEGER PRIMARY KEY, customer_id INTEGER NOT NULL REFERENCES customers(id), status TEXT NOT NULL, created_at TEXT NOT NULL, total REAL NOT NULL);
+CREATE TABLE order_items (order_id INTEGER NOT NULL REFERENCES orders(id), product_id INTEGER NOT NULL REFERENCES products(id), qty INTEGER NOT NULL, unit_price REAL NOT NULL);
+CREATE TABLE employees (id INTEGER PRIMARY KEY, name TEXT NOT NULL, dept TEXT NOT NULL, salary INTEGER NOT NULL, manager_id INTEGER);
+`;
+const SQL_TABLE_INFO = [
+  ["customers","ลูกค้า","id, name (ชื่อ), city (เมือง อาจเป็น NULL), email (อาจเป็น NULL)"],
+  ["products","สินค้า","id, name, category (หมวด), price (ราคา)"],
+  ["orders","คำสั่งซื้อ","id, customer_id → customers.id, status (PAID / PENDING / CANCEL), created_at (วันที่ YYYY-MM-DD), total (ยอดรวม)"],
+  ["order_items","รายการสินค้าในคำสั่งซื้อ","order_id → orders.id, product_id → products.id, qty (จำนวน), unit_price (ราคาต่อชิ้น)"],
+  ["employees","พนักงาน","id, name, dept (แผนก), salary (เงินเดือน), manager_id → employees.id (หัวหน้า อาจเป็น NULL)"]
+];
+const SQL_DATA = {
+ A:{
+  customers:[[1,"Ann","Bangkok","ann@mail.com"],[2,"Bo","Chiang Mai",null],[3,"Cy","Bangkok","cy@mail.com"],[4,"Dee","Phuket","dee@mail.com"],[5,"Eve",null,"eve@mail.com"],[6,"Fon","Bangkok",null]],
+  products:[[1,"Laptop","Electronics",25000],[2,"Mouse","Electronics",450],[3,"Desk","Furniture",3500],[4,"Chair","Furniture",1200],[5,"Pen","Stationery",15],[6,"Notebook","Stationery",60]],
+  orders:[[1,1,"PAID","2026-01-03",25450],[2,1,"PAID","2026-01-05",60],[3,2,"CANCEL","2026-01-05",1200],[4,3,"PAID","2026-01-06",3500],[5,3,"PENDING","2026-01-08",450],[6,4,"PAID","2026-01-08",1215],[7,2,"PAID","2026-01-09",30],[8,1,"PENDING","2026-01-10",15]],
+  order_items:[[1,1,1,25000],[1,2,1,450],[2,6,1,60],[3,4,1,1200],[4,3,1,3500],[5,2,1,450],[6,4,1,1200],[6,5,1,15],[7,5,2,15],[8,5,1,15]],
+  employees:[[1,"Nok","Eng",90000,null],[2,"Pim","Eng",70000,1],[3,"Tao","Eng",70000,1],[4,"Mek","Eng",50000,2],[5,"Jan","Sales",60000,null],[6,"Kai","Sales",45000,5],[7,"Lin","HR",40000,null]]
+ },
+ B:{
+  customers:[[1,"Zed","Bangkok",null],[2,"Yui","Bangkok","yui@mail.com"],[3,"Xan",null,null],[4,"Wan","Khon Kaen","wan@mail.com"],[5,"Vee","Phuket","vee@mail.com"]],
+  products:[[1,"Phone","Electronics",18000],[2,"Case","Electronics",300],[3,"Lamp","Furniture",800],[4,"Sofa","Furniture",15000],[5,"Ink","Stationery",120]],
+  orders:[[1,2,"PAID","2026-02-01",18300],[2,2,"CANCEL","2026-02-01",800],[3,4,"PAID","2026-02-02",15000],[4,4,"PAID","2026-02-02",120],[5,5,"PENDING","2026-02-03",300],[6,2,"PAID","2026-02-04",800],[7,4,"PAID","2026-02-04",240]],
+  order_items:[[1,1,1,18000],[1,2,1,300],[2,3,1,800],[3,4,1,15000],[4,5,1,120],[5,2,1,300],[6,3,1,800],[7,5,2,120]],
+  employees:[[1,"Ann","Eng",80000,null],[2,"Bee","Eng",80000,1],[3,"Cat","Eng",60000,1],[4,"Dan","Eng",55000,3],[5,"Eli","Ops",50000,null],[6,"Fai","Ops",50000,5],[7,"Gus","Ops",42000,5]]
+ }
+};
+function sqlSeed(ds){
+  const lit=v=> v===null?"NULL": typeof v==="number"? String(v) : "'"+String(v).replace(/'/g,"''")+"'";
+  return SQL_SCHEMA + Object.entries(SQL_DATA[ds]).map(([t,rows])=>rows.map(r=>`INSERT INTO ${t} VALUES (${r.map(lit).join(", ")});`).join("\n")).join("\n");
+}
+
+const SQL_LEVELS = [
+  {n:1, name:"SELECT พื้นฐาน", desc:"เลือกคอลัมน์ กรองด้วย WHERE เรียงด้วย ORDER BY"},
+  {n:2, name:"Aggregate & JOIN", desc:"COUNT/SUM/AVG, GROUP BY, HAVING และ JOIN สองตาราง"},
+  {n:3, name:"กับดักยอดฮิต", desc:"Anti-join, LEFT JOIN trap, Self join, ยอดรวมจากหลายตาราง"},
+  {n:4, name:"ระดับข้อสอบ", desc:"Window function, CTE, อันดับต่อกลุ่ม, ยอดสะสม"}
+];
+
+const SQL_PROBLEMS = [
+{id:"s_bkk", lvl:1, title:"ลูกค้าที่อยู่ Bangkok",
+ desc:`<p>แสดง <b>name</b> ของลูกค้าที่ city เป็น <code>'Bangkok'</code> เรียงตามชื่อจาก A ไป Z</p>`,
+ cols:"name", ordered:true, hint:"SELECT name FROM customers WHERE city = 'Bangkok' ORDER BY ...",
+ ref:`SELECT name FROM customers WHERE city = 'Bangkok' ORDER BY name;`},
+{id:"s_price", lvl:1, title:"สินค้าราคาเกิน 500",
+ desc:`<p>แสดง <b>name, price</b> ของสินค้าที่ราคา<b>มากกว่า</b> 500 เรียงราคามากไปน้อย (ถ้าราคาเท่ากันให้เรียงชื่อ A–Z)</p>`,
+ cols:"name, price", ordered:true, hint:"WHERE price > 500 ORDER BY price DESC, name",
+ ref:`SELECT name, price FROM products WHERE price > 500 ORDER BY price DESC, name;`},
+{id:"s_count", lvl:1, title:"นับจำนวน order",
+ desc:`<p>นับว่าตาราง orders มีทั้งหมดกี่แถว (ผลลัพธ์ 1 แถว 1 คอลัมน์)</p>`,
+ cols:"จำนวน", ordered:false, hint:"COUNT(*)",
+ ref:`SELECT COUNT(*) FROM orders;`},
+{id:"s_cities", lvl:1, title:"เมืองที่มีลูกค้า",
+ desc:`<p>แสดงชื่อเมือง (city) ที่มีลูกค้าอยู่ <b>ไม่ซ้ำกัน</b> และ<b>ไม่เอาค่า NULL</b> เรียง A–Z</p>`,
+ cols:"city", ordered:true, hint:"SELECT DISTINCT city ... WHERE city IS NOT NULL (ห้ามใช้ = NULL)",
+ ref:`SELECT DISTINCT city FROM customers WHERE city IS NOT NULL ORDER BY city;`},
+
+{id:"s_status", lvl:2, title:"ยอดรวมตามสถานะ",
+ desc:`<p>แสดง <b>status</b> และ<b>ผลรวมของ total</b> ของแต่ละ status เรียงตาม status A–Z</p>`,
+ cols:"status, ยอดรวม", ordered:true, hint:"GROUP BY status แล้วใช้ SUM(total)",
+ ref:`SELECT status, SUM(total) FROM orders GROUP BY status ORDER BY status;`},
+{id:"s_having", lvl:2, title:"ลูกค้าที่สั่งตั้งแต่ 2 ครั้ง",
+ desc:`<p>แสดง <b>customer_id</b> และ<b>จำนวน order</b> เฉพาะลูกค้าที่มี order <b>ตั้งแต่ 2 รายการขึ้นไป</b> (นับทุก status) เรียงตาม customer_id</p>`,
+ cols:"customer_id, จำนวน", ordered:true, hint:"เงื่อนไขที่ใช้ COUNT ต้องอยู่ใน HAVING ไม่ใช่ WHERE",
+ ref:`SELECT customer_id, COUNT(*) FROM orders GROUP BY customer_id HAVING COUNT(*) >= 2 ORDER BY customer_id;`},
+{id:"s_avg", lvl:2, title:"เงินเดือนเฉลี่ยต่อแผนก",
+ desc:`<p>แสดง <b>dept</b> และ<b>เงินเดือนเฉลี่ย</b>ของแต่ละแผนก ปัดทศนิยม 2 ตำแหน่งด้วย <code>ROUND(..., 2)</code> เรียงตาม dept</p>`,
+ cols:"dept, ค่าเฉลี่ย", ordered:true, hint:"SELECT dept, ROUND(AVG(salary), 2) ... GROUP BY dept",
+ ref:`SELECT dept, ROUND(AVG(salary), 2) FROM employees GROUP BY dept ORDER BY dept;`},
+{id:"s_join", lvl:2, title:"Order พร้อมชื่อลูกค้า",
+ desc:`<p>แสดง <b>order id, ชื่อลูกค้า, total</b> ของทุก order เรียงตาม order id</p>`,
+ cols:"order id, name, total", ordered:true, hint:"FROM orders o JOIN customers c ON c.id = o.customer_id",
+ ref:`SELECT o.id, c.name, o.total FROM orders o JOIN customers c ON c.id = o.customer_id ORDER BY o.id;`},
+
+{id:"s_anti", lvl:3, title:"ลูกค้าที่ไม่เคยสั่งซื้อ",
+ desc:`<p>แสดง <b>name</b> ของลูกค้าที่<b>ไม่มี order เลย</b> เรียงตามชื่อ</p>`,
+ cols:"name", ordered:true, hint:"Anti-join: LEFT JOIN orders แล้ว WHERE o.id IS NULL (หรือใช้ NOT EXISTS)",
+ ref:`SELECT c.name FROM customers c LEFT JOIN orders o ON o.customer_id = c.id WHERE o.id IS NULL ORDER BY c.name;`},
+{id:"s_trap", lvl:3, title:"นับ order ที่ PAID ของลูกค้าทุกคน",
+ desc:`<p>แสดง <b>name</b> และ<b>จำนวน order ที่ status = 'PAID'</b> ของลูกค้า<b>ทุกคน</b> รวมถึงคนที่มี 0 รายการ เรียงตามชื่อ</p><p>⚠️ กับดัก LEFT JOIN: ถ้าเอาเงื่อนไข status ไปไว้ใน WHERE ลูกค้าที่มี 0 จะหายไป</p>`,
+ cols:"name, จำนวน PAID", ordered:true, hint:"ย้ายเงื่อนไข status ไปไว้ใน ON และนับด้วย COUNT(o.id) ไม่ใช่ COUNT(*)",
+ ref:`SELECT c.name, COUNT(o.id) FROM customers c LEFT JOIN orders o ON o.customer_id = c.id AND o.status = 'PAID' GROUP BY c.id, c.name ORDER BY c.name;`},
+{id:"s_cat", lvl:3, title:"ยอดขายต่อหมวดสินค้า",
+ desc:`<p>จากตาราง <b>order_items</b> คำนวณยอดขาย (<code>qty * unit_price</code>) รวมต่อ <b>category</b> ของสินค้า แสดง category กับยอดรวม เรียงยอดรวมมากไปน้อย (ถ้าเท่ากันเรียง category A–Z)</p><p>นับทุก order ไม่สนใจ status</p>`,
+ cols:"category, ยอดขาย", ordered:true, hint:"JOIN order_items กับ products แล้ว GROUP BY category, SUM(qty * unit_price)",
+ ref:`SELECT p.category, SUM(oi.qty * oi.unit_price) AS revenue FROM order_items oi JOIN products p ON p.id = oi.product_id GROUP BY p.category ORDER BY revenue DESC, p.category;`},
+{id:"s_self", lvl:3, title:"พนักงานกับหัวหน้า",
+ desc:`<p>แสดง <b>ชื่อพนักงาน</b> และ<b>ชื่อหัวหน้า</b> ของพนักงานทุกคน ถ้าไม่มีหัวหน้าให้เป็น NULL เรียงตาม id ของพนักงาน</p>`,
+ cols:"employee, manager", ordered:true, hint:"Self join: FROM employees e LEFT JOIN employees m ON m.id = e.manager_id",
+ ref:`SELECT e.name, m.name FROM employees e LEFT JOIN employees m ON m.id = e.manager_id ORDER BY e.id;`},
+
+{id:"s_latest", lvl:4, title:"Order ล่าสุดของลูกค้าแต่ละคน",
+ desc:`<p>แสดง <b>customer_id, order id, created_at</b> ของ order ที่<b>ล่าสุด</b>ของลูกค้าแต่ละคน (ถ้าวันเดียวกันให้ถือ id มากกว่าเป็นล่าสุด) เรียงตาม customer_id</p>`,
+ cols:"customer_id, id, created_at", ordered:true, hint:"ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY created_at DESC, id DESC) แล้วกรอง rn = 1",
+ ref:`WITH r AS (SELECT o.*, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY created_at DESC, id DESC) AS rn FROM orders o) SELECT customer_id, id, created_at FROM r WHERE rn = 1 ORDER BY customer_id;`},
+{id:"s_top2", lvl:4, title:"เงินเดือนสูงสุด 2 อันดับต่อแผนก",
+ desc:`<p>แสดง <b>dept, name, salary</b> ของพนักงานที่เงินเดือนอยู่ใน <b>2 อันดับแรกของแผนก</b> โดย<b>คนที่เงินเดือนเท่ากันได้อันดับเดียวกัน</b> เรียงตาม dept, salary มากไปน้อย แล้วตาม name</p>`,
+ cols:"dept, name, salary", ordered:true, hint:"ใช้ DENSE_RANK() (ไม่ใช่ ROW_NUMBER) แล้วกรอง rk <= 2",
+ ref:`WITH r AS (SELECT name, dept, salary, DENSE_RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS rk FROM employees) SELECT dept, name, salary FROM r WHERE rk <= 2 ORDER BY dept, salary DESC, name;`},
+{id:"s_second", lvl:4, title:"เงินเดือนสูงสุดอันดับ 2",
+ desc:`<p>แสดงเงินเดือนที่สูงเป็น<b>อันดับ 2 ของทั้งบริษัท</b> (ไม่นับค่าซ้ำ) เป็น 1 แถว 1 คอลัมน์ ถ้าไม่มีให้เป็น NULL</p>`,
+ cols:"second_highest", ordered:false, hint:"MAX(salary) ที่น้อยกว่า (SELECT MAX(salary) FROM employees) — ระวังกรณีคนเงินเดือนสูงสุดมีหลายคน",
+ ref:`SELECT MAX(salary) FROM employees WHERE salary < (SELECT MAX(salary) FROM employees);`},
+{id:"s_running", lvl:4, title:"ยอดขายสะสมรายวัน",
+ desc:`<p>เฉพาะ order ที่ <b>status = 'PAID'</b> แสดง <b>วันที่, ยอดรวมของวันนั้น, ยอดสะสม</b>ตั้งแต่วันแรกถึงวันนั้น เรียงตามวันที่</p>`,
+ cols:"day, daily, running_total", ordered:true, hint:"รวมรายวันใน CTE ก่อน แล้วใช้ SUM(daily) OVER (ORDER BY day)",
+ ref:`WITH d AS (SELECT created_at AS day, SUM(total) AS daily FROM orders WHERE status = 'PAID' GROUP BY created_at) SELECT day, daily, SUM(daily) OVER (ORDER BY day) FROM d ORDER BY day;`}
+];
+
+/* ============ ภาพประกอบโจทย์ (ทำให้อ่านเข้าใจและเห็นภาพ) ============
+   frame types: arr | grid | stack | map | iv | calc | flow
+   arr: v (ค่า), hi (เขียว), bad (แดง), dim (จาง), ptr {index:"ป้าย"}, win [l, r] (กรอบ window), cap (คำอธิบาย) */
+const JS_VIZ = {
+add:{story:"เครื่องคิดเลขอย่างง่าย: รับตัวเลขสองตัว แล้วบอกผลรวม", inp:"a, b — ตัวเลขสองตัว (ติดลบหรือทศนิยมได้)", out:"ตัวเลขหนึ่งตัว คือ a + b",
+ steps:[{t:"calc", lines:["add(2, 3)","  a = 2, b = 3","  return a + b   →   5"], cap:"ฟังก์ชันรับค่าเข้ามา คำนวณ แล้ว return ผลลัพธ์ออกไป"}],
+ warn:["ต้องใช้ return ไม่ใช่ console.log","ทศนิยมก็ต้องได้ เช่น add(1.5, 2.5) = 4"]},
+isEven:{story:"ระบบแจกคิวที่แยกเลขคู่กับเลขคี่ไปคนละช่อง", inp:"n — จำนวนเต็มหนึ่งตัว (ติดลบหรือ 0 ได้)", out:"true ถ้าเป็นเลขคู่ · false ถ้าเป็นเลขคี่",
+ steps:[{t:"calc", lines:[" 4 % 2  =  0   → เลขคู่  → true"," 7 % 2  =  1   → เลขคี่  → false"," 0 % 2  =  0   → เลขคู่  → true","-3 % 2  = -1   → เลขคี่  → false  ⚠️ ได้ -1 ไม่ใช่ 1"], cap:"% คือเศษจากการหาร เลขคู่หาร 2 แล้วเศษเป็น 0 เสมอ"}],
+ warn:["อย่าเทียบ n % 2 === 1 เพราะเลขคี่ติดลบให้เศษ -1","0 เป็นเลขคู่"]},
+maxOfThree:{story:"เลือกคะแนนสูงสุดจากการสอบ 3 ครั้ง", inp:"a, b, c — ตัวเลขสามตัว", out:"ตัวเลขที่มากที่สุด",
+ steps:[{t:"arr", v:[1,5,3], hi:[1], cap:"5 มากที่สุด"},{t:"arr", v:[-1,-5,-3], hi:[0], cap:"ติดลบทั้งหมด: -1 มากที่สุด (ใกล้ 0 ที่สุด)"}],
+ warn:["ค่าอาจเท่ากันได้ เช่น (7, 7, 2) → 7"]},
+grade:{story:"ระบบตัดเกรดของโรงเรียน", inp:"score — คะแนน 0 ถึง 100", out:"ข้อความเกรด \"A\" ถึง \"F\"",
+ steps:[{t:"flow", v:["≥ 80 → A","70–79 → B","60–69 → C","50–59 → D","< 50 → F"], cap:"เช็กจากเงื่อนไขสูงสุดลงไปต่ำสุด"},{t:"calc", lines:["grade(85) → \"A\"","grade(80) → \"A\"   ← ค่าบนขอบ!","grade(79) → \"B\"   ← ค่าบนขอบ!","grade(49) → \"F\""]}],
+ warn:["hidden test ชอบทดสอบค่าบนขอบ เช่น 80, 70, 60, 50, 0 และ 100"]},
+sumArray:{story:"รวมยอดขายของทุกบิลในวันนี้", inp:"arr — array ของตัวเลข (อาจว่าง)", out:"ผลรวมของทุกตัว (ว่าง → 0)",
+ steps:[{t:"arr", v:[1,2,3], hi:[0,1,2], cap:"บวกทีละช่องจากซ้ายไปขวา"},{t:"calc", lines:["total = 0","total = 0 + 1 = 1","total = 1 + 2 = 3","total = 3 + 3 = 6   → return 6"]},{t:"arr", v:[], cap:"array ว่าง → loop ไม่ทำงานเลย → total ยังเป็น 0"}],
+ warn:["array ว่างต้องได้ 0","hidden test มีข้อมูล 100,000 ตัว"]},
+countPositive:{story:"นับจำนวนวันที่ร้านมีกำไร (กำไร > 0)", inp:"arr — array ของตัวเลข", out:"จำนวนตัวที่มากกว่า 0",
+ steps:[{t:"arr", v:[1,-2,3,0], hi:[0,2], dim:[1,3], cap:"นับเฉพาะที่ > 0 ได้ 2 ตัว (0 ไม่นับว่าเป็นบวก)"}],
+ warn:["0 ไม่ใช่จำนวนบวก","array ว่าง → 0"]},
+reverseString:{story:"ทำเอฟเฟกต์ตัวอักษรกลับหลังสำหรับเกมทายคำ", inp:"s — ข้อความ", out:"ข้อความที่กลับลำดับแล้ว",
+ steps:[{t:"arr", v:["h","e","l","l","o"], ptr:{4:"เริ่มจากท้าย"}, cap:"อ่านจากตัวสุดท้ายย้อนมาตัวแรก"},{t:"arr", v:["o","l","l","e","h"], hi:[0,1,2,3,4], cap:"ได้ \"olleh\""}],
+ warn:["ข้อความว่าง \"\" ต้องได้ \"\"","เว้นวรรคก็ต้องกลับด้วย"]},
+fizzBuzz:{story:"เกมนับเลขในวงเหล้า (แต่ใช้โค้ดแทน)", inp:"n — จำนวนเต็ม ≥ 0", out:"array ของข้อความ ตั้งแต่ 1 ถึง n",
+ steps:[{t:"arr", v:["1","2","Fizz","4","Buzz"], hi:[2,4], cap:"fizzBuzz(5): 3 → Fizz · 5 → Buzz"},{t:"calc", lines:["15 % 3 === 0 และ 15 % 5 === 0  →  \"FizzBuzz\"","ต้องเช็กกรณีนี้ก่อน ไม่อย่างนั้นจะได้แค่ \"Fizz\""]}],
+ warn:["ตัวเลขต้องเป็นข้อความ \"1\" ไม่ใช่ 1","n = 0 → array ว่าง []"]},
+findMax:{story:"หาอุณหภูมิสูงสุดของเดือน (ฤดูหนาวติดลบได้)", inp:"arr — array ของตัวเลข (อาจว่าง)", out:"ค่ามากที่สุด (ว่าง → null)",
+ steps:[{t:"arr", v:[3,9,2], hi:[1], cap:"9 มากที่สุด"},{t:"arr", v:[-5,-2,-9], hi:[1], cap:"-2 มากที่สุด ⚠️ ถ้าเริ่ม best = 0 จะได้ 0 ซึ่งผิด"},{t:"arr", v:[], cap:"ว่าง → null"}],
+ warn:["เริ่มที่ arr[0] ไม่ใช่ 0","เช็ก array ว่างก่อน"]},
+countVowels:{story:"วิเคราะห์ข้อความว่ามีเสียงสระกี่ตัว", inp:"s — ข้อความภาษาอังกฤษ", out:"จำนวนตัว a, e, i, o, u (ไม่สนตัวพิมพ์)",
+ steps:[{t:"arr", v:["h","e","l","l","o"], hi:[1,4], dim:[0,2,3], cap:"e และ o เป็นสระ → 2"},{t:"arr", v:["A","E","I","O","U"], hi:[0,1,2,3,4], cap:"ตัวพิมพ์ใหญ่ก็นับ → 5"}],
+ warn:["แปลงเป็นตัวเล็กก่อนด้วย toLowerCase()","\"Rhythm\" ไม่มีสระเลย → 0"]},
+isPalindrome:{story:"ตรวจว่าประโยคอ่านกลับหลังแล้วเหมือนเดิมไหม", inp:"s — ข้อความที่มีเว้นวรรค เครื่องหมาย และตัวพิมพ์ปนกันได้", out:"true / false",
+ steps:[{t:"calc", lines:["\"A man, a plan, a canal: Panama\"","   ↓ แปลงเป็นตัวเล็ก + ตัดอักขระที่ไม่ใช่ a-z 0-9","\"amanaplanacanalpanama\""], cap:"ขั้นที่ 1: ทำความสะอาดข้อความก่อน"},{t:"arr", v:["r","a","c","e","c","a","r"], hi:[0,6], ptr:{0:"L",6:"R"}, cap:"ขั้นที่ 2: เทียบตัวซ้ายกับขวา ถ้าเหมือนกันให้ขยับเข้าหากัน"},{t:"arr", v:["r","a","c","e","c","a","r"], hi:[1,5], dim:[0,6], ptr:{1:"L",5:"R"}, cap:"ไปเรื่อย ๆ จน L เจอ R → true"}],
+ warn:["ข้อความว่างถือเป็น palindrome","\"0P\" ไม่ใช่ (0 ≠ p)"]},
+removeDuplicates:{story:"ลบรายชื่อที่ลงทะเบียนซ้ำ โดยคงลำดับการลงทะเบียนเดิม", inp:"arr — array ของค่า", out:"array ใหม่ที่ไม่มีค่าซ้ำ",
+ steps:[{t:"arr", v:[1,2,2,3,1], hi:[0,1,3], bad:[2,4], cap:"เก็บตัวที่เจอครั้งแรก (เขียว) ข้ามตัวที่ซ้ำ (แดง)"},{t:"arr", v:[1,2,3], hi:[0,1,2], cap:"ผลลัพธ์ [1, 2, 3]"}],
+ warn:["ต้องคงลำดับเดิม","ข้อมูลใหญ่ 100,000 ตัว ใช้ includes ใน loop จะช้า"]},
+capitalizeWords:{story:"จัดรูปแบบชื่อหัวข้อบทความให้สวย", inp:"s — ข้อความที่คำคั่นด้วยเว้นวรรค", out:"ข้อความที่ทุกคำขึ้นต้นด้วยตัวใหญ่ ที่เหลือเป็นตัวเล็ก",
+ steps:[{t:"calc", lines:["\"javaScript IS fun\"","  split(\" \") → [\"javaScript\", \"IS\", \"fun\"]","  แปลงแต่ละคำ → [\"Javascript\", \"Is\", \"Fun\"]","  join(\" \")  → \"Javascript Is Fun\""]},{t:"calc", lines:["\"multiple   spaces\"","  split(\" \") → [\"multiple\", \"\", \"\", \"spaces\"]   ← มีคำว่าง!"], cap:"เว้นวรรคติดกันทำให้มีคำว่าง ต้องเก็บไว้ จำนวนเว้นวรรคจึงจะเท่าเดิม"}],
+ warn:["คำว่าง w[0] เป็น undefined ต้องเช็กก่อน"]},
+average:{story:"คำนวณคะแนนเฉลี่ยของห้อง", inp:"arr — array ของตัวเลข (อาจว่าง)", out:"ค่าเฉลี่ย ปัดทศนิยม 2 ตำแหน่ง (ว่าง → 0)",
+ steps:[{t:"calc", lines:["[10, 10, 11]","  ผลรวม = 31,  จำนวน = 3","  31 ÷ 3 = 10.3333…","  Math.round(10.3333 × 100) / 100 = 10.33"]}],
+ warn:["array ว่างจะหารด้วย 0 ต้องคืน 0 ก่อน"]},
+secondLargest:{story:"หาผู้ได้รองชนะเลิศ (คะแนนที่ไม่ซ้ำกับที่ 1)", inp:"arr — array ของตัวเลข", out:"ค่ามากอันดับสองแบบไม่ซ้ำ (ไม่มี → null)",
+ steps:[{t:"arr", v:[5,1,9,7], hi:[3], ptr:{2:"อันดับ 1",3:"อันดับ 2"}, cap:"9 มากสุด รองลงมาคือ 7"},{t:"arr", v:[3,3,2], hi:[2], ptr:{0:"อันดับ 1",2:"อันดับ 2"}, cap:"3 ซ้ำกันนับเป็นอันดับ 1 อันดับ 2 จึงเป็น 2"},{t:"arr", v:[4,4,4], cap:"ทุกค่าเท่ากัน ไม่มีอันดับ 2 → null"}],
+ warn:["array ว่างหรือมีตัวเดียว → null"]},
+charFrequency:{story:"นับว่าแต่ละตัวอักษรใช้ไปกี่ครั้ง เพื่อทำป้ายตัวอักษร", inp:"s — ข้อความ", out:"object { ตัวอักษร: จำนวน } (ไม่นับเว้นวรรค)",
+ steps:[{t:"arr", v:["h","e","l","l","o"], hi:[2,3]},{t:"map", m:[["h",1],["e",1],["l",2],["o",1]], cap:"ผลลัพธ์ { h: 1, e: 1, l: 2, o: 1 }"}],
+ warn:["\"A\" กับ \"a\" นับแยกกัน","ข้ามเว้นวรรค"]},
+twoSum:{story:"มีงบ 9 บาท หาขนม 2 ชิ้นที่ราคารวมพอดี", inp:"nums — array ของตัวเลข, target — ผลรวมที่ต้องการ", out:"[i, j] คือ index ของสองตัวนั้น",
+ steps:[{t:"arr", v:[2,7,11,15], ptr:{0:"i"}, hi:[0], cap:"i = 0: ต้องการ 9 − 2 = 7 · ยังไม่เคยเห็น 7 → จด 2 ไว้ที่ index 0"},{t:"map", m:[["2","index 0"]], cap:"Map ตอนนี้"},{t:"arr", v:[2,7,11,15], ptr:{0:"เคยเห็น",1:"i"}, hi:[0,1], cap:"i = 1: ต้องการ 9 − 7 = 2 · มีใน Map แล้ว! → คืน [0, 1]"}],
+ warn:["hidden test มี 100,000 ตัว loop ซ้อน O(n²) จะช้าเกิน","ค่าซ้ำได้ เช่น [3, 3] target 6 → [0, 1]"]},
+isAnagram:{story:"เกมสลับตัวอักษร: สองคำนี้ใช้ตัวอักษรชุดเดียวกันไหม", inp:"a, b — ข้อความสองคำ", out:"true / false",
+ steps:[{t:"map", m:[["l",1],["i",1],["s",1],["t",1],["e",1],["n",1]], cap:"นับตัวอักษรของ \"listen\""},{t:"map", m:[["s",1],["i",1],["l",1],["e",1],["n",1],["t",1]], cap:"นับตัวอักษรของ \"silent\" → ทุกตัวนับได้เท่ากัน → true"}],
+ warn:["ความยาวต่างกัน → false ทันที","\"aab\" กับ \"abb\" ตัวอักษรเหมือนกันแต่จำนวนต่างกัน → false"]},
+maxSumK:{story:"หายอดขาย 3 วันติดกันที่ดีที่สุด", inp:"arr — ตัวเลข, k — ความยาวช่วง", out:"ผลรวมมากที่สุดของช่วงที่ติดกัน k ตัว",
+ steps:[{t:"arr", v:[2,1,5,1,3,2], win:[0,2], cap:"ช่วงแรก 2 + 1 + 5 = 8"},{t:"arr", v:[2,1,5,1,3,2], win:[1,3], cap:"เลื่อนกรอบ: −2 +1 → 7 (ไม่ต้องบวกใหม่ทั้งหมด)"},{t:"arr", v:[2,1,5,1,3,2], win:[2,4], hi:[2,3,4], cap:"−1 +3 → 9 ← มากสุด"},{t:"arr", v:[2,1,5,1,3,2], win:[3,5], cap:"−5 +2 → 6 · คำตอบ = 9"}],
+ warn:["ค่าติดลบได้ คำตอบอาจติดลบ","n = 100,000 และ k = 50,000 ต้องใช้ sliding window"]},
+binarySearch:{story:"เปิดพจนานุกรมหาคำ: เปิดตรงกลางแล้วตัดครึ่งที่ไม่ใช่ทิ้ง", inp:"arr — เรียงจากน้อยไปมาก, x — ค่าที่หา", out:"index ของ x (ไม่เจอ → -1)",
+ steps:[{t:"arr", v:[1,3,5,7,9], ptr:{0:"L",2:"M",4:"R"}, hi:[2], cap:"หา 7: arr[M] = 5 < 7 → คำตอบอยู่ขวา → L = M + 1"},{t:"arr", v:[1,3,5,7,9], dim:[0,1,2], ptr:{3:"L,M",4:"R"}, hi:[3], cap:"M = 3: arr[M] = 7 เจอแล้ว → คืน 3"}],
+ warn:["ใช้ while (left <= right) ไม่ใช่ <","array ว่าง → -1"]},
+isValid:{story:"ตรวจว่าวงเล็บในสูตรคณิตศาสตร์เปิดปิดถูกต้องไหม", inp:"s — ข้อความที่มีแต่ ( ) [ ] { }", out:"true / false",
+ steps:[{t:"stack", v:["("], cap:"\"([])\": เจอ ( → push"},{t:"stack", v:["(","["], cap:"เจอ [ → push"},{t:"stack", v:["("], cap:"เจอ ] → pop ได้ [ ตรงคู่ ✓"},{t:"stack", v:[], cap:"เจอ ) → pop ได้ ( ตรงคู่ ✓ · stack ว่าง → true"}],
+ warn:["\"((\" ไม่มีวงเล็บปิด แต่ stack ไม่ว่าง → false","\"]\" pop จาก stack ว่าง → false"]},
+firstUniqChar:{story:"หาลูกค้าคนแรกที่มาร้านเพียงครั้งเดียว", inp:"s — ข้อความ", out:"index ของตัวอักษรตัวแรกที่ไม่ซ้ำ (ไม่มี → -1)",
+ steps:[{t:"map", m:[["l",1],["e",3],["t",1],["c",1],["o",1],["d",1]], cap:"รอบที่ 1: นับความถี่ของ \"leetcode\""},{t:"arr", v:["l","e","e","t","c","o","d","e"], hi:[0], cap:"รอบที่ 2: ไล่จากซ้าย l นับได้ 1 → คืน 0"}],
+ warn:["\"aabb\" → -1","ข้อความว่าง → -1"]},
+mergeIntervals:{story:"รวมช่วงเวลาประชุมที่ทับซ้อนกันในปฏิทิน", inp:"intervals — array ของช่วง [เริ่ม, จบ]", out:"ช่วงที่รวมแล้ว เรียงตามเวลาเริ่ม",
+ steps:[{t:"iv", v:[[1,3],[2,6],[8,10],[15,18]], cap:"[1,3] กับ [2,6] ทับกัน"},{t:"iv", v:[[1,6],[8,10],[15,18]], ok:true, cap:"รวมเป็น [1,6] ส่วนช่วงอื่นไม่ทับ → [[1,6],[8,10],[15,18]]"}],
+ warn:["ต้อง sort ตามเวลาเริ่มก่อน (input อาจไม่เรียง)","ปลายชนกันพอดี [1,4] + [4,5] → [1,5]"]},
+sortUsers:{story:"จัดอันดับผู้ใช้: อายุมากก่อน ถ้าอายุเท่ากันเรียงตามชื่อ", inp:"users — array ของ { name, age }", out:"array ของชื่อที่เรียงแล้ว",
+ steps:[{t:"calc", lines:["ก่อน:  Ann(30)  Bo(25)  Cy(30)","เรียง age มาก → น้อย:  30, 30, 25","age เท่ากัน (30) → เรียงชื่อ A → Z:  Ann, Cy","ผลลัพธ์: [\"Ann\", \"Cy\", \"Bo\"]"]}],
+ warn:["array ว่าง → []","คืนแค่ชื่อ ไม่ใช่ทั้ง object"]},
+lengthOfLongest:{story:"หาช่วงรหัสผ่านที่ยาวที่สุดที่ไม่มีตัวอักษรซ้ำ", inp:"s — ข้อความ", out:"ความยาวของช่วงที่ติดกันซึ่งยาวที่สุดและไม่มีตัวซ้ำ",
+ steps:[{t:"arr", v:["a","b","c","a","b","c","b","b"], win:[0,2], cap:"\"abc\" ไม่มีตัวซ้ำ ยาว 3"},{t:"arr", v:["a","b","c","a","b","c","b","b"], win:[1,3], bad:[0], cap:"เจอ a ซ้ำ → เลื่อนขอบซ้ายไปหลัง a ตัวเก่า (ยังยาว 3)"},{t:"arr", v:["a","b","c","a","b","c","b","b"], win:[7,7], cap:"ไปจนจบ คำตอบมากที่สุด = 3"}],
+ warn:["\"abba\": ตอนเจอ a ตัวที่ 2 ห้ามเลื่อน left ถอยหลัง","ข้อความว่าง → 0"]},
+subarraySum:{story:"นับว่ามีกี่ช่วงวันที่กำไรรวมพอดีเป้า (ขาดทุนได้)", inp:"nums — ตัวเลข (ติดลบได้), k — ผลรวมเป้าหมาย", out:"จำนวนช่วงที่ติดกันซึ่งรวมได้ k",
+ steps:[{t:"arr", v:[1,1,1], win:[0,1], cap:"k = 2: ช่วง [0..1] รวมได้ 2 ✓"},{t:"arr", v:[1,1,1], win:[1,2], cap:"ช่วง [1..2] รวมได้ 2 ✓ → คำตอบ 2"},{t:"calc", lines:["prefix sum:  0 → 1 → 2 → 3","ถ้า prefix[j] − prefix[i] = k แปลว่าช่วง i..j−1 รวมได้ k","จึงนับว่า “เคยเจอ sum − k มาแล้วกี่ครั้ง” ด้วย Map"], cap:"เคล็ดลับที่ทำให้เหลือ O(n)"}],
+ warn:["ค่าติดลบได้ → sliding window ใช้ไม่ได้","[0, 0, 0] กับ k = 0 → 6 ช่วง"]},
+topKFrequent:{story:"หาสินค้าขายดี k อันดับแรก", inp:"nums — ตัวเลข, k — จำนวนอันดับ", out:"k ค่าที่พบบ่อยที่สุด (ความถี่เท่ากัน → ค่าน้อยก่อน)",
+ steps:[{t:"arr", v:[1,1,1,2,2,3]},{t:"map", m:[["1","3 ครั้ง"],["2","2 ครั้ง"],["3","1 ครั้ง"]], cap:"นับความถี่ แล้วเรียงจากมากไปน้อย → top 2 = [1, 2]"}],
+ warn:["ความถี่เท่ากันต้องเรียงค่าน้อยไปมาก เช่น [4,4,5,5,6], k=2 → [4,5]"]},
+groupAnagrams:{story:"จัดกลุ่มคำที่ใช้ตัวอักษรชุดเดียวกันไว้ด้วยกัน", inp:"words — array ของคำ", out:"array ของกลุ่ม (เรียงในกลุ่ม และเรียงกลุ่มตามคำแรก)",
+ steps:[{t:"calc", lines:["eat → เรียงตัวอักษร → \"aet\"","tea → \"aet\"     ate → \"aet\"","tan → \"ant\"     nat → \"ant\"","bat → \"abt\""], cap:"คำที่ได้ key เดียวกันอยู่กลุ่มเดียวกัน"},{t:"map", m:[["aet","ate, eat, tea"],["abt","bat"],["ant","nat, tan"]], cap:"ผลลัพธ์ [[\"ate\",\"eat\",\"tea\"], [\"bat\"], [\"nat\",\"tan\"]]"}],
+ warn:["คำว่าง \"\" ก็เป็นกลุ่มหนึ่ง → [[\"\"]]"]},
+shortestPath:{story:"หุ่นยนต์เดินในโกดังจากมุมซ้ายบนไปมุมขวาล่าง หลบกำแพง", inp:"grid — ตาราง 0 = ทางเดิน, 1 = กำแพง", out:"จำนวนก้าวน้อยที่สุด (ไปไม่ได้ → -1)",
+ steps:[{t:"grid", g:[[0,0,0],[1,1,0],[0,0,0]], path:[[0,0],[0,1],[0,2],[1,2],[2,2]], cap:"เส้นทางที่สั้นที่สุด = 4 ก้าว"},{t:"grid", g:[[0,1],[1,0]], cap:"กำแพงล้อมไว้ ไปไม่ถึง → -1"}],
+ warn:["จุดเริ่มหรือจุดจบเป็นกำแพง → -1","grid 1×1 ที่เป็น 0 → 0 ก้าว"]}
+};
+
+const SQL_VIZ = {
+s_bkk:{story:"ฝ่ายการตลาดอยากส่งโปรโมชันให้ลูกค้าที่อยู่กรุงเทพ", tables:["customers"], warn:["ข้อความต้องอยู่ใน single quote: 'Bangkok'","อย่าลืม ORDER BY name"]},
+s_price:{story:"ทำหน้า “สินค้าพรีเมียม” แสดงของราคาเกิน 500 บาท", tables:["products"], warn:["“มากกว่า” ใช้ > ไม่ใช่ >=","เรียงราคา DESC แล้วตามด้วยชื่อ"]},
+s_count:{story:"หัวหน้าถามว่าตอนนี้มีคำสั่งซื้อทั้งหมดกี่รายการ", tables:["orders"], warn:["COUNT(*) นับทุกแถว"]},
+s_cities:{story:"อยากรู้ว่าลูกค้าของเรากระจายอยู่ในเมืองไหนบ้าง", tables:["customers"], warn:["ใช้ DISTINCT ตัดค่าซ้ำ","กรอง NULL ด้วย IS NOT NULL (ห้ามใช้ = NULL)"]},
+s_status:{story:"สรุปยอดเงินแยกตามสถานะคำสั่งซื้อ", tables:["orders"], join:"orders ── แยกกองตาม status ──▶ SUM(total) ของแต่ละกอง", warn:["คอลัมน์ที่ไม่ได้ aggregate ต้องอยู่ใน GROUP BY"]},
+s_having:{story:"หาลูกค้าประจำที่สั่งซื้อตั้งแต่ 2 ครั้งขึ้นไป", tables:["orders"], join:"orders ── GROUP BY customer_id ──▶ COUNT(*) ──▶ กรองด้วย HAVING ≥ 2", warn:["ใช้ COUNT ใน WHERE ไม่ได้ ต้องใช้ HAVING","นับทุก status"]},
+s_avg:{story:"ฝ่ายบุคคลอยากรู้เงินเดือนเฉลี่ยของแต่ละแผนก", tables:["employees"], warn:["ใช้ ROUND(AVG(salary), 2)"]},
+s_join:{story:"ทำรายงานคำสั่งซื้อที่มีชื่อลูกค้า แทนเลข customer_id", tables:["orders","customers"], join:"orders.customer_id  ──จับคู่──▶  customers.id", warn:["ตั้งชื่อย่อตาราง (o, c) ช่วยให้อ่านง่าย","เรียงตาม o.id"]},
+s_anti:{story:"หาลูกค้าที่สมัครแล้วแต่ยังไม่เคยซื้อ เพื่อส่งคูปองกระตุ้น", tables:["customers","orders"], join:"customers  ──LEFT JOIN──▶  orders   (ไม่มีคู่ → ฝั่ง orders เป็น NULL)", warn:["กรองแถวที่ฝั่ง orders เป็น NULL","ใช้ NOT EXISTS แทนก็ได้"]},
+s_trap:{story:"รายงานจำนวนคำสั่งซื้อที่ชำระแล้วของลูกค้าทุกคน รวมคนที่ยังเป็น 0", tables:["customers","orders"], join:"customers  ──LEFT JOIN (ON ... AND status = 'PAID')──▶  orders", warn:["ถ้าเอา status ไปไว้ใน WHERE ลูกค้าที่เป็น 0 จะหายไป","นับด้วย COUNT(o.id) เพราะ COUNT(*) จะนับแถว NULL เป็น 1"]},
+s_cat:{story:"สรุปยอดขายแยกตามหมวดสินค้า", tables:["order_items","products"], join:"order_items.product_id  ──จับคู่──▶  products.id   แล้วรวม qty × unit_price ตาม category", warn:["ยอดขาย = qty * unit_price","เรียงยอดมากไปน้อย"]},
+s_self:{story:"ทำผังองค์กร: พนักงานแต่ละคนมีใครเป็นหัวหน้า", tables:["employees"], join:"employees e (ลูกน้อง).manager_id  ──LEFT JOIN──▶  employees m (หัวหน้า).id", warn:["ใช้ตารางเดียวกันสองครั้ง โดยตั้งชื่อย่อต่างกัน","คนที่ไม่มีหัวหน้าต้องยังอยู่ (LEFT JOIN)"]},
+s_latest:{story:"แสดงคำสั่งซื้อล่าสุดของลูกค้าแต่ละคนในหน้าโปรไฟล์", tables:["orders"], join:"orders ── แบ่งกลุ่มตาม customer_id ──▶ เรียงวันที่ใหม่สุดก่อน ──▶ เอาอันดับ 1", warn:["วันเดียวกันให้ id มากกว่าชนะ","ROW_NUMBER ให้อันดับไม่ซ้ำ"]},
+s_top2:{story:"หาพนักงานเงินเดือนสูงสุด 2 อันดับแรกของแต่ละแผนก (คนเงินเท่ากันได้อันดับเดียวกัน)", tables:["employees"], warn:["ใช้ DENSE_RANK เพราะ ROW_NUMBER จะตัดคนที่เท่ากันทิ้ง","ฐานข้อมูลชุดซ่อนมีเงินเดือนเท่ากันที่อันดับ 1"]},
+s_second:{story:"หาเงินเดือนที่สูงเป็นอันดับ 2 ของบริษัท", tables:["employees"], warn:["LIMIT 1 OFFSET 1 จะผิดถ้าอันดับ 1 มีหลายคน","ถ้าไม่มีอันดับ 2 ต้องได้ NULL"]},
+s_running:{story:"กราฟยอดขายสะสมตั้งแต่วันแรกของเดือน", tables:["orders"], join:"orders (PAID) ── รวมรายวัน ──▶ SUM(daily) OVER (ORDER BY day) = ยอดสะสม", warn:["กรองเฉพาะ status = 'PAID'","รวมเป็นรายวันก่อน แล้วค่อยทำยอดสะสม"]}
+};
+
+/* ---------- renderers ---------- */
+function vzCell(v){ return v===null||v===undefined ? "" : escHTML(v); }
+function vzFrame(f){
+  if(f.t==="arr"){
+    if(!f.v.length) return `<div class="vz-arr"><div class="vz-empty">[ ] ว่าง</div></div>`;
+    const set=a=>new Set(a||[]); const hi=set(f.hi), bad=set(f.bad), dim=set(f.dim);
+    return `<div class="vz-arr">${f.v.map((x,i)=>{ const inWin=f.win && i>=f.win[0] && i<=f.win[1];
+      const cls=[hi.has(i)?"hi":"",bad.has(i)?"bad":"",dim.has(i)?"dim":"",inWin?"win":"",inWin&&i===f.win[0]?"wl":"",inWin&&i===f.win[1]?"wr":""].join(" ");
+      return `<div class="vz-cell ${cls}"><div class="vz-ptr">${f.ptr&&f.ptr[i]!==undefined?escHTML(f.ptr[i])+"<br>▼":""}</div><div class="vz-box">${vzCell(x)}</div><div class="vz-idx">${i}</div></div>`; }).join("")}</div>`;
+  }
+  if(f.t==="grid"){
+    const step={}; (f.path||[]).forEach(([r,c],k)=>step[r+","+c]=k);
+    return `<div class="vz-grid" style="grid-template-columns:repeat(${f.g[0].length},34px)">${f.g.map((row,r)=>row.map((v,c)=>{ const k=step[r+","+c];
+      return `<div class="vz-g ${v===1?"wall":""} ${k!==undefined?"path":""}">${v===1?"🧱":k!==undefined?k:""}</div>`; }).join("")).join("")}</div>`;
+  }
+  if(f.t==="stack") return `<div class="vz-stack"><span class="vz-lbl">ล่าง</span>${f.v.length?f.v.map((x,i)=>`<div class="vz-box ${i===f.v.length-1?"top":""}">${vzCell(x)}</div>`).join(""):`<div class="vz-empty">(ว่าง)</div>`}<span class="vz-lbl">บน ←</span></div>`;
+  if(f.t==="map") return `<div class="vz-map">${f.m.map(([k,v])=>`<div class="vz-kv"><div class="k">${escHTML(k)}</div><div class="v">${escHTML(v)}</div></div>`).join("")}</div>`;
+  if(f.t==="iv"){
+    const max=Math.max(...f.v.map(x=>x[1]))+1;
+    return `<div class="vz-iv">${f.v.map(([s,e])=>`<div class="vz-bar ${f.ok?"ok":""}" style="left:${s/max*100}%;width:${Math.max((e-s)/max*100,1.5)}%"><span>${s}–${e}</span></div>`).join("")}<div class="vz-axis">${Array.from({length:max+1},(_,i)=>i%2===0||max<=10?`<span style="left:${i/max*100}%">${i}</span>`:"").join("")}</div></div>`;
+  }
+  if(f.t==="calc") return `<pre class="vz-calc">${escHTML(f.lines.join("\n"))}</pre>`;
+  if(f.t==="flow") return `<div class="flow">${f.v.map((x,i)=>(i?'<i>→</i>':'')+`<span>${escHTML(x)}</span>`).join("")}</div>`;
+  return "";
+}
+function vzSteps(steps){
+  return steps.map((f,i)=>`<div class="vz-step">${steps.length>1?`<div class="vz-n">${i+1}</div>`:""}<div class="vz-body">${vzFrame(f)}${f.cap?`<div class="vz-cap">${escHTML(f.cap)}</div>`:""}</div></div>`).join("");
+}
+function problemIntroHTML(vz, isJS){
+  if(!vz) return "";
+  let h=`<div class="pi"><div class="pi-story">📖 <b>สถานการณ์:</b> ${escHTML(vz.story)}</div>`;
+  if(isJS) h+=`<div class="pi-io"><div><div class="pi-k">📥 รับเข้า (Input)</div>${escHTML(vz.inp)}</div><div><div class="pi-k">📤 ต้องคืน (Output)</div>${escHTML(vz.out)}</div></div>`;
+  return h+`</div>`;
+}
+const warnHTML = w => w&&w.length ? `<div class="pi-warn"><div class="pi-k">⚠️ ระวัง (hidden test ชอบตรวจ)</div><ul>${w.map(x=>`<li>${escHTML(x)}</li>`).join("")}</ul></div>` : "";
+
+/* ============ LAB ENGINE: ห้องฝึกเขียนโค้ด JavaScript + SQL ============ */
+const SQLJS_URL = "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-asm.js";
+const LAB = {tab:"js", pid:null};
+const LAB_XP = 40;
+function labState(){ P.lab = P.lab || {js:{}, sql:{}}; P.lab.js=P.lab.js||{}; P.lab.sql=P.lab.sql||{}; P.drafts = P.drafts || {}; return P.lab; }
+const escHTML = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- เปรียบเทียบผลลัพธ์ ---------- */
+function normVal(v){
+  if(v===undefined) return "__undefined__";
+  if(typeof v==="number") return Number.isFinite(v)? Math.round(v*1e6)/1e6 : String(v);
+  if(Array.isArray(v)) return v.map(normVal);
+  if(v && typeof v==="object"){ const o={}; Object.keys(v).sort().forEach(k=>o[k]=normVal(v[k])); return o; }
+  return v;
+}
+const sameVal = (a,b) => JSON.stringify(normVal(a))===JSON.stringify(normVal(b));
+function fmtVal(v, max=160){
+  let s; if(v===undefined) s="undefined"; else { try{ s=JSON.stringify(v); }catch(e){ s=String(v); } if(s===undefined) s=String(v); }
+  return s.length>max ? s.slice(0,max)+` … (ยาว ${s.length.toLocaleString()} ตัวอักษร)` : s;
+}
+
+/* ---------- ตัวรัน JavaScript ใน Web Worker (จำกัดเวลา) ---------- */
+const WORKER_PRE = 'var __logs=[];var __fmt=function(x){try{return typeof x==="string"?x:JSON.stringify(x)}catch(e){return String(x)}};console.log=function(){if(__logs.length<100)__logs.push(Array.prototype.map.call(arguments,__fmt).join(" "))};\n';
+const PRE_LINES = WORKER_PRE.split("\n").length-1;
+function runInWorker(code, fn, argsList, limitMs){
+  const post = `\n;self.onmessage=function(e){var f=(typeof ${fn}==="function")?${fn}:null;if(!f){self.postMessage({nofn:true,logs:__logs});return;}var out=[];for(var i=0;i<e.data.length;i++){try{var t0=performance.now();var r=f.apply(null,e.data[i]);out.push({ok:true,v:r,ms:performance.now()-t0});}catch(err){out.push({ok:false,err:String(err&&err.message||err)});}}try{self.postMessage({out:out,logs:__logs});}catch(x){self.postMessage({out:out.map(function(o){return o.ok?{ok:true,v:String(o.v),ms:o.ms}:o}),logs:__logs});}};`;
+  return new Promise(resolve=>{
+    let url, w, done=false;
+    const finish = r => { if(done) return; done=true; clearTimeout(timer); try{ w.terminate(); }catch(e){} try{ URL.revokeObjectURL(url); }catch(e){} resolve(r); };
+    try{
+      url = URL.createObjectURL(new Blob([WORKER_PRE+code+post], {type:"text/javascript"}));
+      w = new Worker(url);
+    }catch(e){ return resolve({fatal:"เบราว์เซอร์นี้รันโค้ดไม่ได้: "+e.message}); }
+    const timer = setTimeout(()=>finish({tle:true}), limitMs);
+    w.onmessage = e => finish(e.data);
+    w.onerror = e => { e.preventDefault && e.preventDefault(); finish({syntax:e.message||"Syntax error", line: e.lineno? e.lineno-PRE_LINES : null}); };
+    w.postMessage(argsList);
+  });
+}
+const expectCache = new Map();
+async function expectedFor(p, key, argsList){
+  const k=p.id+"|"+key;
+  if(expectCache.has(k)) return expectCache.get(k);
+  const r = await runInWorker(p.sol, p.fn, argsList, 15000);
+  const vals = r.out ? r.out.map(o=>o.v) : argsList.map(()=>undefined);
+  expectCache.set(k, vals); return vals;
+}
+const hiddenArgs = p => p.hidden.map(h=> Array.isArray(h) ? {label:null, args:h} : {label:h.label, args:h.gen()});
+
+/* ---------- ตัวรัน SQL (sql.js ฉบับ asm.js โหลดจาก cdnjs) ---------- */
+let SQL_PROMISE=null;
+function getSQL(){
+  if(SQL_PROMISE) return SQL_PROMISE;
+  SQL_PROMISE = new Promise((res,rej)=>{
+    const go=()=> window.initSqlJs ? window.initSqlJs().then(res,rej) : rej(new Error("initSqlJs not found"));
+    if(window.initSqlJs) return go();
+    const s=document.createElement("script"); s.src=SQLJS_URL; s.onload=go; s.onerror=()=>rej(new Error("โหลดตัวรัน SQL ไม่สำเร็จ"));
+    document.head.appendChild(s);
+  });
+  SQL_PROMISE.catch(()=>{ SQL_PROMISE=null; });
+  return SQL_PROMISE;
+}
+async function makeDB(ds){ const SQL=await getSQL(); const db=new SQL.Database(); await db.exec(sqlSeed(ds)); return db; }
+async function runSQL(ds, q){
+  const db=await makeDB(ds);
+  try{ const res=await db.exec(q); const last=res && res.length ? res[res.length-1] : {columns:[],values:[]}; return {columns:last.columns, values:last.values}; }
+  finally{ try{ db.close && db.close(); }catch(e){} }
+}
+function sqlRowsEqual(a, b, ordered){
+  if(!a || !b) return false;
+  if(a.columns.length!==b.columns.length || a.values.length!==b.values.length) return false;
+  const norm = rows => rows.map(r=>JSON.stringify(r.map(v=> typeof v==="number" ? Math.round(v*100)/100 : v)));
+  let x=norm(a.values), y=norm(b.values);
+  if(!ordered){ x=x.slice().sort(); y=y.slice().sort(); }
+  return x.every((v,i)=>v===y[i]);
+}
+function labelCols(r, p){ const n=p.cols.split(/,\s*/); return r && n.length===r.columns.length ? {columns:n, values:r.values} : r; }
+function tableHTML(r, max=30){
+  if(!r) return "";
+  if(!r.columns.length) return `<div class="lab-note">(คำสั่งไม่ได้คืนผลลัพธ์)</div>`;
+  const rows=r.values.slice(0,max).map(row=>`<tr>${row.map(v=>`<td>${v===null?'<i class="nul">NULL</i>':escHTML(v)}</td>`).join("")}</tr>`).join("");
+  return `<div class="tbl-wrap"><table class="tbl"><thead><tr>${r.columns.map(c=>`<th>${escHTML(c)}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div>${r.values.length>max?`<div class="lab-note">แสดง ${max} จาก ${r.values.length} แถว</div>`:`<div class="lab-note">${r.values.length} แถว</div>`}`;
+}
+
+/* ---------- หน้า LAB ---------- */
+const labList = () => LAB.tab==="js" ? JS_PROBLEMS : SQL_PROBLEMS;
+const labLevels = () => LAB.tab==="js" ? LAB_LEVELS : SQL_LEVELS;
+function openLab(tab, pid){ S=null; labState(); if(tab) LAB.tab=tab; LAB.pid=pid||null; renderLab(); }
+function renderLab(){
+  show("lab"); renderStats();
+  const root=$("#lab"); root.innerHTML=""; root.style.setProperty("--c", LAB.tab==="js" ? "#5eead4" : "#a78bfa");
+  if(LAB.pid) return renderProblem(root);
+  const L=labState();
+  const top=el("div","lv-top"); const back=el("button","back","← แผนที่"); back.onclick=()=>{ LAB.pid=null; renderMap(); }; top.appendChild(back);
+  top.appendChild(el("div","lv-title",`<div class="k">PRACTICE LAB</div><h2>⌨️ ห้องฝึกเขียนโค้ดจริง</h2>`)); root.appendChild(top);
+
+  const intro=el("div","card"); intro.style.animation="none";
+  intro.innerHTML=`<div class="eyebrow">ทำไมต้องฝึกที่นี่</div><p class="lab-p">ข้อสอบ HackerRank ส่วน Coding และ SQL ต้อง<b>พิมพ์โค้ดเองให้ผ่าน hidden test</b> ห้องนี้จำลองแบบเดียวกัน: เขียนโค้ด → <b>▶ รันตัวอย่าง</b> ดูผล → <b>✅ ส่งคำตอบ</b> เพื่อตรวจกับ hidden test (รวมข้อมูลขนาดใหญ่ที่ต้องเร็วพอ) · ติดแล้วกด 💡 คำใบ้ได้ · ข้อที่ผ่านได้ +${LAB_XP} XP</p>
+    <div class="lab-tabs"><button class="lab-tab ${LAB.tab==="js"?"on":""}" data-t="js">⌨️ JavaScript <b>${Object.keys(L.js).length}/${JS_PROBLEMS.length}</b></button><button class="lab-tab ${LAB.tab==="sql"?"on":""}" data-t="sql">🗃️ SQL <b>${Object.keys(L.sql).length}/${SQL_PROBLEMS.length}</b></button></div>`;
+  intro.querySelectorAll(".lab-tab").forEach(b=>b.onclick=()=>{ LAB.tab=b.dataset.t; renderLab(); });
+  root.appendChild(intro);
+
+  if(LAB.tab==="sql"){
+    const sc=el("div","card"); sc.style.animation="none";
+    sc.innerHTML=`<div class="eyebrow">ฐานข้อมูลตัวอย่าง (SQLite)</div><h3>ร้านค้าออนไลน์ + พนักงาน</h3><div class="schema">${SQL_TABLE_INFO.map(([t,th,cols])=>`<div><code>${t}</code> <span class="muted">${th}</span><div class="cols">${cols}</div></div>`).join("")}</div>`;
+    const vb=el("button","btn sec sm","📋 ดูข้อมูลในตาราง"); const box=el("div");
+    vb.onclick=async()=>{ box.innerHTML='<div class="lab-note">กำลังโหลดตัวรัน SQL…</div>'; try{ let h=""; for(const [t] of SQL_TABLE_INFO){ const r=await runSQL("A",`SELECT * FROM ${t};`); h+=`<h4 class="tblname">${t}</h4>`+tableHTML(r,50);} box.innerHTML=h; }catch(e){ box.innerHTML=sqlLoadErr(e); } };
+    sc.appendChild(vb); sc.appendChild(box); root.appendChild(sc);
+  }
+
+  const solved = LAB.tab==="js" ? L.js : L.sql;
+  labLevels().forEach(lv=>{
+    const sec=el("div","card"); sec.style.animation="none";
+    const ps=labList().filter(p=>p.lvl===lv.n);
+    sec.innerHTML=`<div class="eyebrow">LEVEL ${lv.n} · ${ps.filter(p=>solved[p.id]).length}/${ps.length}</div><h3>${lv.name}</h3><p class="lab-p muted">${lv.desc}</p>`;
+    const grid=el("div","plist");
+    ps.forEach(p=>{ const b=el("button","pcard"+(solved[p.id]?" ok":""),`<span class="pst">${solved[p.id]?"✓":"○"}</span><span>${p.title}</span>`); b.onclick=()=>{ LAB.pid=p.id; renderLab(); window.scrollTo(0,0); }; grid.appendChild(b); });
+    sec.appendChild(grid); root.appendChild(sec);
+  });
+}
+function sqlLoadErr(e){ return `<div class="why r"><strong>⚠️ โหลดตัวรัน SQL ไม่สำเร็จ</strong>ตัวรัน SQL ต้องโหลดจาก cdnjs.cloudflare.com กรุณาเช็กอินเทอร์เน็ต แล้วลองใหม่ (${escHTML(e.message||e)})</div>`; }
+
+function renderProblem(root){
+  const L=labState(); const isJS=LAB.tab==="js"; const list=labList();
+  const idx=list.findIndex(p=>p.id===LAB.pid); const p=list[idx];
+  if(!p){ LAB.pid=null; return renderLab(); }
+  const solved=(isJS?L.js:L.sql)[p.id];
+  const top=el("div","lv-top"); const back=el("button","back","← รายการโจทย์"); back.onclick=()=>{ LAB.pid=null; renderLab(); }; top.appendChild(back);
+  top.appendChild(el("div","lv-title",`<div class="k">${isJS?"JAVASCRIPT":"SQL"} · LEVEL ${p.lvl} · ข้อ ${idx+1}/${list.length}${solved?" · ✓ ผ่านแล้ว":""}</div><h2>${p.title}</h2>`)); root.appendChild(top);
+
+  const dc=el("div","card"); dc.style.animation="none";
+  const vz = isJS ? JS_VIZ[p.id] : SQL_VIZ[p.id];
+  dc.innerHTML=`<div class="eyebrow">โจทย์</div>`+problemIntroHTML(vz,isJS)+`<div class="body">${p.desc}</div>`+
+    (isJS ? (vz&&vz.steps?`<div class="pi-sec"><div class="pi-k">🖼️ ดูเป็นภาพ ทีละขั้น</div>${vzSteps(vz.steps)}</div>`:"")+`<div class="ex"><div class="pi-k">✍️ ตัวอย่าง (input → output)</div><div id="ex-box" class="lab-note">กำลังเตรียมตัวอย่าง…</div></div>`
+          : (vz&&vz.join?`<div class="pi-sec"><div class="pi-k">🔗 ความสัมพันธ์ที่ใช้</div><pre class="vz-calc">${escHTML(vz.join)}</pre></div>`:"")+
+            `<div class="pi-sec"><div class="pi-k">📋 ตารางที่ใช้ (ข้อมูลตัวอย่าง)</div><div id="sql-tables" class="lab-note">กำลังโหลดตาราง…</div></div>`+
+            `<div class="pi-sec"><div class="pi-k">🎯 ผลลัพธ์ที่ต้องได้ จากข้อมูลตัวอย่างด้านบน</div><div class="lab-note">คอลัมน์: <b>${p.cols}</b>${p.ordered?" · ต้องเรียงลำดับตามที่โจทย์บอก":" · ลำดับแถวไม่สำคัญ"}</div><div id="sql-expect" class="lab-note">กำลังคำนวณ…</div></div>`)+
+    warnHTML(vz&&vz.warn)+
+    (isJS?"":`<details class="schema-d"><summary>ดูโครงสร้างตารางทั้งหมด</summary><div class="schema">${SQL_TABLE_INFO.map(([t,th,cols])=>`<div><code>${t}</code> <span class="muted">${th}</span><div class="cols">${cols}</div></div>`).join("")}</div></details>`);
+  if(!isJS){
+    (async()=>{
+      try{
+        let h=""; for(const t of (vz&&vz.tables)||[]){ const info=SQL_TABLE_INFO.find(x=>x[0]===t); const r=await runSQL("A",`SELECT * FROM ${t};`); h+=`<h4 class="tblname">${t} <span class="muted">— ${info?info[1]:""}</span></h4>`+tableHTML(r,20); }
+        const tb=$("#sql-tables"); if(tb) tb.innerHTML=h;
+        const ex=await runSQL("A",p.ref); const eb=$("#sql-expect"); if(eb) eb.innerHTML=tableHTML(labelCols(ex,p),30);
+      }catch(e){ const tb=$("#sql-tables"); if(tb) tb.innerHTML=sqlLoadErr(e); const eb=$("#sql-expect"); if(eb) eb.innerHTML=""; }
+    })();
+  }
+  root.appendChild(dc);
+  if(isJS) expectedFor(p,"v",p.tests).then(exp=>{ const b=$("#ex-box"); if(b) b.innerHTML=p.tests.map((a,i)=>`<div class="exrow"><span class="ex-in"><code>${escHTML(p.fn)}(${escHTML(a.map(x=>fmtVal(x,80)).join(", "))})</code></span><span class="ex-arrow">→</span><span class="ex-out"><code>${escHTML(fmtVal(exp[i],80))}</code></span></div>`).join(""); });
+
+  const ec=el("div","card"); ec.style.animation="none";
+  ec.appendChild(el("div","eyebrow", isJS?"เขียนโค้ด JavaScript":"เขียน SQL (SQLite)"));
+  const ta=el("textarea","code-ed"); ta.spellcheck=false; ta.setAttribute("autocapitalize","off"); ta.setAttribute("autocomplete","off");
+  ta.value = P.drafts[p.id] ?? (isJS ? p.stub : "-- เขียน SQL ตรงนี้ แล้วกด ▶ รัน\nSELECT ");
+  let saveT; ta.oninput=()=>{ P.drafts[p.id]=ta.value; clearTimeout(saveT); saveT=setTimeout(save,400); };
+  ta.onkeydown=e=>{
+    if(e.key==="Tab"){ e.preventDefault(); const s=ta.selectionStart, en=ta.selectionEnd; ta.value=ta.value.slice(0,s)+"  "+ta.value.slice(en); ta.selectionStart=ta.selectionEnd=s+2; ta.oninput(); }
+    if(e.key==="Enter" && (e.ctrlKey||e.metaKey)){ e.preventDefault(); run(false); }
+  };
+  ec.appendChild(ta);
+  const bar=el("div","lab-bar");
+  const bRun=el("button","btn sec sm","▶ รันตัวอย่าง"), bSub=el("button","btn sm","✅ ส่งคำตอบ"), bHint=el("button","ghost","💡 คำใบ้"), bSol=el("button","ghost","👀 ดูเฉลย"), bReset=el("button","ghost","↺ เริ่มใหม่");
+  bar.append(bRun,bSub,bHint,bSol,bReset); ec.appendChild(bar);
+  ec.appendChild(el("div","hint-keys","Ctrl/⌘ + Enter = รันตัวอย่าง · Tab = เว้น 2 ช่อง · โค้ดที่พิมพ์จะถูกบันทึกอัตโนมัติ"));
+  const out=el("div","lab-out"); ec.appendChild(out);
+  root.appendChild(ec);
+
+  let solShown=false, attempts=0;
+  bHint.onclick=()=>{ if(out.querySelector(".hintbox")) return; const d=el("div","why g hintbox",`<strong>💡 คำใบ้</strong>${escHTML(p.hint)}`); out.prepend(d); };
+  bSol.onclick=()=>{
+    if(!solShown && attempts===0 && !solved){ bSol.textContent="👀 ยืนยันดูเฉลย (ลองส่งก่อนจะได้ฝึกมากกว่า)"; solShown=true; return; }
+    const d=el("div","why g"); d.innerHTML=`<strong>👀 เฉลย</strong>`; const pre=el("pre"); pre.textContent=isJS?p.sol:p.ref; d.appendChild(pre);
+    const use=el("button","ghost","คัดลอกเฉลยไปที่ช่องเขียนโค้ด"); use.onclick=()=>{ ta.value=pre.textContent; ta.oninput(); }; d.appendChild(use);
+    out.prepend(d);
+  };
+  bReset.onclick=()=>{ ta.value = isJS ? p.stub : "-- เขียน SQL ตรงนี้ แล้วกด ▶ รัน\nSELECT "; ta.oninput(); out.innerHTML=""; };
+
+  async function run(submit){
+    attempts++; bRun.disabled=bSub.disabled=true;
+    out.innerHTML=`<div class="lab-note">⏳ ${submit?"กำลังตรวจกับ hidden test…":"กำลังรัน…"}</div>`;
+    try{ if(isJS) await runJSProblem(p, ta.value, submit, out); else await runSQLProblem(p, ta.value, submit, out); }
+    catch(e){ out.innerHTML=`<div class="why r"><strong>เกิดข้อผิดพลาด</strong>${escHTML(e.message||e)}</div>`; }
+    bRun.disabled=bSub.disabled=false;
+  }
+  bRun.onclick=()=>run(false); bSub.onclick=()=>run(true);
+
+  const nav=el("div","actions");
+  const prev=el("button","btn sec sm","← ข้อก่อนหน้า"); prev.disabled=idx===0; prev.onclick=()=>{ LAB.pid=list[idx-1].id; renderLab(); window.scrollTo(0,0); };
+  const next=el("button","btn sec sm","ข้อถัดไป →"); next.disabled=idx===list.length-1; next.onclick=()=>{ LAB.pid=list[idx+1].id; renderLab(); window.scrollTo(0,0); };
+  nav.append(prev,next); root.appendChild(nav);
+}
+
+function markSolved(kind, id){ const L=labState(); const first=!L[kind][id]; L[kind][id]=true; save(); renderStats(); return first; }
+
+async function runJSProblem(p, code, submit, out){
+  const vis = p.tests;
+  const expV = await expectedFor(p,"v",vis);
+  const r = await runInWorker(code, p.fn, vis, 3000);
+  if(r.fatal){ out.innerHTML=`<div class="why r"><strong>รันไม่ได้</strong>${escHTML(r.fatal)}</div>`; return; }
+  if(r.syntax){ out.innerHTML=`<div class="why r"><strong>❌ โค้ดมีข้อผิดพลาด (Syntax / Runtime Error)</strong>${escHTML(r.syntax)}${r.line?` · บรรทัดที่ ${r.line}`:""}<br><span class="muted">อ่านข้อความ error แล้วดูบรรทัดที่บอก มักเกิดจากวงเล็บไม่ครบ หรือพิมพ์ชื่อผิด</span></div>`; return; }
+  if(r.tle){ out.innerHTML=`<div class="why r"><strong>⏱️ Time Limit Exceeded</strong>โค้ดทำงานนานเกิน 3 วินาทีกับตัวอย่างเล็ก ๆ น่าจะมี loop ที่ไม่มีวันจบ (เช่นลืม i++)</div>`; return; }
+  if(r.nofn){ out.innerHTML=`<div class="why r"><strong>ไม่พบฟังก์ชัน ${escHTML(p.fn)}</strong>ต้องประกาศ <code>function ${escHTML(p.fn)}(...)</code> โดยใช้ชื่อนี้ตรงตัว</div>`; return; }
+  let html=`<table class="tbl res"><thead><tr><th></th><th>Input</th><th>ควรได้</th><th>ได้จริง</th></tr></thead><tbody>`;
+  let allVis=true;
+  r.out.forEach((o,i)=>{ const ok=o.ok && sameVal(o.v,expV[i]); if(!ok) allVis=false;
+    html+=`<tr class="${ok?"pass":"fail"}"><td>${ok?"✅":"❌"}</td><td><code>${escHTML(vis[i].map(x=>fmtVal(x,60)).join(", "))}</code></td><td><code>${escHTML(fmtVal(expV[i],80))}</code></td><td>${o.ok?`<code>${escHTML(fmtVal(o.v,80))}</code>`:`<span class="err">Error: ${escHTML(o.err)}</span>`}</td></tr>`; });
+  html+=`</tbody></table>`;
+  if(r.logs && r.logs.length) html+=`<div class="eli-k" style="margin-top:10px">console.log</div><pre class="console">${escHTML(r.logs.join("\n"))}</pre>`;
+  if(!submit){ out.innerHTML=`<div class="why ${allVis?"g":"r"}"><strong>${allVis?"✅ ผ่านตัวอย่างทั้งหมด":"❌ ยังไม่ผ่านบางตัวอย่าง"}</strong>${allVis?"ลองกด ✅ ส่งคำตอบ เพื่อตรวจกับ hidden test":"เทียบคอลัมน์ “ควรได้” กับ “ได้จริง” แล้วไล่โค้ดด้วยมือ"}</div>`+html; return; }
+
+  // ---- hidden tests: รันทีละชุด ชุดละ worker จำกัด 3 วินาที ----
+  const hs = hiddenArgs(p);
+  const expH = await expectedFor(p,"h",hs.map(h=>h.args));
+  let rows="", pass=0;
+  for(let i=0;i<hs.length;i++){
+    const rr = await runInWorker(code, p.fn, [hs[i].args], 3000);
+    let st, msg="";
+    if(rr.tle){ st=false; msg="⏱️ ช้าเกินเวลา (Time Limit Exceeded) — ลองหา complexity ที่ดีกว่านี้"; }
+    else if(rr.syntax){ st=false; msg="Error: "+rr.syntax; }
+    else if(rr.nofn){ st=false; msg="ไม่พบฟังก์ชัน"; }
+    else { const o=rr.out[0]; st=o.ok && sameVal(o.v,expH[i]); msg = o.ok ? (st?`${o.ms<1?"<1":Math.round(o.ms)} ms`:"คำตอบไม่ตรง") : "Error: "+o.err; }
+    if(st) pass++;
+    rows+=`<tr class="${st?"pass":"fail"}"><td>${st?"✅":"❌"}</td><td>Hidden #${i+1}${hs[i].label?` · ${escHTML(hs[i].label)}`:""}</td><td colspan="2">${escHTML(msg)}</td></tr>`;
+  }
+  const total=vis.length+hs.length, got=(allVis?vis.length:r.out.filter((o,i)=>o.ok&&sameVal(o.v,expV[i])).length)+pass;
+  const all = got===total;
+  let head;
+  if(all){ const first=markSolved("js",p.id); head=`<div class="why g"><strong>🎉 ผ่านทุกเทสต์ (${got}/${total})${first?` · +${LAB_XP} XP`:""}</strong>ยอดเยี่ยม! ลองอ่านเฉลยเทียบดูว่ามีวิธีที่สั้นหรือเร็วกว่านี้ไหม แล้วไปข้อถัดไป</div>`; }
+  else head=`<div class="why r"><strong>ผ่าน ${got}/${total} เทสต์</strong>hidden test มักตรวจกรณีขอบ (ว่าง, ค่าเดียว, ติดลบ, ซ้ำ) และข้อมูลใหญ่ที่ต้องเร็วพอ ลองกด 💡 คำใบ้</div>`;
+  out.innerHTML = head + html + `<table class="tbl res"><tbody>${rows}</tbody></table>`;
+}
+
+async function runSQLProblem(p, q, submit, out){
+  if(!q.replace(/--.*$/gm,"").trim()){ out.innerHTML=`<div class="why r"><strong>ยังไม่ได้เขียน SQL</strong></div>`; return; }
+  let mine, exp;
+  try{ exp = await runSQL("A", p.ref); }catch(e){ out.innerHTML=sqlLoadErr(e); return; }
+  try{ mine = await runSQL("A", q); }
+  catch(e){ out.innerHTML=`<div class="why r"><strong>❌ SQL Error</strong>${escHTML(e.message||e)}<br><span class="muted">เช็กชื่อตาราง ชื่อคอลัมน์ เครื่องหมายจุลภาค และเครื่องหมายคำพูด ('Bangkok' ใช้ single quote)</span></div>`; return; }
+  const okA = sqlRowsEqual(mine, exp, p.ordered);
+  const why = okA ? "" : (mine.columns.length!==exp.columns.length ? `จำนวนคอลัมน์ไม่ตรง: ได้ ${mine.columns.length} ควรได้ ${exp.columns.length}` : mine.values.length!==exp.values.length ? `จำนวนแถวไม่ตรง: ได้ ${mine.values.length} ควรได้ ${exp.values.length}` : (p.ordered && sqlRowsEqual(mine,exp,false) ? "ข้อมูลถูกแล้ว แต่ลำดับแถวยังไม่ตรง (เช็ก ORDER BY)" : "ค่าบางแถวไม่ตรง"));
+  let html = `<div class="eli-k">ผลลัพธ์ของคุณ (ฐานข้อมูลตัวอย่าง)</div>${tableHTML(mine)}`;
+  const expD = `<details class="schema-d"><summary>ดูผลลัพธ์ที่ควรได้</summary>${tableHTML(labelCols(exp,p))}</details>`;
+  if(!submit){ out.innerHTML=`<div class="why ${okA?"g":"r"}"><strong>${okA?"✅ ผลลัพธ์ตรงกับที่ควรได้":"❌ ผลลัพธ์ยังไม่ตรง"}</strong>${okA?"กด ✅ ส่งคำตอบ เพื่อตรวจกับฐานข้อมูลชุดซ่อน":escHTML(why)}</div>`+html+expD; return; }
+  let okB=false, whyB="";
+  try{ const eb=await runSQL("B",p.ref); const mb=await runSQL("B",q); okB=sqlRowsEqual(mb,eb,p.ordered); if(!okB) whyB = mb.values.length!==eb.values.length ? "จำนวนแถวไม่ตรง" : "ค่าหรือลำดับบางแถวไม่ตรง"; }
+  catch(e){ whyB="Error: "+(e.message||e); }
+  const all = okA && okB;
+  let head;
+  if(all){ const first=markSolved("sql",p.id); head=`<div class="why g"><strong>🎉 ผ่านทั้งข้อมูลตัวอย่างและข้อมูลชุดซ่อน${first?` · +${LAB_XP} XP`:""}</strong>query ของคุณถูกต้องโดยไม่ได้ “บังเอิญ” ตรงกับข้อมูลชุดเดียว</div>`; }
+  else head=`<div class="why r"><strong>ผลการตรวจ</strong>ฐานข้อมูลตัวอย่าง: ${okA?"✅ ผ่าน":"❌ "+escHTML(why)}<br>ฐานข้อมูลชุดซ่อน (ข้อมูลต่างกัน มีค่าเท่ากัน / NULL / ลูกค้าที่ไม่มี order): ${okB?"✅ ผ่าน":"❌ "+escHTML(whyB)}<br><span class="muted">ถ้าผ่านแค่ชุดตัวอย่าง แปลว่า query อาจ hardcode ค่า หรือยังไม่รองรับกรณีพิเศษ</span></div>`;
+  out.innerHTML = head + html + expD;
+}
+
 /* ---------------- KEYBOARD ---------------- */
 document.addEventListener("keydown",e=>{
   if(!S) return;
@@ -3873,6 +4704,7 @@ document.addEventListener("keydown",e=>{
     else if(e.key==="Enter" && it.done){ e.preventDefault(); const nx=$("#nextq"); if(nx) nx.click(); }
   }
 });
+$("#btn-lab").onclick=()=>openLab();
 $("#btn-review").onclick=()=>{ S=null; renderReview(); };
 $("#home").onclick=()=>{ S=null; renderMap(); };
 
